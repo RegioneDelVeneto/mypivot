@@ -1,0 +1,16 @@
+package routines;
+
+
+public class ProvaLeggiF {
+
+	public static void main(String[] args) throws Exception {
+		LeggiFile lf = new LeggiFile("_USER_REPO_", ";");
+		DescrizioneFile df = new DescrizioneFile();
+		
+		while (lf.hasNext(df)) {
+			
+			System.out.println("valore :: " + lf.getCurrentRow().getVal_cod_bolletta());
+			System.out.println("valore :: " + lf.getCurrentRow().getErrorMessage());
+		}
+	}
+}

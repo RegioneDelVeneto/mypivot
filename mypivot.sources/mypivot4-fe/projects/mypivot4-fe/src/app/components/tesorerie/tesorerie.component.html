@@ -1,0 +1,175 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<ng-template #helpPage>
+  <div>
+    <p>In questo percorso applicativo potrai visualizzare i Giornali di Cassa (dati di tesoreria) acquisiti da MyPivot.
+      La ricerca può essere effettuata filtrando i seguenti dati:
+    </p>
+    <ul>
+      <li>Data contabile </li>
+      <li>Data valuta </li>
+      <li>Codice IUV </li>
+      <li>ID Rendicontazione (codice IUF) </li>
+      <li>Anno Bolletta </li>
+      <li>Codice Bolletta </li>
+      <li>Ordinante </li>
+      <li>Importo Tesoreria </li>
+    </ul>
+
+    <p>Per ogni riga del Giornale di Cassa vengono messi a disposizione due azioni con i rispettivi pulsanti: </p>
+    <ul>
+      <li>Dettaglio: Pulsante visualizzato solo nei casi in cui il Giornale di Cassa: 
+        <ul>
+          <li>sia associato ad una Ricevuta Telematica </li>
+          <li>sia associato ad una Rendicontazione PagoPA (e dunque, che sia presente e valorizzato il dato “ID
+            Rendicontazione” per il Giornale di Cassa in oggetto) </li>
+        </ul>
+    </ul>
+        <p>La pagina che consente di visualizzare il dettaglio è quella della visualizzazione delle Ricevute
+          Telematiche.</p>
+        <ul>
+          <li>Mostra altri campi: per visualizzare tutti i dati associati a quella riga del Giornale di Cassa</li>
+        </ul>
+  </div>
+</ng-template>
+
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}} <my-pay-help [template]="helpPage"></my-pay-help></h1>
+    </div>
+
+    <div class="w100 mypay-search-form">
+      <form fxFlex novalidate #sForm [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <myp-search-chips #mypSearchChips [formDef]="formDef" [form]="form" [parentRef]="this" [removeFilterCallback]="onRemoveFilter">
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['iuv'].label}}</mat-label>
+              <input matInput formControlName="iuv" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['iuv']">{{ formErrors.iuv }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field datepickerFormatYyyy fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoBolletta'].label}}</mat-label>
+              <input matInput formControlName="annoBolletta" [matDatepicker]="dpAnnoBolletta">
+              <mat-datepicker-toggle matSuffix [for]="dpAnnoBolletta"></mat-datepicker-toggle>
+              <mat-datepicker #dpAnnoBolletta startView="multi-year" (yearSelected)="onYearChosen('annoBolletta', $event, dpAnnoBolletta)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoBolletta']">{{ formErrors.annoBolletta }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codBolletta'].label}}</mat-label>
+              <input matInput formControlName="codBolletta" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codBolletta']">{{ formErrors.codBolletta }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['idr'].label}}</mat-label>
+              <input matInput formControlName="idr" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['idr']">{{ formErrors.idr }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['importo'].label}}</mat-label>
+              <input matInput formControlName="importo" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['importo']">{{ formErrors.importo }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['ordinante'].label}}</mat-label>
+              <input matInput formControlName="ordinante" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['ordinante']">{{ formErrors.ordinante }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Data Contabile</mat-label>
+              <mat-date-range-input [rangePicker]="pickerDtContabile">
+                <input matStartDate formControlName="dtContabileFrom" placeholder="data da">
+                <input matEndDate formControlName="dtContabileTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="pickerDtContabile"></mat-datepicker-toggle>
+              <mat-date-range-picker #pickerDtContabile></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtContabileFrom']">{{ formErrors.dtContabileFrom }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Data Valuta</mat-label>
+              <mat-date-range-input [rangePicker]="pickerDtValuta">
+                <input matStartDate formControlName="dtValutaFrom" placeholder="data da">
+                <input matEndDate formControlName="dtValutaTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="pickerDtValuta"></mat-datepicker-toggle>
+              <mat-date-range-picker #pickerDtValuta></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtValutaFrom']">{{ formErrors.dtValutaFrom }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field datepickerFormatYyyy fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoDocumento'].label}}</mat-label>
+              <input matInput formControlName="annoDocumento" [matDatepicker]="dpAnnoDocumento">
+              <mat-datepicker-toggle matSuffix [for]="dpAnnoDocumento"></mat-datepicker-toggle>
+              <mat-datepicker #dpAnnoDocumento startView="multi-year" (yearSelected)="onYearChosen('annoDocumento', $event, dpAnnoDocumento)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoDocumento']">{{ formErrors.annoDocumento }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codDocumento'].label}}</mat-label>
+              <input matInput formControlName="codDocumento" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codDocumento']">{{ formErrors.codDocumento }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field datepickerFormatYyyy fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoProvvisorio'].label}}</mat-label>
+              <input matInput formControlName="annoProvvisorio" [matDatepicker]="dpAnnoProvvisorio">
+              <mat-datepicker-toggle matSuffix [for]="dpAnnoProvvisorio"></mat-datepicker-toggle>
+              <mat-datepicker #dpAnnoProvvisorio startView="multi-year" (yearSelected)="onYearChosen('annoProvvisorio', $event, dpAnnoProvvisorio)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoProvvisorio']">{{ formErrors.annoProvvisorio }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codProvvisorio'].label}}</mat-label>
+              <input matInput formControlName="codProvvisorio" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codProvvisorio']">{{ formErrors.codProvvisorio }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+            <div fxFlex></div>
+            <button fxFlex="5em" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+            <button fxFlex="5em" type="submit" mat-flat-button [disabled]="form.invalid || blockingError" color="accent">Cerca</button>
+          </div>
+
+        </myp-search-chips>
+      </form>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+          [paginatorData]="paginatorData" [parentRef]="this" [onClickRowFun]="onClickRow">
+    </my-pay-table-pivot>
+  </div>
+
+</div>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.relational="http:///orgomg/cwm/resource/relational.ecore" xmlns:relational="http://www.talend.org/cwm/resource/relational/2010">
+  <TalendMetadata:DatabaseConnection xmi:id="_Of1_0P6MEeaSKblSr26qlA" name="PostgreSQL_USERE45_4" id="_ENu20P6MEeaSKblSr26qlA" label="PostgreSQL_USERE45_4" dataPackage="_FEB5oLTLEeeAHrmbaU7qZA" DatabaseType="PostgreSQL" DriverClass="org.postgresql.Driver" URL="jdbc:postgresql://_DB_HOST_:5432/USERE45_4_V5_5_x" dbVersionString="V9_X" Port="5432" Username="USERE45_4O" Password="enc:system.encryption.key.v1:VtXFGf0bGRk0dMAVFZeApdw+eeYdn04g64NSORLCYq8mko4t" ServerName="192.168.45.72" DatasourceName="" FileFieldName="" SID="USERE45_4_V5_5_x" SqlSynthax="SQL Syntax" DbmsId="postgres_id" ProductId="POSTGRESQL" AdditionalParams="" StandardSQL="true" SQLMode="false" UiSchema="public">
+    <taggedValue xmi:id="_Of1_0f6MEeaSKblSr26qlA" tag="Is Conn Need Reload" value="true"/>
+    <taggedValue xmi:id="_OgOaUP6MEeaSKblSr26qlA" tag="package filter" value=""/>
+    <taggedValue xmi:id="_OgguMP6MEeaSKblSr26qlA" tag="Status" value=""/>
+    <taggedValue xmi:id="_OgguMf6MEeaSKblSr26qlA" tag="Version" value="0.1"/>
+    <taggedValue xmi:id="_OgguMv6MEeaSKblSr26qlA" tag="Purpose" value=""/>
+    <taggedValue xmi:id="_OgguM_6MEeaSKblSr26qlA" tag="Description" value=""/>
+    <taggedValue xmi:id="_OgguNP6MEeaSKblSr26qlA" tag="Author" value=""/>
+    <taggedValue xmi:id="_OgguNf6MEeaSKblSr26qlA" tag="otherParameter"/>
+    <taggedValue xmi:id="_OgybAP6MEeaSKblSr26qlA" tag="DB ProductName" value="PostgreSQL"/>
+    <taggedValue xmi:id="_OgybAf6MEeaSKblSr26qlA" tag="DB ProductVersion" value="9.3.9"/>
+    <taggedValue xmi:id="_OgybAv6MEeaSKblSr26qlA" tag="DB IdentifierQuoteString" value="&quot;"/>
+    <parameters xmi:id="_Of1_0v6MEeaSKblSr26qlA" key="CONN_PARA_KEY_USERNAME" value="USERE45_4O"/>
+  </TalendMetadata:DatabaseConnection>
+  <orgomg.cwm.resource.relational:Catalog xmi:id="_FEB5oLTLEeeAHrmbaU7qZA" name="USERE45_4_V5_5_x" dataManager="_Of1_0P6MEeaSKblSr26qlA">
+    <ownedElement xsi:type="orgomg.cwm.resource.relational:Schema" xmi:id="_FEB5obTLEeeAHrmbaU7qZA" name="public">
+      <ownedElement xsi:type="relational:TdTable" xmi:id="_FEB5orTLEeeAHrmbaU7qZA" name="mygov_anagrafica_uff_cap_acc" id="_ExYqcLTLEeeAHrmbaU7qZA" label="mygov_anagrafica_uff_cap_acc" tableType="TABLE">
+        <taggedValue xmi:id="_FEB5o7TLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgsLTLEeeAHrmbaU7qZA" name="mygov_anagrafica_uff_cap_acc_id" label="mygov_anagrafica_uff_cap_acc_id" length="19" sourceType="INT8" talendType="id_Long" key="true" nullable="false">
+          <taggedValue xmi:id="_FECgsbTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgsrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgs7TLEeeAHrmbaU7qZA" name="INT8" numericPrecisionRadix="10" javaDataType="-5"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgtLTLEeeAHrmbaU7qZA" name="mygov_ente_id" label="mygov_ente_id" length="19" sourceType="INT8" talendType="id_Long" nullable="false">
+          <taggedValue xmi:id="_FECgtbTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgtrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgt7TLEeeAHrmbaU7qZA" name="INT8" numericPrecisionRadix="10" javaDataType="-5"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECguLTLEeeAHrmbaU7qZA" name="cod_tipo_dovuto" label="cod_tipo_dovuto" length="35" sourceType="VARCHAR" talendType="id_String">
+          <taggedValue xmi:id="_FECgubTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgurTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgu7TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12" nullable="columnNullable"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgvLTLEeeAHrmbaU7qZA" name="cod_ufficio" label="cod_ufficio" length="16" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECgvbTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgvrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgv7TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgwLTLEeeAHrmbaU7qZA" name="de_ufficio" label="de_ufficio" length="64" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECgwbTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgwrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgw7TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgxLTLEeeAHrmbaU7qZA" name="flg_attivo" label="flg_attivo" length="1" sourceType="BOOL" talendType="id_Boolean" nullable="false">
+          <taggedValue xmi:id="_FECgxbTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgxrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgx7TLEeeAHrmbaU7qZA" name="BOOL" numericPrecisionRadix="10" javaDataType="-7"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgyLTLEeeAHrmbaU7qZA" name="cod_capitolo" label="cod_capitolo" length="12" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECgybTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgyrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgy7TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECgzLTLEeeAHrmbaU7qZA" name="de_capitolo" label="de_capitolo" length="64" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECgzbTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECgzrTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECgz7TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECg0LTLEeeAHrmbaU7qZA" name="de_anno_esercizio" label="de_anno_esercizio" length="4" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECg0bTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECg0rTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECg07TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECg1LTLEeeAHrmbaU7qZA" name="cod_accertamento" label="cod_accertamento" length="32" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECg1bTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECg1rTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECg17TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECg2LTLEeeAHrmbaU7qZA" name="de_accertamento" label="de_accertamento" length="64" sourceType="VARCHAR" talendType="id_String" nullable="false">
+          <taggedValue xmi:id="_FECg2bTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECg2rTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FECg27TLEeeAHrmbaU7qZA" name="VARCHAR" numericPrecisionRadix="10" javaDataType="12"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FECg3LTLEeeAHrmbaU7qZA" name="dt_creazione" label="dt_creazione" length="29" precision="6" sourceType="TIMESTAMP" talendType="id_Date" nullable="false" pattern="&quot;dd-MM-yyyy&quot;">
+          <taggedValue xmi:id="_FECg3bTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FECg3rTLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FEDHwLTLEeeAHrmbaU7qZA" name="TIMESTAMP" numericPrecision="6" numericPrecisionRadix="10" javaDataType="93"/>
+        </feature>
+        <feature xsi:type="relational:TdColumn" xmi:id="_FEDHwbTLEeeAHrmbaU7qZA" name="dt_ultima_modifica" label="dt_ultima_modifica" length="29" precision="6" sourceType="TIMESTAMP" talendType="id_Date" nullable="false" pattern="&quot;dd-MM-yyyy&quot;">
+          <taggedValue xmi:id="_FEDHwrTLEeeAHrmbaU7qZA" tag="Comment" value=""/>
+          <initialValue xsi:type="relational:TdExpression" xmi:id="_FEDHw7TLEeeAHrmbaU7qZA" language="COLUMN_DEF"/>
+          <sqlDataType xmi:id="_FEDHxLTLEeeAHrmbaU7qZA" name="TIMESTAMP" numericPrecision="6" numericPrecisionRadix="10" javaDataType="93"/>
+        </feature>
+      </ownedElement>
+    </ownedElement>
+  </orgomg.cwm.resource.relational:Catalog>
+</xmi:XMI>

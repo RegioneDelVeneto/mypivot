@@ -1,0 +1,116 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="2%">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Anno Bolletta</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.annoBolletta" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Codice Bolletta</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.codBolletta" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Id Rendicontazione</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.idRendicontazione" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Importo</mat-label>
+          <input matInput readonly [ngModel]="tesoreria.importoTesoreria | currency:'EUR'" (ngModelChange)="tesoreria.importoTesoreria=$event" placeholder="Inserire un testo">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Ordinante</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.ordinante" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Data Valuta</mat-label>
+          <input matInput readonly [ngModel]="tesoreria.dtValuta | date:'dd/MM/yyyy'" (ngModelChange)="tesoreria.dtValuta=$event" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Data Contabile</mat-label>
+          <input matInput readonly [ngModel]="tesoreria.dtContabile | date:'dd/MM/yyyy'" (ngModelChange)="tesoreria.dtContabile=$event" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Conto</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.codConto" placeholder="Inserire un testo">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Anno Codice Documento</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.annoCodDocumento" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Codice Documento</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.codDocumento" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Anno Codice Provvisorio</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.annoCodProvvisorio" placeholder="Inserire un testo">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="50%" fxFlex.gt-sm="25%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Codice Provvisorio</mat-label>
+          <input matInput readonly [(ngModel)]="tesoreria.codProvvisorio" placeholder="Inserire un testo">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+        <mat-form-field fxFlex="100%" fxFlex.gt-sm="100%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+          <mat-label>Causale</mat-label>
+          <textarea matInput readonly [(ngModel)]="tesoreria.causale" placeholder="Inserire un testo">
+          </textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">La bolletta selezionata non contiene una ripartizione in Uffici, Tipi Dovuto, Capitoli e Accertamenti</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+          [paginatorData]="paginatorData" [parentRef]="this" [hasDetail]=false>
+    </my-pay-table-pivot>
+
+    <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+      <button fxFlex="8em" type="button" mat-flat-button (click)="goBack()" color="primary">Torna indietro</button>
+      <div fxFlex></div>
+    </div>
+  </div>
+
+</div>

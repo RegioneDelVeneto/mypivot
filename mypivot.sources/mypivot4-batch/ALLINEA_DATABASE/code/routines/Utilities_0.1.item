@@ -1,0 +1,36 @@
+package routines;
+
+/**
+ * 
+ * @author regione del veneto
+ *
+ */
+public class Utilities {
+
+   public static String getInviaRispostaPagamentoUrl(String baseUrl) {
+	   String finalUrl = "";
+	   finalUrl = baseUrl;
+	   if(!finalUrl.endsWith("/"))
+		   finalUrl += "/";
+	   finalUrl += "pa/paaSILInviaRispostaPagamento.html";
+	   return finalUrl;
+   }
+   
+   public static String getWISPBackUrl(String baseUrl) {
+	   String finalUrl = "";
+	   finalUrl = baseUrl;
+	   if(!finalUrl.endsWith("/"))
+		   finalUrl += "/";
+	   finalUrl += "pa/wisp/paaSILAnnullaWisp.html";
+	   return finalUrl;
+   }
+   
+   public static String getWISPReturnUrl(String baseUrl) {
+	   String finalUrl = "";
+	   finalUrl = baseUrl;
+	   if(!finalUrl.endsWith("/"))
+		   finalUrl += "/";
+	   finalUrl += "pa/wisp/paaSILConfermaWisp.html";
+	   return finalUrl;
+   }
+}

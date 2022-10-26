@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendMetadata:DelimitedFileConnection xmi:id="_IJTpwGAUEeSzBtJDIYT1JA" name="Flusso_Rend_Poste" dataPackage="_IJTpwWAUEeSzBtJDIYT1JA" Server="Localhost 127.0.0.1" FilePath="_USER_REPO_ENTE_/Documentazione/Tecnica/MyPivot/tracciato flussi/esempi_tracciato_poste.csv" Format="WINDOWS" Encoding="UTF-8" FieldSeparatorValue="&quot;;&quot;" RowSeparatorType="Custom String" RowSeparatorValue="&quot;\r\n&quot;" UseHeader="true" HeaderValue="1" FirstLineCaption="true" RemoveEmptyRow="true"/>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_IJTpwWAUEeSzBtJDIYT1JA" name="default" dataManager="_IJTpwGAUEeSzBtJDIYT1JA">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_IJUQ0GAUEeSzBtJDIYT1JA" id="_hhblEGATEeSzBtJDIYT1JA" label="metadata">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_IJUQ0WAUEeSzBtJDIYT1JA" label="Data_Operazione" length="10" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_IJUQ0mAUEeSzBtJDIYT1JA" label="Ufficio_Postale" length="20" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="20"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_IJUQ02AUEeSzBtJDIYT1JA" label="Valuta" length="1" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="1"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_IJUQ1GAUEeSzBtJDIYT1JA" label="Importo" length="16" precision="2" talendType="id_Double" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_IJUQ1WAUEeSzBtJDIYT1JA" label="Data_Accredito" length="10" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="10"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_IJUQ1mAUEeSzBtJDIYT1JA" label="Quarto_campo" length="19" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>

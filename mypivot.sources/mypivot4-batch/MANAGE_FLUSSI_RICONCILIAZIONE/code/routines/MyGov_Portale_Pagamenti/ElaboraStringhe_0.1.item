@@ -1,0 +1,58 @@
+package routines;
+
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class ElaboraStringhe {
+	public static String splitString(String stringToSplit, String delimiter) {
+		String splittedString = "";
+		Scanner scanner = new Scanner(stringToSplit);
+		scanner.useDelimiter(Pattern.quote(delimiter));
+		while(scanner.hasNext()) {
+			splittedString += "'" + scanner.next() + "',";
+		}
+		scanner.close();
+		if(splittedString.endsWith(","))
+			splittedString = splittedString.substring(0,splittedString.length()-1);
+		if(splittedString.equals(""))
+			splittedString = "'" + stringToSplit + "'";
+		return splittedString;
+	}
+	
+	public static String concatString(List<String> list) {
+		String finalString = "";
+		for(String s : list) {
+			finalString += "'" + s + "', ";
+		}
+		finalString = finalString.trim();
+		if(finalString.endsWith(","))
+			finalString = finalString.substring(0,finalString.length()-1);
+		if(finalString.equals(""))
+			finalString = "'" + finalString + "'";
+		return finalString;
+	}
+	
+	public static String getIlikeFilterFromValues(String fieldToFilter, String stringToSplit, String delimiter) {
+		String splittedString = "(";
+		boolean stringHasValues = false;
+		Scanner scanner = new Scanner(stringToSplit);
+		scanner.useDelimiter(Pattern.quote(delimiter));
+		while(scanner.hasNext()) {
+			splittedString += fieldToFilter + " ilike '%" + scanner.next() + "%' OR ";
+			stringHasValues = true;
+		}
+		scanner.close();
+		if(splittedString.endsWith(" OR "))
+			splittedString = splittedString.substring(0,splittedString.length() - 4) + ")";
+		if(!stringHasValues)
+			splittedString = "1 = 1";
+		return splittedString;
+	}
+	
+	public static void main(String[] args){
+		System.out.println(getIlikeFilterFromValues("completa.cod_identificativo_flusso_r","05aBI06225|9-11BCITITMM-12345ab","|"));
+		System.out.println(getIlikeFilterFromValues("completa.cod_identificativo_flusso_r","05aBI06225","|"));
+		System.out.println(getIlikeFilterFromValues("completa.cod_identificativo_flusso_r","","|"));
+	}
+}

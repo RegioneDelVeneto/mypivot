@@ -1,0 +1,1074 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<wsdl:definitions xmlns:ppt="http://www.regione.veneto.it/pagamenti/pivot/ente/" xmlns:pay_i_rve="http://www.regione.veneto.it/schemas/2012/Pagamenti/"
+	xmlns:pay_i_agid="http://www.digitpa.gov.it/schemas/2011/Pagamenti/" xmlns:ppthead="http://www.regione.veneto.it/pagamenti/pivot/ente/ppthead"
+	xmlns:tns="http://www.regione.veneto.it/pagamenti/pivot/ente/PagamentiTelematiciPagatiRiconciliati" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	name="PagamentiTelematiciPagatiRiconciliatiService" targetNamespace="http://www.regione.veneto.it/pagamenti/pivot/ente/PagamentiTelematiciPagatiRiconciliati">
+
+	<wsdl:types>
+
+		<xsd:schema version="1.0" targetNamespace="http://www.regione.veneto.it/pagamenti/pivot/ente/ppthead">
+			<xsd:simpleType name="stText35">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="35" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:element name="intestazionePPT">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="codIpaEnte" type="ppthead:stText35" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+
+		<xsd:schema version="1.0" targetNamespace="http://www.regione.veneto.it/pagamenti/pivot/ente/">
+
+			<xsd:import namespace="http://www.regione.veneto.it/schemas/2012/Pagamenti/" schemaLocation="PagInf_RP_Esito_6_0_2.xsd" />
+
+			<xsd:import namespace="http://www.digitpa.gov.it/schemas/2011/Pagamenti/" schemaLocation="FlussoRiversamento_1_0_4.xsd" />
+
+			<xsd:simpleType name="stISODate">
+				<xsd:restriction base="xsd:date" />
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stISODateTime">
+				<xsd:restriction base="xsd:dateTime" />
+			</xsd:simpleType>
+			
+			<xsd:simpleType name="stText1">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="1" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			
+			<xsd:simpleType name="stText4">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="4" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stText12">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="12" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stText35">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="35" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stText64">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="64" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stText70">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="70" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stText1024">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1" />
+					<xsd:maxLength value="1024" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:simpleType name="stPassword">
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="8" />
+					<xsd:maxLength value="15" />
+				</xsd:restriction>
+			</xsd:simpleType>
+
+			<xsd:element name="pivotSILChiediPagatiRiconciliati" type="ppt:pivotSILChiediPagatiRiconciliati" />
+			<xsd:element name="pivotSILChiediPagatiRiconciliatiRisposta" type="ppt:pivotSILChiediPagatiRiconciliatiRisposta" />
+
+			<xsd:element name="pivotSILAutorizzaImportFlusso" type="ppt:pivotSILAutorizzaImportFlusso" />
+			<xsd:element name="pivotSILAutorizzaImportFlussoRisposta" type="ppt:pivotSILAutorizzaImportFlussoRisposta" />
+
+			<xsd:element name="pivotSILAutorizzaImportFlussoRendicontazione" type="ppt:pivotSILAutorizzaImportFlussoRendicontazione" />
+			<xsd:element name="pivotSILAutorizzaImportFlussoRendicontazioneRisposta" type="ppt:pivotSILAutorizzaImportFlussoRendicontazioneRisposta" />
+
+			<xsd:element name="pivotSILAutorizzaImportFlussoRT" type="ppt:pivotSILAutorizzaImportFlussoRT" />
+			<xsd:element name="pivotSILAutorizzaImportFlussoRTRisposta" type="ppt:pivotSILAutorizzaImportFlussoRTRisposta" />
+
+			<xsd:element name="pivotSILChiediStatoImportFlusso" type="ppt:pivotSILChiediStatoImportFlusso" />
+			<xsd:element name="pivotSILChiediStatoImportFlussoRisposta" type="ppt:pivotSILChiediStatoImportFlussoRisposta" />
+
+			<xsd:element name="pivotSILPrenotaExportFlussoRiconciliazione" type="ppt:pivotSILPrenotaExportFlussoRiconciliazione" />
+			<xsd:element name="pivotSILPrenotaExportFlussoRiconciliazioneRisposta" type="ppt:pivotSILPrenotaExportFlussoRiconciliazioneRisposta" />
+
+			<xsd:element name="pivotSILChiediStatoExportFlussoRiconciliazione" type="ppt:pivotSILChiediStatoExportFlussoRiconciliazione" />
+			<xsd:element name="pivotSILChiediStatoExportFlussoRiconciliazioneRisposta" type="ppt:pivotSILChiediStatoExportFlussoRiconciliazioneRisposta" />
+			
+			<xsd:element name="pivotSILAutorizzaImportFlussoTesoreria" type="ppt:pivotSILAutorizzaImportFlussoTesoreria" />
+			<xsd:element name="pivotSILAutorizzaImportFlussoTesoreriaRisposta" type="ppt:pivotSILAutorizzaImportFlussoTesoreriaRisposta" />
+			
+			<xsd:element name="pivotSILChiediStatoImportFlussoTesoreria" type="ppt:pivotSILChiediStatoImportFlussoTesoreria" />
+			<xsd:element name="pivotSILChiediStatoImportFlussoTesoreriaRisposta" type="ppt:pivotSILChiediStatoImportFlussoTesoreriaRisposta" />
+			
+			<xsd:element name="pivotSILChiediAccertamento" type="ppt:pivotSILChiediAccertamento" />
+			<xsd:element name="pivotSILChiediAccertamentoRisposta" type="ppt:pivotSILChiediAccertamentoRisposta" />
+			
+			<xsd:complexType name="risposta">
+				<xsd:sequence>
+					<xsd:element name="fault" type="ppt:faultBean" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="faultBean">
+				<xsd:sequence>
+					<xsd:element name="faultCode" type="xsd:string" />
+					<xsd:element name="faultString" type="xsd:string" />
+					<xsd:element name="id" type="xsd:string" />
+					<xsd:element name="description" type="xsd:string" minOccurs="0" />
+					<xsd:element name="serial" type="xsd:int" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILChiediPagatiRiconciliati">
+				<xsd:sequence>
+					<xsd:element name="codIpaEnte" type="ppt:stText35" />
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+					<xsd:choice>
+						<xsd:element name="richiestaPerIUVIUF" type="ppt:ctRichiestaPerIUVIUF" />
+						<xsd:element name="richiestaPerData" type="ppt:ctRichiestaPerData" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctRichiestaPerIUVIUF">
+				<xsd:sequence>
+					<xsd:element name="riversamentiPuntuali" type="ppt:ctRiversamentiPuntuali" minOccurs="0" />
+					<xsd:element name="riversamentiCumulativi" type="ppt:ctRiversamentiCumulativi" minOccurs="0" />
+					<xsd:element name="filtroTipiDovuto" type="ppt:ctFiltroTipiDovuto" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctRichiestaPerData">
+				<xsd:sequence>
+					<xsd:element name="dataDa" type="ppt:stISODateTime" minOccurs="1" />
+					<xsd:element name="dataA" type="ppt:stISODateTime" minOccurs="1" />
+					<xsd:element name="filtroTipiDovuto" type="ppt:ctFiltroTipiDovuto" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctRichiestaPerDataIncrementale">
+				<xsd:sequence>
+					<xsd:element name="dataDa" type="ppt:stISODateTime" minOccurs="1" />
+					<xsd:element name="dataA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="filtroTipiDovuto" type="ppt:ctFiltroTipiDovuto" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctRiversamentiPuntuali">
+				<xsd:sequence>
+					<xsd:element name="identificativoUnivocoVersamento" type="ppt:stText35" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctRiversamentiCumulativi">
+				<xsd:sequence>
+					<xsd:element name="identificativoFlusso" type="ppt:stText35" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctFiltroTipiDovuto">
+				<xsd:sequence>
+					<xsd:element name="identificativoTipoDovuto" type="ppt:stText35" minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILChiediPagatiRiconciliatiRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="pagamentiRiconciliatiPerTipoDovuto" type="ppt:ctPagamentiRiconciliatiPerTipoDovuto" minOccurs="0" maxOccurs="1000" />
+							<xsd:element name="numeroTotale" type="xsd:integer" minOccurs="1" />
+							<xsd:element name="dataA" type="ppt:stISODateTime" minOccurs="0" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctPagamentiRiconciliatiPerTipoDovuto">
+				<xsd:sequence>
+					<xsd:element name="pagamentiRiconciliati" type="ppt:ctPagamentiRiconciliati" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+				<xsd:attribute name="identificativoTipoDovuto" type="ppt:stText64" />
+			</xsd:complexType>
+
+			<xsd:complexType name="ctPagamentiRiconciliati">
+				<xsd:sequence>
+					<xsd:element name="pagamento" type="ppt:ctExport" minOccurs="1" />
+					<xsd:element name="riversamento" type="ppt:ctFlussoRiversamento" minOccurs="0" />
+					<xsd:element name="data" type="ppt:stISODateTime" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctExport">
+				<xsd:sequence>
+					<xsd:element name="versioneOggetto" type="pay_i_rve:stText16" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Riporta la stessa informazione presente nel
+								dato “versioneOggetto” della Richiesta di Pagamento (RP).
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dominio" type="pay_i_rve:ctDominio" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Riporta le stesse informazioni presenti nel
+								blocco “Dominio” della Richiesta di Pagamento (RP)
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="identificativoMessaggioRicevuta" type="pay_i_rve:stText35" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Identificativo legato alla trasmissione della
+								quietanza telematica.
+							</xsd:documentation>
+							<xsd:documentation>Deve essere univoco nell’ambito della stessa
+								data riferita all’elemento dataMessaggioRicevuta.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dataOraMessaggioRicevuta" type="pay_i_rve:stISODateTime" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Indica la data del messaggio di quietanza,
+								secondo il formato ISO 8601
+							</xsd:documentation>
+							<xsd:documentation>[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss]
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="riferimentoMessaggioRichiesta" type="pay_i_rve:stText35" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Con riferimento al messaggio di Esito
+								l’elemento contiene il dato identificativoMessaggioRichiesta
+								legato alla trasmissione della
+								Richiesta di Pagamento (RP).
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="riferimentoDataRichiesta" type="pay_i_rve:stISODate" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Indica la data secondo il formato ISO 8601
+								[YYYY]-[MM]-[DD] cui si riferisce la generazione del dato
+								riferimentoMessaggioRichiesta.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="istitutoAttestante" type="pay_i_rve:ctIstitutoAttestante" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Aggregazione relativa al soggetto Prestatore
+								dei servizi di Pagamento che emette il documento di attestazione
+								dell’avvenuto versamento.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="enteBeneficiario" type="pay_i_rve:ctEnteBeneficiario" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Riporta le stesse informazioni presenti nel
+								blocco “Ente Beneficiario” della Richiesta di Pagamento (RP) cui
+								si riferisce il messaggio
+								di Esito.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="soggettoVersante" type="pay_i_rve:ctSoggettoVersante" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Riporta le stesse informazioni presenti nel
+								blocco “Soggetto Versante” della Richiesta di Pagamento (RP) cui
+								si riferisce il messaggio
+								di Esito.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="soggettoPagatore" type="pay_i_rve:ctSoggettoPagatore" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Riporta le stesse informazioni presenti nel
+								blocco “Soggetto Pagatore” della Richiesta di Pagamento (RP) cui
+								si riferisce il messaggio
+								di Esito.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="datiPagamento" type="ppt:ctDatiVersamentoExport" minOccurs="1">
+						<xsd:annotation xml:base="pay_i_rve:stImporto">
+							<xsd:documentation>Aggregazione “dati del versamento”
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="identificativoUnivocoDovuto" type="ppt:stText35" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctDatiVersamentoExport">
+				<xsd:sequence>
+					<xsd:element name="codiceEsitoPagamento" type="pay_i_rve:stCodiceEsitoPagamento" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Campo numerico indicante l’esito del
+								pagamento.
+							</xsd:documentation>
+							<xsd:documentation>Può assumere i seguenti valori:
+							</xsd:documentation>
+							<xsd:documentation>0 - Pagamento eseguito</xsd:documentation>
+							<xsd:documentation>1 - Pagamento non eseguito</xsd:documentation>
+							<xsd:documentation>2 - Pagamento parzialmente eseguito
+							</xsd:documentation>
+							<xsd:documentation>3 - Decorrenza termini</xsd:documentation>
+							<xsd:documentation>4 - Decorrenza termini parziale
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="importoTotalePagato" type="pay_i_rve:stImporto" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Campo numerico (due cifre per la parte
+								decimale, il separatore dei centesimi è il punto “.”), indicante
+								l’importo relativo alla somma
+								versata.
+							</xsd:documentation>
+							<xsd:documentation>Deve essere uguale alla somma delle varie
+								occorrenze (da 1 a 5) dell’informazione singoloImportoVersato
+								presente nella struttura
+								DatiSingoloPagamento.
+							</xsd:documentation>
+							<xsd:documentation>Se il versamento non è stato effettuato
+								l’importo deve essere impostato a 0.00
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="identificativoUnivocoVersamento" type="pay_i_rve:stText35" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Il dato deve essere riportato invariato, a
+								cura del prestatore di servizi di pagamento, così come presente
+								nella Richiesta di Pagamento
+								(RP) cui si riferisce il messaggio
+								di Esito.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="CodiceContestoPagamento" type="pay_i_rve:stText35" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Il dato deve essere riportato invariato, a
+								cura del prestatore di servizi di pagamento, così come presente
+								nella Richiesta di Pagamento
+								(RP) cui si riferisce il messaggio
+								di Esito.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="datiSingoloPagamento" type="pay_i_rve:ctDatiSingoloPagamentoEsito" minOccurs="0" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Aggregazione “dati dei singoli versamenti”, da
+								un minimo di uno ad un massimo di 5 occorrenze di versamento,
+								facenti capo ad un unico
+								identificativoUnivocoVersamento.
+							</xsd:documentation>
+							<xsd:documentation>Obbligatorio nel caso che l’elemento
+								codiceEsitoPagamento sia 0 o 2
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="ctFlussoRiversamento">
+				<xsd:sequence>
+					<xsd:element name="versioneOggetto" type="pay_i_agid:stVersioneOggetto" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Versione che identifica l�oggetto scambiato.
+							</xsd:documentation>
+							<xsd:documentation>Valore ammesso "1.0"</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="identificativoFlusso" type="pay_i_agid:stText35" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Identificativo legato alla trasmissione del
+								flusso di riconciliazione.
+							</xsd:documentation>
+							<xsd:documentation>Deve essere univoco nell�ambito dell�anno di
+								riferimento delle operazioni di pagamento cui si riferisce il
+								flusso.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dataOraFlusso" type="pay_i_agid:stISODateTime" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Indica la data e ora di creazione del flusso,
+								secondo il formato ISO 8601 [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="identificativoUnivocoRegolamento" type="pay_i_agid:stText35" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Riferimento. assegnato dal prestatore di
+								servizi di pagamento all�operazione di trasferimento fondi con
+								la quale viene regolato
+								contabilmente il riversamento delle
+								somme incassate.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="dataRegolamento" type="pay_i_agid:stISODate" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Indica la data di esecuzione dell�operazione
+								di trasferimento fondi con la quale viene regolato contabilmente
+								il riversamento delle
+								somme incassate, nel formato ISO 8601
+								[YYYY]-[MM]-[DD].
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="istitutoMittente" type="pay_i_agid:ctIstitutoMittente" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Aggregazione relativa al Prestatore di servizi
+								di Pagamento che genera il presente flusso.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="istitutoRicevente" type="pay_i_agid:ctIstitutoRicevente" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Aggregazione relativa all�ente creditore
+								destinatario del flusso.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="numeroTotalePagamenti" type="pay_i_agid:stNumeroTotalePagamenti" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Numero dei pagamenti presenti nel flusso.
+							</xsd:documentation>
+							<xsd:documentation>Deve essere maggiore di 1</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="importoTotalePagamenti" type="pay_i_agid:stImportoTotalePagamenti" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Importo totale dei pagamenti presenti nel
+								flusso. Deve coincidere con la somma dei dati
+								singoloImportoPagato presenti nel flusso.
+							</xsd:documentation>
+							<xsd:documentation>Il totale � senza decimali, quindi i singoli
+								importi, prima di essere sommati, devono essere moltiplicati per
+								100.
+							</xsd:documentation>
+							<xsd:documentation>Deve essere maggiore di 1</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="datiSingoliPagamenti" type="pay_i_agid:ctDatiSingoliPagamenti" minOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Aggregazione con un numero di occorrenze pari
+								all�elemento numeroTotalePagamenti.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILAutorizzaImportFlusso">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="uploadUrl" type="xsd:string" />
+							<xsd:element name="authorizationToken" type="xsd:string" />
+							<xsd:element name="requestToken" type="xsd:string" />
+							<xsd:element name="importPath" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoRendicontazione">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoRendicontazioneRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="uploadUrl" type="xsd:string" />
+							<xsd:element name="authorizationToken" type="xsd:string" />
+							<xsd:element name="requestToken" type="xsd:string" />
+							<xsd:element name="importPath" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoRT">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoRTRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="uploadUrl" type="xsd:string" />
+							<xsd:element name="authorizationToken" type="xsd:string" />
+							<xsd:element name="requestToken" type="xsd:string" />
+							<xsd:element name="importPath" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+			
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoTesoreria">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+					<xsd:element name="tipoFlusso" type="ppt:stText1" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILAutorizzaImportFlussoTesoreriaRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="uploadUrl" type="xsd:string" />
+							<xsd:element name="authorizationToken" type="xsd:string" />
+							<xsd:element name="requestToken" type="xsd:string" />
+							<xsd:element name="importPath" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILChiediStatoImportFlusso">
+				<xsd:sequence>
+					<xsd:element name="requestToken" type="xsd:string" />
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILChiediStatoImportFlussoRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="stato" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+			
+			<xsd:complexType name="pivotSILChiediStatoImportFlussoTesoreria">
+				<xsd:sequence>
+					<xsd:element name="requestToken" type="xsd:string" />
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILChiediStatoImportFlussoTesoreriaRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="stato" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="codiceClassificazioneType">
+				<xsd:sequence>
+					<xsd:element name="classificazione" type="ppt:stText35" minOccurs="1" maxOccurs="13" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="tipoDovutoType">
+				<xsd:sequence>
+					<xsd:element name="tipo" type="ppt:stText35" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="idUnivocoVersamentoType">
+				<xsd:sequence>
+					<xsd:element name="iuv" type="ppt:stText35" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="idUnivocoRendicontazioneType">
+				<xsd:sequence>
+					<xsd:element name="iur" type="ppt:stText35" minOccurs="0" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILPrenotaExportFlussoRiconciliazione">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+					<xsd:element name="codiceClassificazione" type="ppt:codiceClassificazioneType" />
+					<xsd:element name="tipoDovuto" type="ppt:tipoDovutoType" />
+					<xsd:element name="idUnivocoVersamento" type="ppt:idUnivocoVersamentoType" />
+					<xsd:element name="idUnivocoRendicontazione" type="ppt:idUnivocoRendicontazioneType" />
+					<xsd:element name="dataUltimoAggiornamentoDa" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataUltimoAggiornamentoA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataEsecuzioneDa" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataEsecuzioneA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataEsitoDa" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataEsitoA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataRegolamentoDa" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataRegolamentoA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataContabileDa" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataContabileA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataValutaDa" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="dataValutaA" type="ppt:stISODateTime" minOccurs="0" />
+					<xsd:element name="idUnivocoDovuto" type="ppt:stText35" minOccurs="0" />
+					<xsd:element name="idUnivocoRiscossione" type="ppt:stText35" minOccurs="0" />
+					<xsd:element name="idUnivocoPagatore" type="ppt:stText35" minOccurs="0" />
+					<xsd:element name="anagraficaPagatore" type="ppt:stText70" minOccurs="0" />
+					<xsd:element name="idUnivocoVersante" type="ppt:stText35" minOccurs="0" />
+					<xsd:element name="anagraficaVersante" type="ppt:stText70" minOccurs="0" />
+					<xsd:element name="denominazioneAttestante" type="ppt:stText70" minOccurs="0" />
+					<xsd:element name="ordinante" type="ppt:stText1024" minOccurs="0" />
+					<xsd:element name="idRegolamento" type="ppt:stText35" minOccurs="0" />
+					<xsd:element name="contoTesoreria" type="ppt:stText12" minOccurs="0" />
+					<xsd:element name="importoTesoreria" type="ppt:stText35" minOccurs="0" />
+					<xsd:element name="causale" type="ppt:stText1024" minOccurs="0" />
+					<xsd:element name="versioneTracciato" type="ppt:stText35" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILPrenotaExportFlussoRiconciliazioneRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="requestToken" type="xsd:string" />
+							<xsd:element name="dataA" type="xsd:date" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+
+			<xsd:complexType name="pivotSILChiediStatoExportFlussoRiconciliazione">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+					<xsd:element name="requestToken" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="pivotSILChiediStatoExportFlussoRiconciliazioneRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="stato" type="xsd:string" />
+							<xsd:element name="downloadUrl" type="xsd:string" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+			
+			<xsd:complexType name="pivotSILChiediAccertamento">
+				<xsd:sequence>
+					<xsd:element name="password" type="ppt:stPassword" minOccurs="0" />
+					<xsd:choice>
+						<xsd:element name="richiestaPerBolletta" type="ppt:richiestaPerBolletta" />
+						<xsd:element name="richiestaPerIUF" type="ppt:richiestaPerIUF" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="richiestaPerBolletta">
+				<xsd:sequence>
+					<xsd:element name="annoBolletta" type="ppt:stText4" minOccurs="1" />
+					<xsd:element name="numeroBolletta" type="ppt:stText12" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="richiestaPerIUF">
+				<xsd:sequence>
+					<xsd:element name="identificativoUnivocoFlusso" type="ppt:stText35" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="pivotSILChiediAccertamentoRisposta">
+				<xsd:complexContent>
+					<xsd:extension base="ppt:risposta">
+						<xsd:sequence>
+							<xsd:element name="bilancio" type="ppt:ctBilancio" minOccurs="0" maxOccurs="unbounded" />
+						</xsd:sequence>
+					</xsd:extension>
+				</xsd:complexContent>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ctBilancio">
+				<xsd:sequence>
+					<xsd:element name="ufficio" type="ppt:stText12" minOccurs="1" />
+					<xsd:element name="tipoDovuto" type="ppt:ctTipoDovuto" minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ctTipoDovuto">
+				<xsd:sequence>
+					<xsd:element name="codTipoDovuto" type="ppt:stText64" minOccurs="1" />
+					<xsd:element name="capitolo" type="ppt:ctCapitolo" minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ctCapitolo">
+				<xsd:sequence>
+					<xsd:element name="codCapitolo" type="ppt:stText12" minOccurs="1" />
+					<xsd:element name="accertamento" type="ppt:ctAccertamento" minOccurs="1" maxOccurs="unbounded" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+			<xsd:complexType name="ctAccertamento">
+				<xsd:sequence>
+					<xsd:element name="codAccertamento" type="ppt:stText35" minOccurs="1" />
+					<xsd:element name="importo" type="pay_i_agid:stImporto" minOccurs="1" />
+				</xsd:sequence>
+			</xsd:complexType>
+			
+		</xsd:schema>
+
+	</wsdl:types>
+
+	<wsdl:message name="pivotSILChiediPagatiRiconciliati">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILChiediPagatiRiconciliati" />
+	</wsdl:message>
+	<wsdl:message name="pivotSILChiediPagatiRiconciliatiResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILChiediPagatiRiconciliatiRisposta" />
+	</wsdl:message>
+
+	<wsdl:message name="pivotSILAutorizzaImportFlusso">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILAutorizzaImportFlusso">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILAutorizzaImportFlussoResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILAutorizzaImportFlussoRisposta">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="pivotSILAutorizzaImportFlussoRendicontazione">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILAutorizzaImportFlussoRendicontazione">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILAutorizzaImportFlussoRendicontazioneResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILAutorizzaImportFlussoRendicontazioneRisposta">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="pivotSILAutorizzaImportFlussoRT">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILAutorizzaImportFlussoRT">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILAutorizzaImportFlussoRTResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILAutorizzaImportFlussoRTRisposta">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="pivotSILChiediStatoImportFlusso">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILChiediStatoImportFlusso">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILChiediStatoImportFlussoResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILChiediStatoImportFlussoRisposta">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="pivotSILAutorizzaImportFlussoTesoreria">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILAutorizzaImportFlussoTesoreria">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILAutorizzaImportFlussoTesoreriaResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILAutorizzaImportFlussoTesoreriaRisposta">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="pivotSILChiediStatoImportFlussoTesoreria">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILChiediStatoImportFlussoTesoreria">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILChiediStatoImportFlussoTesoreriaResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILChiediStatoImportFlussoTesoreriaRisposta">
+		</wsdl:part>
+	</wsdl:message>
+	
+
+	<wsdl:message name="pivotSILPrenotaExportFlussoRiconciliazione">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILPrenotaExportFlussoRiconciliazione">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILPrenotaExportFlussoRiconciliazioneResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILPrenotaExportFlussoRiconciliazioneRisposta">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="pivotSILChiediStatoExportFlussoRiconciliazione">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILChiediStatoExportFlussoRiconciliazione">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILChiediStatoExportFlussoRiconciliazioneResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILChiediStatoExportFlussoRiconciliazioneRisposta">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="pivotSILChiediAccertamento">
+		<wsdl:part name="bodyrichiesta" element="ppt:pivotSILChiediAccertamento">
+		</wsdl:part>
+		<wsdl:part name="header" element="ppthead:intestazionePPT">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="pivotSILChiediAccertamentoResponse">
+		<wsdl:part name="bodyrisposta" element="ppt:pivotSILChiediAccertamentoRisposta">
+		</wsdl:part>
+	</wsdl:message>
+	
+
+
+	<wsdl:portType name="PagamentiTelematiciPagatiRiconciliati">
+
+		<wsdl:operation name="pivotSILChiediPagatiRiconciliati">
+			<wsdl:input name="pivotSILChiediPagatiRiconciliati" message="tns:pivotSILChiediPagatiRiconciliati"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediPagatiRiconciliatiRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediPagatiRiconciliatiRichiesta" />
+			<wsdl:output name="pivotSILChiediPagatiRiconciliatiResponse" message="tns:pivotSILChiediPagatiRiconciliatiResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediPagatiRiconciliatiRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediPagatiRiconciliatiRisposta" />
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILAutorizzaImportFlusso">
+			<wsdl:input name="pivotSILAutorizzaImportFlusso" message="tns:pivotSILAutorizzaImportFlusso"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRichiesta" />
+			<wsdl:output name="pivotSILAutorizzaImportFlussoResponse" message="tns:pivotSILAutorizzaImportFlussoResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRisposta" />
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILAutorizzaImportFlussoRendicontazione">
+			<wsdl:input name="pivotSILAutorizzaImportFlussoRendicontazione" message="tns:pivotSILAutorizzaImportFlussoRendicontazione"
+			            wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRendicontazioneRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRendicontazioneRichiesta" />
+			<wsdl:output name="pivotSILAutorizzaImportFlussoRendicontazioneResponse" message="tns:pivotSILAutorizzaImportFlussoRendicontazioneResponse"
+			             wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRendicontazioneRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRendicontazioneRisposta" />
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILAutorizzaImportFlussoRT">
+			<wsdl:input name="pivotSILAutorizzaImportFlussoRT" message="tns:pivotSILAutorizzaImportFlussoRT"
+			            wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRTRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRTRichiesta" />
+			<wsdl:output name="pivotSILAutorizzaImportFlussoRTResponse" message="tns:pivotSILAutorizzaImportFlussoRTResponse"
+			             wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRTRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoRTRisposta" />
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILChiediStatoImportFlusso">
+			<wsdl:input name="pivotSILChiediStatoImportFlusso" message="tns:pivotSILChiediStatoImportFlusso"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoRichiesta" />
+			<wsdl:output name="pivotSILChiediStatoImportFlussoResponse" message="tns:pivotSILChiediStatoImportFlussoResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoRisposta" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="pivotSILAutorizzaImportFlussoTesoreria">
+			<wsdl:input name="pivotSILAutorizzaImportFlussoTesoreria" message="tns:pivotSILAutorizzaImportFlussoTesoreria"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoTesoreriaRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoTesoreriaRichiesta" />
+			<wsdl:output name="pivotSILAutorizzaImportFlussoTesoreriaResponse" message="tns:pivotSILAutorizzaImportFlussoTesoreriaResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoTesoreriaRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILAutorizzaImportFlussoTesoreriaRisposta" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="pivotSILChiediStatoImportFlussoTesoreria">
+			<wsdl:input name="pivotSILChiediStatoImportFlussoTesoreria" message="tns:pivotSILChiediStatoImportFlussoTesoreria"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoTesoreriaRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoTesoreriaRichiesta" />
+			<wsdl:output name="pivotSILChiediStatoImportFlussoTesoreriaResponse" message="tns:pivotSILChiediStatoImportFlussoTesoreriaResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoTesoreriaRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoImportFlussoTesoreriaRisposta" />
+		</wsdl:operation>
+
+
+
+
+		<wsdl:operation name="pivotSILPrenotaExportFlussoRiconciliazione">
+			<wsdl:input name="pivotSILPrenotaExportFlussoRiconciliazione" message="tns:pivotSILPrenotaExportFlussoRiconciliazione"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILPrenotaExportFlussoRiconciliazioneRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILPrenotaExportFlussoRiconciliazioneRichiesta" />
+			<wsdl:output name="pivotSILPrenotaExportFlussoRiconciliazioneResponse" message="tns:pivotSILPrenotaExportFlussoRiconciliazioneResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILPrenotaExportFlussoRiconciliazioneRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILPrenotaExportFlussoRiconciliazioneRisposta" />
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILChiediStatoExportFlussoRiconciliazione">
+			<wsdl:input name="pivotSILChiediStatoExportFlussoRiconciliazione" message="tns:pivotSILChiediStatoExportFlussoRiconciliazione"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoExportFlussoRiconciliazioneRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoExportFlussoRiconciliazioneRichiesta" />
+			<wsdl:output name="pivotSILChiediStatoExportFlussoRiconciliazioneResponse" message="tns:pivotSILChiediStatoExportFlussoRiconciliazioneResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoExportFlussoRiconciliazioneRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediStatoExportFlussoRiconciliazioneRisposta" />
+		</wsdl:operation>
+		
+		<wsdl:operation name="pivotSILChiediAccertamento">
+			<wsdl:input name="pivotSILChiediAccertamento" message="tns:pivotSILChiediAccertamento"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediAccertamentoRichiesta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediAccertamentoRichiesta" />
+			<wsdl:output name="pivotSILChiediAccertamentoResponse" message="tns:pivotSILChiediAccertamentoResponse"
+				wsam:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediAccertamentoRisposta" wsaw:Action="http://www.regione.veneto.it/pagamenti/pivot/ente/PPT/pivotSILChiediAccertamentoRisposta" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="PagamentiTelematiciPagatiRiconciliatiBinding" type="tns:PagamentiTelematiciPagatiRiconciliati">
+
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="pivotSILChiediPagatiRiconciliati">
+			<soap:operation soapAction="pivotSILChiediPagatiRiconciliati" style="document" />
+			<wsdl:input name="pivotSILChiediPagatiRiconciliati">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILChiediPagatiRiconciliatiResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILAutorizzaImportFlusso">
+			<soap:operation soapAction="pivotSILAutorizzaImportFlusso" style="document" />
+			<wsdl:input name="pivotSILAutorizzaImportFlusso">
+				<soap:header message="tns:pivotSILAutorizzaImportFlusso" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILAutorizzaImportFlussoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILAutorizzaImportFlussoRendicontazione">
+			<soap:operation soapAction="pivotSILAutorizzaImportFlussoRendicontazione" style="document" />
+			<wsdl:input name="pivotSILAutorizzaImportFlussoRendicontazione">
+				<soap:header message="tns:pivotSILAutorizzaImportFlussoRendicontazione" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILAutorizzaImportFlussoRendicontazioneResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILAutorizzaImportFlussoRT">
+			<soap:operation soapAction="pivotSILAutorizzaImportFlussoRT" style="document" />
+			<wsdl:input name="pivotSILAutorizzaImportFlussoRT">
+				<soap:header message="tns:pivotSILAutorizzaImportFlussoRT" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILAutorizzaImportFlussoRTResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILChiediStatoImportFlusso">
+			<soap:operation soapAction="pivotSILChiediStatoImportFlusso" style="document" />
+			<wsdl:input name="pivotSILChiediStatoImportFlusso">
+				<soap:header message="tns:pivotSILChiediStatoImportFlusso" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILChiediStatoImportFlussoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="pivotSILAutorizzaImportFlussoTesoreria">
+			<soap:operation soapAction="pivotSILAutorizzaImportFlussoTesoreria" style="document" />
+			<wsdl:input name="pivotSILAutorizzaImportFlussoTesoreria">
+				<soap:header message="tns:pivotSILAutorizzaImportFlussoTesoreria" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILAutorizzaImportFlussoTesoreriaResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILChiediStatoImportFlussoTesoreria">
+			<soap:operation soapAction="pivotSILChiediStatoImportFlussoTesoreria" style="document" />
+			<wsdl:input name="pivotSILChiediStatoImportFlussoTesoreria">
+				<soap:header message="tns:pivotSILChiediStatoImportFlussoTesoreria" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILChiediStatoImportFlussoTesoreriaResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+
+
+		<wsdl:operation name="pivotSILPrenotaExportFlussoRiconciliazione">
+			<soap:operation soapAction="pivotSILPrenotaExportFlussoRiconciliazione" style="document" />
+			<wsdl:input name="pivotSILPrenotaExportFlussoRiconciliazione">
+				<soap:header message="tns:pivotSILPrenotaExportFlussoRiconciliazione" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILPrenotaExportFlussoRiconciliazioneResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="pivotSILChiediStatoExportFlussoRiconciliazione">
+			<soap:operation soapAction="pivotSILChiediStatoExportFlussoRiconciliazione" style="document" />
+			<wsdl:input name="pivotSILChiediStatoExportFlussoRiconciliazione">
+				<soap:header message="tns:pivotSILChiediStatoExportFlussoRiconciliazione" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILChiediStatoExportFlussoRiconciliazioneResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		
+		<wsdl:operation name="pivotSILChiediAccertamento">
+			<soap:operation soapAction="pivotSILChiediAccertamento" style="document" />
+			<wsdl:input name="pivotSILChiediAccertamento">
+				<soap:header message="tns:pivotSILChiediAccertamento" part="header" use="literal">
+				</soap:header>
+				<soap:body parts="bodyrichiesta" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="pivotSILChiediAccertamentoResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="PagamentiTelematiciPagatiRiconciliatiService">
+		<wsdl:port name="PagamentiTelematiciPagatiRiconciliatiPort" binding="tns:PagamentiTelematiciPagatiRiconciliatiBinding">
+			<soap:address location="/ws/pivot/" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

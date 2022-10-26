@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: mypivot4-frontend-service
+spec:
+  selector:
+    run: mypivot4-frontend
+  ports:
+    - port: 8443
+      name: https
+    - port: 8080
+      name: http

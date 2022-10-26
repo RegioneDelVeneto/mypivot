@@ -1,0 +1,141 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+    <h2 class="mat-h2">Anagrafica</h2>
+
+    <div class="w100">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Nome Accertamento</mat-label>
+            <input matInput readonly [(ngModel)]="accertamento.deNomeAccertamento" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="35%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Tipo Dovuto</mat-label>
+            <input matInput readonly [(ngModel)]="accertamento.deTipoDovuto" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Stato</mat-label>
+            <input matInput readonly [(ngModel)]="accertamento.deStato" placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+          <div fxFlex></div>
+          <button fxFlex="7em" type="button" mat-flat-button [disabled]="accertamento.deStato !== 'INSERITO'" (click)="modifica()" color="primary">Modifica</button>
+          <button fxFlex="7em" type="button" mat-flat-button [disabled]="accertamento.deStato !== 'INSERITO'" (click)="chiudi()" color="accent">Chiudi</button>
+          <button fxFlex="7em" type="button" mat-flat-button [disabled]="accertamento.deStato !== 'INSERITO'" (click)="annulla()" color="accent">Annulla</button>
+        </div>
+
+    </div>
+
+    <div class="w100" style="margin-top: 20px;">
+      <mat-divider></mat-divider>
+    </div>
+
+    <h2 class="mat-h2 mt-3">Ricerca RT Associate</h2>
+
+    <div class="w100">
+      <form fxFlex novalidate #sForm [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <myp-search-chips #mypSearchChips [formDef]="formDef" [form]="form" [parentRef]="this" [removeFilterCallback]="onRemoveFilter">
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo Data Ultimo Aggiornamento</mat-label>
+              <mat-date-range-input [rangePicker]="pickerDtUltimoAgg">
+                <input matStartDate formControlName="dtUltimoAggFrom" placeholder="data da">
+                <input matEndDate formControlName="dtUltimoAggTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="pickerDtUltimoAgg"></mat-datepicker-toggle>
+              <mat-date-range-picker #pickerDtUltimoAgg></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtUltimoAggFrom']">{{ formErrors.dtUltimoAggFrom }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo Data Esito</mat-label>
+              <mat-date-range-input [rangePicker]="pickerDtEsito">
+                <input matStartDate formControlName="dtEsitoFrom" placeholder="data da">
+                <input matEndDate formControlName="dtEsitoTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="pickerDtEsito"></mat-datepicker-toggle>
+              <mat-date-range-picker #pickerDtEsito></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtEsitoFrom']">{{ formErrors.dtEsitoFrom }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['iud'].label}}</mat-label>
+              <input matInput formControlName="iud" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['iud']">{{ formErrors.iud }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['iuv'].label}}</mat-label>
+              <input matInput formControlName="iuv" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['iuv']">{{ formErrors.iuv }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['cfPagatore'].label}}</mat-label>
+              <input matInput formControlName="cfPagatore" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['cfPagatore']">{{ formErrors.cfPagatore }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-2 mat-button-bar">
+            <div fxFlex></div>
+            <button fxFlex="5em" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+            <button fxFlex="5em" type="submit" mat-flat-button [disabled]="form.invalid || blockingError" color="accent">Cerca</button>
+          </div>
+        </myp-search-chips>
+      </form>
+    </div>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-4 mt-2 mb-1 mat-button-bar">
+        <div fxFlex></div>
+        <button *ngIf="accertamento?.deStato==='INSERITO'" fxFlex="12em" type="button" mat-flat-button (click)="gotoDettaglioAssocia('associa')" color="primary">Aggiungi Pagamenti</button>
+        <button *ngIf="accertamento?.deStato==='INSERITO'" fxFlex="12em" type="button" mat-flat-button (click)="gotoDettaglioAssocia('deassocia')" color="primary">Rimuovi Pagamenti</button>
+      </div>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+          [paginatorData]="paginatorData" [parentRef]="this" [onClickRowFun]="onClickRow">
+    </my-pay-table-pivot>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar" style="margin-top:5%;">
+        <button fxFlex="10em" type="button" mat-flat-button (click)="goBack()" color="primary">Torna indietro</button>
+        <div fxFlex></div>
+      </div>
+    </div>
+  </div>
+
+</div>

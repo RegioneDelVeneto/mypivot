@@ -1,0 +1,28 @@
+package routines;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+
+public class Import {
+
+	public static void main(String[] args) {
+
+    	List<FileBean> lfb = new ArrayList<FileBean>();
+    	FileBean fb1 = new FileBean(" sprosfsava1", "7opt/bin", "zip");
+    	FileBean fb2 = new FileBean("aproewrva2", "7opt/bin", "zip");
+    	FileBean fb3 = new FileBean("prosdvva3", "7opt/bin", "zip");
+    	FileBean fb4 = new FileBean("prova4", "7opt/bin", "zip");
+    	lfb.add(fb1);
+    	lfb.add(fb2);
+    	lfb.add(fb4);
+    	lfb.add(fb3);
+    	Collections.sort(lfb);
+    	for (FileBean fileBean : lfb) {
+			System.out.println(fileBean.getFileName());
+		}
+	}
+	
+
+}

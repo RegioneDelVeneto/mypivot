@@ -1,0 +1,15 @@
+/mypivot4-fe/node_modules
+/mypivot4-be/.gradle
+/mypivot4-be/.idea
+/mypivot4-be/build
+/mypivot4-be/src/main/resources/application-local*.properties
+/mypivot4-be/id_rsa.ppk
+/mypivot4-fe/changelist.md
+/mypivot4-fe/dist
+/mypivot4-be/lombok.config
+/mypivot4-be/id_rsa.pem
+**/*.iml
+/.gradle
+
+#managed with: git update-index --skip-worktree <filename>
+#/mypivot4-fe/projects/mypivot4-fe/src/assets/conf/environment.json

@@ -1,0 +1,131 @@
+package routines;
+
+
+
+public class DescrizioneFile {
+
+	 private int pos_de_anno_bolletta = 1;  
+	 private int pos_cod_bolletta = 2;   
+	 private int pos_dt_contabile = 3; 
+	 private int pos_de_denominazione = 4;     
+	 private int pos_de_causale = 5;      
+	 private int pos_num_importo = 6;   
+	 private int pos_dt_valuta = 7; 
+	 
+	 public DescrizioneFile() {
+		super();
+	 }
+
+	
+	 
+	public DescrizioneFile(int pos_de_anno_bolletta, int pos_cod_bolletta,
+			int pos_dt_contabile, int pos_de_denominazione, int pos_de_causale,
+			int pos_num_importo, int pos_dt_valuta) {
+		super();
+		this.pos_de_anno_bolletta = pos_de_anno_bolletta;
+		this.pos_cod_bolletta = pos_cod_bolletta;
+		this.pos_dt_contabile = pos_dt_contabile;
+		this.pos_de_denominazione = pos_de_denominazione;
+		this.pos_de_causale = pos_de_causale;
+		this.pos_num_importo = pos_num_importo;
+		this.pos_dt_valuta = pos_dt_valuta;
+	}
+
+	/**
+	 * @return the pos_de_anno_bolletta
+	 */
+	public int getPos_de_anno_bolletta() {
+		return pos_de_anno_bolletta;
+	}
+
+	/**
+	 * @param pos_de_anno_bolletta the pos_de_anno_bolletta to set
+	 */
+	public void setPos_de_anno_bolletta(int pos_de_anno_bolletta) {
+		this.pos_de_anno_bolletta = pos_de_anno_bolletta;
+	}
+
+	/**
+	 * @return the pos_cod_bolletta
+	 */
+	public int getPos_cod_bolletta() {
+		return pos_cod_bolletta;
+	}
+
+	/**
+	 * @param pos_cod_bolletta the pos_cod_bolletta to set
+	 */
+	public void setPos_cod_bolletta(int pos_cod_bolletta) {
+		this.pos_cod_bolletta = pos_cod_bolletta;
+	}
+
+	/**
+	 * @return the pos_dt_contabile
+	 */
+	public int getPos_dt_contabile() {
+		return pos_dt_contabile;
+	}
+
+	/**
+	 * @param pos_dt_contabile the pos_dt_contabile to set
+	 */
+	public void setPos_dt_contabile(int pos_dt_contabile) {
+		this.pos_dt_contabile = pos_dt_contabile;
+	}
+
+	/**
+	 * @return the pos_de_denominazione
+	 */
+	public int getPos_de_denominazione() {
+		return pos_de_denominazione;
+	}
+
+	/**
+	 * @param pos_de_denominazione the pos_de_denominazione to set
+	 */
+	public void setPos_de_denominazione(int pos_de_denominazione) {
+		this.pos_de_denominazione = pos_de_denominazione;
+	}
+
+	/**
+	 * @return the pos_de_causale
+	 */
+	public int getPos_de_causale() {
+		return pos_de_causale;
+	}
+
+	/**
+	 * @param pos_de_causale the pos_de_causale to set
+	 */
+	public void setPos_de_causale(int pos_de_causale) {
+		this.pos_de_causale = pos_de_causale;
+	}
+
+	/**
+	 * @return the pos_num_importo
+	 */
+	public int getPos_num_importo() {
+		return pos_num_importo;
+	}
+
+	/**
+	 * @param pos_num_importo the pos_num_importo to set
+	 */
+	public void setPos_num_importo(int pos_num_importo) {
+		this.pos_num_importo = pos_num_importo;
+	}
+
+	/**
+	 * @return the pos_dt_valuta
+	 */
+	public int getPos_dt_valuta() {
+		return pos_dt_valuta;
+	}
+
+	/**
+	 * @param pos_dt_valuta the pos_dt_valuta to set
+	 */
+	public void setPos_dt_valuta(int pos_dt_valuta) {
+		this.pos_dt_valuta = pos_dt_valuta;
+	}
+}

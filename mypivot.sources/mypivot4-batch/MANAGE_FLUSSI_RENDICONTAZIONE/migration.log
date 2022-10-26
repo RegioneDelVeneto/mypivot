@@ -1,0 +1,25 @@
+ ---=== Start Migration of project Manage_Flussi_Rendicontazione ===---
+ * Task [UnifyPasswordEncryption4ProjectSettingsMigrationTask] : Applied successfully
+ * Task [Fix a problem of project resources linked to items] : Applied successfully
+ * Task [Add the gid use string parameter if not have, value=false] : Applied successfully
+ * Task [ChangeUseBatchSizetoFalse4AS400] : Applied successfully
+ * Task [CorrectTeradataTPTExecInserterOperatorToLoad] : Applied successfully
+ * Task [ChangeRecalculateFormulaValueMigrationTask] : Applied successfully
+ * Task [AddCDCTypeForOracleCDCMigrationTask] : Applied successfully
+ * Task [DBMapSplitTableConstraintFiltersMigrationTask] : Applied successfully
+ * Task [ChangeParameterName4tMDMConnection] : Applied successfully
+ * Task [Add a option and reverse its value on FS components] : Applied successfully
+ * Task [CorrectDBVersionListForAS400] : Applied successfully
+ * Task [UnifyPasswordEncryption4LdapConnectionMigrationTask] : Nothing to do
+ * Task [UnifyPasswordEncryption4SalesforceSchemaConnectionMigrationTask] : Nothing to do
+ * Task [UnifyPasswordEncryption4FtpConnectionMigrationTask] : Nothing to do
+ * Task [UnifyPasswordEncryption4MDMConnectionMigrationTask] : Nothing to do
+ * Task [UnifyPasswordEncryption4WsdlConnectionMigrationTask] : Nothing to do
+ * Task [UnifyPasswordEncryption4ContextMigrationTask] : Applied successfully
+ * Task [UnifyPasswordEncryption4DBConnectionMigrationTask] : Applied successfully
+ * Task [UnifyPasswordEncryption4ParametersInJobMigrationTask] : Applied successfully
+ * Task [SetDieOnErrorFalse4tSCPDelete] : Applied successfully
+ * Task [SetDefaultValue4tWriteJSONFieldGroupByOutput] : Applied successfully
+ * Task [RemoveUnuseQuoteOnTLoop] : Applied successfully
+ * Task [AutoUpdateRelationsMigrationTask] : Applied successfully
+ ---=== Enf of migration ===---

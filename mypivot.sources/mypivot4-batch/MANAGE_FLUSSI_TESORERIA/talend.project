@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:TalendProperties="http://www.talend.org/properties">
+  <TalendProperties:Project xmi:id="_jz1wUJkGEeWDuqdatynqQQ" label="MANAGE_FLUSSI_TESORERIA" description="" language="java" technicalLabel="MANAGE_FLUSSI_TESORERIA" local="true" author="_jz1wUZkGEeWDuqdatynqQQ" productVersion="Talend Open Studio for Data Integration-7.3.1.20200219_1130" itemsRelationVersion="1.3">
+    <componentsSettings xmi:id="_FBOD8HT9Eea7dZXviZaGmQ" name="DI|tArrayIn" family="Technical"/>
+    <componentsSettings xmi:id="_FBOrAHT9Eea7dZXviZaGmQ" name="DI|tHashInput" family="Technical"/>
+    <componentsSettings xmi:id="_FBOrAXT9Eea7dZXviZaGmQ" name="DI|tArray" family="Technical"/>
+    <componentsSettings xmi:id="_FBOrAnT9Eea7dZXviZaGmQ" name="DI|tHashOutput" family="Technical"/>
+    <migrationTask xmi:id="_XfApUF8eEeuv1aei7Sa06A" id="org.talend.repository.model.migration.CheckProductVersionMigrationTask" breaks="7.1.0" version="7.1.1"/>
+  </TalendProperties:Project>
+  <TalendProperties:User xmi:id="_jz1wUZkGEeWDuqdatynqQQ" login="test@talend.com" password="D41D8CD98F00B204E9800998ECF8427E"/>
+  <TalendProperties:User xmi:id="_Xf294F8eEeuv1aei7Sa06A" login="user@talend.com" password="D41D8CD98F00B204E9800998ECF8427E"/>
+</xmi:XMI>

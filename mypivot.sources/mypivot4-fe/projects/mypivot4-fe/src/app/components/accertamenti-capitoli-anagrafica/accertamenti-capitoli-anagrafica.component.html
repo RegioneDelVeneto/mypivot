@@ -1,0 +1,143 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100">
+      <form fxFlex novalidate #sForm [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <mat-form-field fxFlex="100%" class="70%" appearance="{{'appearance'|global}}">
+            <mat-label>Tipo Dovuto</mat-label>
+            <mat-select required formControlName="tipoDovuto" name="tipoDovuto" [compareWith]="compareTipoDovuto"
+                (selectionChange)="tipoDovutoOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let tipoDovuto of tipiDovuto" [value]="tipoDovuto">
+                {{tipoDovuto?.deTipo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1% 0 -2%;">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="46em" appearance="{{'appearance'|global}}">
+            <mat-label>Ufficio</mat-label>
+            <mat-select formControlName="ufficio" name="ufficio" [compareWith]="compareUfficio"
+                (selectionChange)="ufficioOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let ufficio of uffici" [value]="ufficio" [disabled]="ufficio.deUfficio==null">
+                {{ufficio?.codUfficio}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-checkbox *ngIf="modeAnag!=='insert'" fxFlex="100%" fxFlex.gt-sm="12em" [class.mat-checkbox-disabled]="modeAnag==='view'" [disabled]="modeAnag==='view'" fxFlex="100%" fxFlex.gt-sm="15em" formControlName="flgUfficioAttivo">Ufficio Attivo</mat-checkbox>
+        </div>
+
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20em" [class.mat-form-field-disabled]="modeAnag==='view' || insertForm.get('ufficio').value?.codUfficio != null" appearance="{{'appearance'|global}}">
+            <mat-label>Codice Ufficio</mat-label>
+            <input matInput required [readonly]="modeAnag==='view' || insertForm.get('ufficio').value?.codUfficio != null" formControlName="codUfficio" placeholder="Inserire un testo">
+            <mat-error *ngIf="insertFormErrors['codUfficio']">{{ insertFormErrors.codUfficio }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45em" [class.mat-form-field-disabled]="modeAnag==='view' || insertForm.get('ufficio').value?.codUfficio != null" appearance="{{'appearance'|global}}">
+            <mat-label>Denominazione Ufficio</mat-label>
+            <input matInput required [readonly]="modeAnag==='view' || insertForm.get('ufficio').value?.codUfficio != null" formControlName="deUfficio" placeholder="Inserire un testo">
+            <mat-error *ngIf="insertFormErrors['deUfficio']">{{ insertFormErrors.deUfficio }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1% 0 -2%;">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="46em" appearance="{{'appearance'|global}}">
+            <mat-label>Capitolo</mat-label>
+            <mat-select formControlName="capitolo" name="capitolo" [compareWith]="compareCapitolo"
+                (selectionChange)="capitoloOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let capitolo of capitoli" [value]="capitolo">
+                {{capitolo?.deCapitolo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" [class.mat-form-field-disabled]="modeAnag==='view'" appearance="{{'appearance'|global}}">
+            <mat-label>Anno Esercizio Capitolo</mat-label>
+            <input type="text" aria-label="Anno Esercizio Capitolo" readonly class="mat-input-element" formControlName="annoCapitolo"/>
+            <input matInput required style="display:none;" formControlName="dpAnnoCapitolo" [matDatepicker]="dtPickerYearly" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix *ngIf="modeAnag!=='view'" [for]="dtPickerYearly"></mat-datepicker-toggle>
+            <mat-datepicker #dtPickerYearly startView="multi-year" (yearSelected)="chosenYearly($event, dtPickerYearly)"></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20em" [class.mat-form-field-disabled]="modeAnag==='view' || insertForm.get('capitolo').value?.codCapitolo != null" appearance="{{'appearance'|global}}">
+            <mat-label>Codice Capitolo</mat-label>
+            <input matInput required [readonly]="modeAnag==='view' || insertForm.get('capitolo').value?.codCapitolo != null" formControlName="codCapitolo" placeholder="Inserire un testo">
+            <mat-error *ngIf="insertFormErrors['codCapitolo']">{{ insertFormErrors.codCapitolo }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45em" [class.mat-form-field-disabled]="modeAnag==='view' || insertForm.get('capitolo').value?.codCapitolo != null" appearance="{{'appearance'|global}}">
+            <mat-label>Denominazione Capitolo</mat-label>
+            <input matInput required [readonly]="modeAnag==='view' || insertForm.get('capitolo').value?.codCapitolo != null" formControlName="deCapitolo" placeholder="Inserire un testo">
+            <mat-error *ngIf="insertFormErrors['deCapitolo']">{{ insertFormErrors.deCapitolo }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px" style="margin: 1% 0 -2%;">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="46em" appearance="{{'appearance'|global}}">
+            <mat-label>Accertamento</mat-label>
+            <mat-select formControlName="accertamento" name="accertamento" [compareWith]="compareAccertamento" 
+                (selectionChange)="accertamentoOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let accertamento of accertamenti" [value]="accertamento">
+                {{accertamento?.deAccertamento}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20em" [class.mat-form-field-disabled]="modeAnag==='view' || insertForm.get('accertamento').value?.codAccertamento != null" appearance="{{'appearance'|global}}">
+            <mat-label>Codice Accertamento</mat-label>
+            <input matInput required [readonly]="modeAnag==='view' || insertForm.get('accertamento').value?.codAccertamento != null" formControlName="codAccertamento" placeholder="Inserire un testo">
+            <mat-error *ngIf="insertFormErrors['codAccertamento']">{{ insertFormErrors.codAccertamento }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45em" [class.mat-form-field-disabled]="modeAnag==='view' || insertForm.get('accertamento').value?.codAccertamento != null" appearance="{{'appearance'|global}}">
+            <mat-label>Denominazione Accertamento</mat-label>
+            <input matInput required [readonly]="modeAnag==='view' || insertForm.get('accertamento').value?.codAccertamento != null" formControlName="deAccertamento" placeholder="Inserire un testo">
+            <mat-error *ngIf="insertFormErrors['deAccertamento']">{{ insertFormErrors.deAccertamento }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+          <button fxFlex="10em" *ngIf="modeAnag!=='edit'" type="button" mat-flat-button (click)="goBack()" color="primary">Torna indietro</button>
+          <button fxFlex="7em" *ngIf="modeAnag==='edit'" type="button" mat-flat-button (click)="annulla()" color="primary">Annulla</button>
+          <div fxFlex></div>
+          <button fxFlex="7em" *ngIf="modeAnag==='view'" type="button" mat-flat-button (click)="enableEdit()" [disabled]="blockingError" color="accent">Modifica</button>
+          <button fxFlex="7em" *ngIf="modeAnag!=='view'" type="submit" mat-flat-button [disabled]="insertForm.invalid || blockingError" color="accent">Salva</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

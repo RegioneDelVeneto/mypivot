@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypivot4-batch-flusso-tesoreria-f2k
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mypivot4-batch-flusso-tesoreria-f2k
+      job: batch
+  template:
+    metadata:
+      labels:
+        app: mypivot4-batch-flusso-tesoreria-f2k
+        job: batch
+    spec:
+      containers:
+        - name: fluentd-agent
+          image: _REGISTRY_ENTE_/common/mypay4-fluentd:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "0.1"
+            limits:
+              memory: "1Gi"
+              cpu: "0.5"
+          env:
+            - name: FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
+              value: "mypivot4_batch_flusso_tesoreria_f2k.access"
+          envFrom:
+            - secretRef:
+                name: mypivot4-fluent-config-secret
+          volumeMounts:
+          - name: access-logs
+            mountPath: /var/log/batch		  
+        - name: mypivot4-batch-flusso-tesoreria-f2k
+          image: _REGISTRY_ENTE_/mypivot4/mypivot4-batch-flusso-tesoreria-f2k:latest
+          command: ["/batch/bin/BatchFlussoTesoreriaF2K_run.sh"]
+          volumeMounts:
+          - name: conf
+            mountPath: /E45
+          - name: access-logs
+            mountPath: /var/log/batch	
+          - name:  mypivot4-batch-flusso-tesoreria-f2k-configs
+            mountPath: /conf/batchflussotesoreriaf2k-properties_1.0.properties
+            subPath: batchflussotesoreriaf2k-properties_1.0.properties
+          - name: mypivot4-batch-flusso-tesoreria-f2k-configs
+            mountPath: /conf/log4j.xml
+            subPath: log4j.xml
+          imagePullPolicy: Always
+          envFrom:
+          - secretRef:
+              name: "mypivot4-user-creds-secret"
+          - secretRef:
+              name: "mypivot4-artemis-user-creds-secret"
+          resources:
+            requests:
+              memory: "100Mi"
+              cpu: "0.1"
+            limits:
+              memory: "512Mi"
+              cpu: "100m"
+      volumes:
+      - name: conf
+        persistentVolumeClaim:
+          claimName: mypay4-claim
+      - name: mypivot4-batch-flusso-tesoreria-f2k-configs
+        configMap:
+          name: mypivot4-batch-flusso-tesoreria-f2k-configs
+      - name: access-logs
+        emptyDir: {}
+      imagePullSecrets:
+      - name: registry-_ENTE_-secret
+

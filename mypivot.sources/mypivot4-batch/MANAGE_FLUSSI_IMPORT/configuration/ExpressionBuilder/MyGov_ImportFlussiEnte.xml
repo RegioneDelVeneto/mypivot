@@ -1,0 +1,666 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:expression="http:///expression.ecore">
+  <expression:EMFExpression id="null=>row4=>codice_iso_alpha_2" expression="!&quot;&quot;.equalsIgnoreCase(INSERT.nazionePagatore) &amp;&amp; INSERT.nazionePagatore != null ? INSERT.nazionePagatore : &quot;UN&quot; ">
+    <variables name="INSERT.IUD" value="null" talendType="id_String"/>
+    <variables name="INSERT.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="INSERT.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="INSERT.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="INSERT.azione" value="null" talendType="id_String"/>
+    <variables name="INSERT.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_INSERT.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_INSERT.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_INSERT.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_INSERT.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row30.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row30.version" value="0" talendType="id_Integer"/>
+    <variables name="row30.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row30.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row30.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row1.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row1.provincia" value="null" talendType="id_String"/>
+    <variables name="row1.sigla" value="null" talendType="id_String"/>
+    <variables name="row4.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row4.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row4.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>" expression="&quot;UN&quot;.equalsIgnoreCase(row4.codice_iso_alpha_2) ? null : row4.codice_iso_alpha_2 ">
+    <variables name="INSERT.IUD" value="null" talendType="id_String"/>
+    <variables name="INSERT.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="INSERT.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="INSERT.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="INSERT.azione" value="null" talendType="id_String"/>
+    <variables name="INSERT.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_INSERT.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_INSERT.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_INSERT.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_INSERT.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row30.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row30.version" value="0" talendType="id_Integer"/>
+    <variables name="row30.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row30.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row30.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row1.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row1.provincia" value="null" talendType="id_String"/>
+    <variables name="row1.sigla" value="null" talendType="id_String"/>
+    <variables name="row4.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row4.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row4.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>row20=>codice_iso_alpha_2" expression="!&quot;&quot;.equalsIgnoreCase(ANNULL.nazionePagatore) &amp;&amp; ANNULL.nazionePagatore != null ? ANNULL.nazionePagatore : &quot;UN&quot;  ">
+    <variables name="ANNULL.IUD" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="ANNULL.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="ANNULL.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.azione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_ANNULLA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_ANNULLA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_ANNULLA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_ANNULLA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row31.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row31.version" value="0" talendType="id_Integer"/>
+    <variables name="row31.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row31.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row31.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row5.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row5.provincia" value="null" talendType="id_String"/>
+    <variables name="row5.sigla" value="null" talendType="id_String"/>
+    <variables name="row20.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row20.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row20.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_ANNULLATI=>de_rp_sogg_pag_provincia_pagatore" expression="&quot;UN&quot;.equalsIgnoreCase(row5.sigla) ? null : row5.sigla  ">
+    <variables name="ANNULL.IUD" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="ANNULL.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="ANNULL.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.azione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_ANNULLA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_ANNULLA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_ANNULLA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_ANNULLA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row31.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row31.version" value="0" talendType="id_Integer"/>
+    <variables name="row31.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row31.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row31.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row5.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row5.provincia" value="null" talendType="id_String"/>
+    <variables name="row5.sigla" value="null" talendType="id_String"/>
+    <variables name="row20.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row20.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row20.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_ANNULLATI=>cod_rp_sogg_pag_nazione_pagatore" expression="&quot;UN&quot;.equalsIgnoreCase(row20.codice_iso_alpha_2) ? null : row20.codice_iso_alpha_2">
+    <variables name="ANNULL.IUD" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="ANNULL.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="ANNULL.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.azione" value="null" talendType="id_String"/>
+    <variables name="ame=&quot;STATI_MODIF" value="eazi" talendType="id_String" nullable="true"/>
+    <variables name="STATI_ANNULLA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_ANNULLA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_ANNULLA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_ANNULLA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row31.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row31.version" value="0" talendType="id_Integer"/>
+    <variables name="row31.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row31.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row31.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row5.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row5.provincia" value="null" talendType="id_String"/>
+    <variables name="row5.sigla" value="null" talendType="id_String"/>
+    <variables name="row20.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row20.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row20.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_MODIFICATI=>de_rp_sogg_pag_provincia_pagatore" expression="&quot;UN&quot;.equalsIgnoreCase(row28.sigla) ? null : row28.sigla  ">
+    <variables name="MODIFIC.IUD" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.azione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_MODIFICA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_MODIFICA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_MODIFICA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_MODIFICA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row34.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row34.version" value="0" talendType="id_Integer"/>
+    <variables name="row34.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row34.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row34.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row28.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row28.provincia" value="null" talendType="id_String"/>
+    <variables name="row28.sigla" value="null" talendType="id_String"/>
+    <variables name="row29.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row29.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row29.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>row29=>codice_iso_alpha_2" expression="!&quot;&quot;.equalsIgnoreCase(MODIFIC.nazionePagatore) &amp;&amp; MODIFIC.nazionePagatore != null ? MODIFIC.nazionePagatore : &quot;UN&quot;    ">
+    <variables name="MODIFIC.IUD" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="    &lt;variables name=&quot;MODIFI" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.azione" value="null" talendType="id_String"/>
+    <variables name=" value=&quot;null&quot; tal" value="id_S" talendType="id_String" nullable="true"/>
+    <variables name="STATI_MODIFICA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_MODIFICA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_MODIFICA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_MODIFICA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row34.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row34.version" value="0" talendType="id_Integer"/>
+    <variables name="row34.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row34.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row34.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row28.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row28.provincia" value="null" talendType="id_String"/>
+    <variables name="row28.sigla" value="null" talendType="id_String"/>
+    <variables name="row29.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row29.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row29.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>row28=>sigla" expression="!&quot;&quot;.equalsIgnoreCase(MODIFIC.provinciaPagatore) &amp;&amp; MODIFIC.provinciaPagatore != null ? MODIFIC.provinciaPagatore : &quot;UN&quot;   ">
+    <variables name="MODIFIC.IUD" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.azione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_MODIFICA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_MODIFICA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_MODIFICA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_MODIFICA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row34.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row34.version" value="0" talendType="id_Integer"/>
+    <variables name="row34.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row34.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row34.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row28.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row28.provincia" value="null" talendType="id_String"/>
+    <variables name="row28.sigla" value="null" talendType="id_String"/>
+    <variables name="row29.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row29.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row29.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_MODIFICATI=>cod_rp_sogg_pag_nazione_pagatore" expression="&quot;UN&quot;.equalsIgnoreCase(row29.codice_iso_alpha_2) ? null : row29.codice_iso_alpha_2   ">
+    <variables name="MODIFIC.IUD" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.azione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_MODIFICA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_MODIFICA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_MODIFICA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_MODIFICA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row34.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row34.version" value="0" talendType="id_Integer"/>
+    <variables name="row34.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row34.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row34.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row28.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row28.provincia" value="null" talendType="id_String"/>
+    <variables name="row28.sigla" value="null" talendType="id_String"/>
+    <variables name="row29.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row29.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row29.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>row5=>sigla" expression="!&quot;&quot;.equalsIgnoreCase(ANNULL.provinciaPagatore) &amp;&amp; ANNULL.provinciaPagatore != null ? ANNULL.provinciaPagatore : &quot;UN&quot;  ">
+    <variables name="ANNULL.IUD" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="ANNULL.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="ANNULL.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="ANNULL.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="ANNULL.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="ANNULL.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.azione" value="null" talendType="id_String"/>
+    <variables name="ANNULL.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_ANNULLA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_ANNULLA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_ANNULLA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_ANNULLA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_ANNULLA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row31.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row31.version" value="0" talendType="id_Integer"/>
+    <variables name="row31.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_stato" value="null" talendType="id_String"/>
+    <variables name="row31.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row31.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row31.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row5.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row5.provincia" value="null" talendType="id_String"/>
+    <variables name="row5.sigla" value="null" talendType="id_String"/>
+    <variables name="row20.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row20.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row20.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>row1=>sigla" expression="!&quot;&quot;.equalsIgnoreCase(INSERT.provinciaPagatore) &amp;&amp; INSERT.provinciaPagatore != null ? INSERT.provinciaPagatore : &quot;UN&quot; ">
+    <variables name="INSERT.IUD" value="null" talendType="id_String"/>
+    <variables name="INSERT.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="INSERT.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="INSERT.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="INSERT.azione" value="null" talendType="id_String"/>
+    <variables name="INSERT.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_INSERT.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_INSERT.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_INSERT.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_INSERT.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row30.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row30.version" value="0" talendType="id_Integer"/>
+    <variables name="row30.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row30.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row30.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row1.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row1.provincia" value="null" talendType="id_String"/>
+    <variables name="row1.sigla" value="null" talendType="id_String"/>
+    <variables name="row4.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row4.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row4.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_VALIDI=>de_rp_sogg_pag_provincia_pagatore" expression="&quot;UN&quot;.equalsIgnoreCase(row1.sigla) ? null : row1.sigla &#xD;&#xA;&#xD;&#xA;   ">
+    <variables name="INSERT.IUD" value="null" talendType="id_String"/>
+    <variables name="INSERT.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="INSERT.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="INSERT.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="INSERT.azione" value="null" talendType="id_String"/>
+    <variables name="INSERT.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_INSERT.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_INSERT.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_INSERT.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_INSERT.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row30.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row30.version" value="0" talendType="id_Integer"/>
+    <variables name="row30.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row30.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row30.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row1.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row1.provincia" value="null" talendType="id_String"/>
+    <variables name="row1.sigla" value="null" talendType="id_String"/>
+    <variables name="row4.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row4.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row4.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_VALIDI=>cod_rp_sogg_pag_nazione_pagatore" expression="&quot;UN&quot;.equalsIgnoreCase(row4.codice_iso_alpha_2) ? null : row4.codice_iso_alpha_2  ">
+    <variables name="INSERT.IUD" value="null" talendType="id_String"/>
+    <variables name="INSERT.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="INSERT.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="INSERT.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="INSERT.azione" value="null" talendType="id_String"/>
+    <variables name="INSERT.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_INSERT.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_INSERT.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_INSERT.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_INSERT.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row30.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row30.version" value="0" talendType="id_Integer"/>
+    <variables name="row30.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_stato" value="null" talendType="id_String"/>
+    <variables name="&lt;variables name=&quot;ro" value="null" talendType="id_String"/>
+    <variables name="row30.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row30.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row1.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row1.provincia" value="null" talendType="id_String"/>
+    <variables name="row1.sigla" value="null" talendType="id_String"/>
+    <variables name="row4.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row4.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row4.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_VALIDI=>cod_rp_dati_vers_tipo_versamento" expression="!&quot;&quot;.equalsIgnoreCase(INSERT.tipoVersamento) &amp;&amp; INSERT.tipoVersamento != null ? INSERT.tipoVersamento : (String) globalMap.get(&quot;tipoVersamento&quot;)    ">
+    <variables name="INSERT.IUD" value="null" talendType="id_String"/>
+    <variables name="INSERT.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="INSERT.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="INSERT.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="INSERT.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="INSERT.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="INSERT.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="INSERT.azione" value="null" talendType="id_String"/>
+    <variables name="INSERT.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_INSERT.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_INSERT.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_INSERT.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_INSERT.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_INSERT.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row30.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row30.version" value="0" talendType="id_Integer"/>
+    <variables name="row30.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_stato" value="null" talendType="id_String"/>
+    <variables name="row30.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row30.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row30.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row1.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row1.provincia" value="null" talendType="id_String"/>
+    <variables name="row1.sigla" value="null" talendType="id_String"/>
+    <variables name="row4.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row4.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row4.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>CARICA_MODIFICATI=>cod_rp_dati_vers_tipo_versamento" expression="!&quot;&quot;.equalsIgnoreCase(MODIFIC.tipoVersamento) &amp;&amp; MODIFIC.tipoVersamento != null ? MODIFIC.tipoVersamento  : (String) globalMap.get(&quot;tipoVersamento&quot;)  ">
+    <variables name="MODIFIC.IUD" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codIuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.codiceIdentificativoUnivoco" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.anagraficaPagatore" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.indirizzoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.civicoPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.capPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.localitaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.provinciaPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.nazionePagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.emailPagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.dataScadenzaPagamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.importoDovuto" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.commissioneCaricoPa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoDovuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.tipoVersamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="MODIFIC.causaleVersamento" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.datiSpecificiRiscossione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.azione" value="null" talendType="id_String"/>
+    <variables name="MODIFIC.deRifiuto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="STATI_MODIFICA.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="STATI_MODIFICA.version" value="0" talendType="id_Integer"/>
+    <variables name="STATI_MODIFICA.cod_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="STATI_MODIFICA.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="STATI_MODIFICA.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row34.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row34.version" value="0" talendType="id_Integer"/>
+    <variables name="row34.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_stato" value="null" talendType="id_String"/>
+    <variables name="row34.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row34.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row34.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row28.provincia_id" value="0" talendType="id_Long"/>
+    <variables name="row28.provincia" value="null" talendType="id_String"/>
+    <variables name="row28.sigla" value="null" talendType="id_String"/>
+    <variables name="row29.nazione_id" value="0" talendType="id_Long"/>
+    <variables name="row29.nome_nazione" value="null" talendType="id_String"/>
+    <variables name="row29.codice_iso_alpha_2" value="null" talendType="id_String"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>AGGIORNAMENTO_FLUSSO=>de_nome_operatore" expression="(String) globalMap.get(&quot;de_nome_operatore&quot;)">
+    <variables name="row32.mygov_flusso_id" value="0" talendType="id_Long"/>
+    <variables name="row32.version" value="0" talendType="id_Integer"/>
+    <variables name="row32.mygov_ente_id" value="0" talendType="id_Integer"/>
+    <variables name="row32.mygov_anagrafica_stato_id" value="0" talendType="id_Integer"/>
+    <variables name="row32.iuf" value="null" talendType="id_String"/>
+    <variables name="row32.num_righe_totali" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row32.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row32.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row32.flg_attivo" value="false" talendType="id_Boolean"/>
+    <variables name="row33.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row33.version" value="0" talendType="id_Integer"/>
+    <variables name="row33.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row33.de_stato" value="null" talendType="id_String"/>
+    <variables name="row33.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row33.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row33.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  </expression:EMFExpression>
+</xmi:XMI>

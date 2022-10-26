@@ -1,0 +1,143 @@
+ ---=== Start Migration of project Manage_Flussi_Tesoreria ===---
+ * Task [ChangeComponentSettingNameMigrationTask] : Applied successfully
+ * Task [Remove routine dependency on antlr-3.3 jars] : Applied successfully
+ * Task [RemoveProjectLibsFolder] : Nothing to do
+ * Task [RemoveConfigMavenRepository] : Applied successfully
+ * Task [ChangeMappingFileMigrationTask] : Applied successfully
+ * Task [AddJavaVersionMigrationTask] : Applied successfully
+ * Task [ResetMavenTemplateMigrationTask] : Applied successfully
+ * Task [UpdateToJava8VersionMigrationTask] : Applied successfully
+ * Task [Add Product Values] : Nothing to do
+ * Task [UpdateGitIgnoreMigrationTask] : Nothing to do
+ * Task [ChangeDriverJarForProjectSetting] : Nothing to do
+ * Task [RepositoryProjectDate] : Applied successfully
+ * Task [RemovePigudfModulesMigrationTask] : Nothing to do
+ * Task [Fix a problem of project resources linked to items] : Applied successfully
+ * Task [ChangeReadByParameter4tFileInputJSON] : Applied successfully
+ * Task [Set tStoreResult associated tPigLoad] : Applied successfully
+ * Task [ChangeMappingParameter4Redshift] : Applied successfully
+ * Task [ChangeParameter4tSAPIDocOutput] : Applied successfully
+ * Task [ChangeDefaultValue4tMarketoOutput] : Applied successfully
+ * Task [AddSchemaDefaultValue4tFileInputDelimited] : Applied successfully
+ * Task [CorrectBatchModeForDBComponents] : Applied successfully
+ * Task [CorrectBatchModeForTeradataOutput] : Applied successfully
+ * Task [CorrectBatchModeForJDBCOutput] : Applied successfully
+ * Task [MdmAddVersionMigrationTask] : Nothing to do
+ * Task [SetDefaultVauleMDMServerVersionFeatureTDI31722] : Applied successfully
+ * Task [CorrectBatchSizeForDBComponents] : Applied successfully
+ * Task [CorrectBatchSizeForDBComponentsMore] : Applied successfully
+ * Task [ChangeDefaultValue4JSONComponents] : Applied successfully
+ * Task [MapNetsuiteOperatorValueTDI32245] : Applied successfully
+ * Task [ChangeMongoDBMinimalVersion] : Applied successfully
+ * Task [ChangeValue4BonitaComponents] : Applied successfully
+ * Task [ODBCMigrationTask] : Applied successfully
+ * Task [ActivateQueryLogging] : Applied successfully
+ * Task [MigrateEncoding4tSalesforceWave] : Applied successfully
+ * Task [ChangeDefaultValueForCassandraAPIVersion] : Applied successfully
+ * Task [AccessMigrationTask] : Applied successfully
+ * Task [AddPortForTCassandraConfigurationSpark] : Applied successfully
+ * Task [AddTableActionForUpdateCassandraDatastax] : Applied successfully
+ * Task [UnifyParameterOfDatastaxAndHectorForCassandra] : Applied successfully
+ * Task [MigrateDeprecatedHadoopDistribution1] : Applied successfully
+ * Task [ChangeDefaultSparkSerializer] : Nothing to do
+ * Task [Set default readby mode] : Applied successfully
+ * Task [BuildRecycleBinIndexMigrationTask] : Applied successfully
+ * Task [ChangeDefaultValue4tLogRow] : Applied successfully
+ * Task [ChangeBatchParameter4SomeDBComponents] : Applied successfully
+ * Task [CheckIncludeSeparatorOnTFileOutputPositional] : Nothing to do
+ * Task [ChangeLocalModeForSparkConfiguration] : Nothing to do
+ * Task [ChangeOptionDefaultValueForFileArchive] : Applied successfully
+ * Task [DisableUseBatchWhenRejectLineExists] : Applied successfully
+ * Task [StripslachesOnQuotesForTCollectAndCheck] : Nothing to do
+ * Task [UpdateKakfaInputConsumerTimeoutAndAutoOffsetTask] : Applied successfully
+ * Task [ReviewPigLoadLayout] : Applied successfully
+ * Task [RenameSparkVersions] : Nothing to do
+ * Task [ChangeDBVersionValue4BonitaComponents] : Applied successfully
+ * Task [TickDieOnError4tFileUnarchive] : Applied successfully
+ * Task [ChangeLogLevel4tRedshiftInput] : Applied successfully
+ * Task [FixUnevenItemContextParametersMigrationTask] : Nothing to do
+ * Task [AddContextCommentValueMigrationTask] : Nothing to do
+ * Task [ChangeDefaultValueForCassandra3Version] : Applied successfully
+ * Task [NewGenericWizardMigrationTask] : Nothing to do
+ * Task [SetDefaultValueForNewerEmailFirstOfTDI35976] : Applied successfully
+ * Task [ChangeDefaultValueForCassandraOutputBatch] : Applied successfully
+ * Task [NewSalesforceMigrationTask] : Nothing to do
+ * Task [Add XMI Id for context item] : Applied successfully
+ * Task [UpdateUrlForRedShiftMigrationTask] : Nothing to do
+ * Task [SubstituteRemovedMDMOperatorMigrationTask] : Applied successfully
+ * Task [RenameDriverJarPathForDBConnectionMigrationTask] : Nothing to do
+ * Task [RemoveDuplicatedContextGroupMigrationTask] : Nothing to do
+ * Task [UpdateJobletContextInJobMigrationTask] : Nothing to do
+ * Task [ReplaceVarcharArrayWithVarcharIssueTDI35719] : Applied successfully
+ * Task [Salesforce620Migration] : Applied successfully
+ * Task [Salesforce620WizardMigration] : Nothing to do
+ * Task [ReviseInvalidContextNamesMigrationTask] : Nothing to do
+ * Task [UpdateELTComponentMigrationTask] : Nothing to do
+ * Task [AddDefaultVersionValueForElasticsearchLookupInput] : Applied successfully
+ * Task [Change MSSQL DBVersion] : Nothing to do
+ * Task [ChangeTypeMappingForRedshift] : Applied successfully
+ * Task [AddNewIgnoreNullSettingForTMicrosoftCrmOutputTask] : Applied successfully
+ * Task [UncheckExceptionOnFileExistMigrationTask] : Applied successfully
+ * Task [ResetVMArgumentMigrationTask] : Applied successfully
+ * Task [NewAzureBlobMigrationTask] : Nothing to do
+ * Task [NewMarketoMigrationTask] : Nothing to do
+ * Task [NewNetsuiteMigrationTask] : Nothing to do
+ * Task [ResetItemLabelMigrationTask] : Applied successfully
+ * Task [AddApiModeToMarketoComponentsMigrationTask] : Applied successfully
+ * Task [ChangeDBversionForSybaseIQMigrationTask] : Applied successfully
+ * Task [Set FailOn property to true if copy directory else set to false] : Applied successfully
+ * Task [Set the Spark Dataframe Alphabatical sort order in tHiveOutput and tFileOutputParquet] : Nothing to do
+ * Task [reset the 'COLUMN_DELIMITER' parameter] : Applied successfully
+ * Task [Set the 'skip tailing zeros for BigDecimal' setting to false if it was null] : Applied successfully
+ * Task [Configure the new INCLUDTRASHFILES property to 'true' in order to keep the same behavior as before] : Applied successfully
+ * Task [NewJDBCMigrationTask] : Nothing to do
+ * Task [NewMarkLogicMigrationTask] : Nothing to do
+ * Task [NewGoogleDriveMigrationTask] : Nothing to do
+ * Task [Dataprep701MigrationTask] : Applied successfully
+ * Task [MigrationTaskFortOleDbCoseConnection] : Applied successfully
+ * Task [Fill the default db version of mssql for Jobsetting] : Nothing to do
+ * Task [ChangeTMatchGroupOutputConnectorTask] : Applied successfully
+ * Task [NewJDBCConnectionMigrationTask] : Nothing to do
+ * Task [DriverJarMigration] : Nothing to do
+ * Task [AddSchemaDatePatternUseForImpalaTask] : Applied successfully
+ * Task [GenerateJobPomMigrationTask] : Applied successfully
+ * Task [TExtractJSONSplitListMigrationTask] : Applied successfully
+ * Task [RenameParamName4tS3XXServerEncryption] : Applied successfully
+ * Task [AddDefaultFTPSPortMigrationTask] : Applied successfully
+ * Task [WriteJSONQuoteAllValuesMigrationTask] : Applied successfully
+ * Task [FileInputPositionalByteLengthMigrationTask] : Applied successfully
+ * Task [EscapeQuoterForTNormalize] : Applied successfully
+ * Task [KeepChangeRemoteDirFalseForFTPFileExist] : Applied successfully
+ * Task [AddTypeNameInConnection] : Applied successfully
+ * Task [RenameELTJDBCComponentsMigrationTask] : Applied successfully
+ * Task [AddDbMappingTTeradataFastLoadMigrationTask] : Applied successfully
+ * Task [PostgresqlDefaultDBVersion] : Applied successfully
+ * Task [MySQLDefaultDBVersion] : Applied successfully
+ * Task [UseOracle11VersionInsteadOfRemoved] : Applied successfully
+ * Task [CheckS3AccessibilityMigrationTask] : Applied successfully
+ * Task [DecrementLimitTFileInputDelimitedTDI32185] : Applied successfully
+ * Task [SetTrustAllCertsLdapComponentsTDI41648] : Applied successfully
+ * Task [RedshiftLogFileMigrationTask] : Applied successfully
+ * Task [ResetAdditionalJDBCParamsForCreateTable] : Applied successfully
+ * Task [SafelyCreateTemporaryFileMigrationTask] : Applied successfully
+ * Task [MigrateTDataMaskingGuiTDQ16376] : Applied successfully
+ * Task [RenameSalesforceWaveMigrationTask] : Applied successfully
+ * Task [CleanCustomerMatcherField] : Applied successfully
+ * Task [RenameTCOMPCouchbaseMigrationTask] : Applied successfully
+ * Task [EncryptTckMetadataMigrationTask] : Nothing to do
+ * Task [AddEncodingTypeForDQComponentsTask] : Applied successfully
+ * Task [AddRAWFlowTPatternMasking] : Applied successfully
+ * Task [changeDBVersionForMapROJAIOutputMigrationTask] : Applied successfully
+ * Task [SAPBAPIParameterTypeMigrationTask] : Applied successfully
+ * Task [UseDefaultJSONWrappingStandard] : Applied successfully
+ * Task [AddMissingContextMigrationTask] : Applied successfully
+ * Task [cleanLoginAndPasswordForRedshiftSqlForSSO] : Applied successfully
+ * Task [oracleSPAutomappingDateToTimestampTask] : Applied successfully
+ * Task [UpgradePasswordEncryptionAlg4ItemMigrationTask] : Applied successfully
+ * Task [ChangeCDCTypeForOracle18TDI43319] : Applied successfully
+ * Task [Fix empty process id parameters for tRunjob node] : Applied successfully
+ * Task [ChangeDefaultValueTDI36397] : Applied successfully
+ * Task [ChangeDBVersionValue4BonitaComponentsTDI43395] : Applied successfully
+ * Task [UpdateDatesPatternAccordingToDeletedTimestampOption] : Nothing to do
+ * Task [AutoUpdateRelationsMigrationTask] : Applied successfully
+ ---=== End of migration ===---

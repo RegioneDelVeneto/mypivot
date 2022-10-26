@@ -1,0 +1,176 @@
+package routines;
+
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+
+
+public class LeggiFile {
+
+	private com.talend.csv.CSVReader csvReader;
+	private ValoriRigaTO currentRow = null;
+	private boolean primaRiga = true;
+	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
+	private static final String YEAR_REGEX = "\\d{4}";
+	private static final int MAX_LENGTH_COD_BOLLETTA = 7;
+	private static final int MAX_LENGTH_COD_IUF = 35;
+	private static final int MAX_LENGTH_COD_IUV = 35;
+	
+	public LeggiFile(String fileName, String fieldSeparator) throws Exception {
+		
+		csvReader = 
+			new com.talend.csv.CSVReader(
+					new java.io.BufferedReader(
+							new java.io.InputStreamReader(
+									new java.io.FileInputStream(fileName)
+								  , "UTF-8")
+							)
+				  , fieldSeparator.toCharArray()[0]);
+		
+		csvReader.setTrimWhitespace(false);
+		csvReader.setLineEnd("\n");
+		csvReader.setQuoteChar('"');
+		csvReader.setEscapeChar('\\');	
+		csvReader.setSkipEmptyRecords(true);
+		FORMATTER.setLenient(false);
+	}
+	
+	private boolean isFirst() {
+		if (primaRiga) {
+			primaRiga = false;
+			return true;
+		}
+		return false;
+	}
+	
+	private String[] getNext() throws Exception {
+		
+		String[] row;
+		do { 
+			this.csvReader.readNext();
+			row = this.csvReader.getValues();				
+		} while (isFirst() || (row.length == 1 
+				&& ("\015").equals(row[0])));
+		return row;
+	}
+	
+	
+    public boolean hasNext(DescrizioneFile df)  {    	
+ 	
+		String[] row = null;
+		try {	
+			row = getNext();
+			if (row.length == 0) {
+				csvReader.close();
+				return false;
+			}
+			this.currentRow = new ValoriRigaTO();
+			for (int i_tFileInputDelimited_1 = 0; i_tFileInputDelimited_1 < row.length; i_tFileInputDelimited_1++) {
+				row[i_tFileInputDelimited_1] = row[i_tFileInputDelimited_1].trim();
+			}
+	
+			int columnIndexWithD = df.getPos_de_anno_bolletta() - 1;
+			if (columnIndexWithD < row.length) {
+				if (!row[columnIndexWithD].matches(YEAR_REGEX)){
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|de_anno_bolletta ["
+							+ row[columnIndexWithD] + "] non valido");
+				} else {
+					this.currentRow.setVal_de_anno_bolletta(row[columnIndexWithD]);
+				}
+			} 
+	
+			columnIndexWithD = df.getPos_cod_bolletta() - 1;
+			if (columnIndexWithD < row.length) {
+				if (row[columnIndexWithD].length() > MAX_LENGTH_COD_BOLLETTA){
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|cod_bolletta ["
+							+ row[columnIndexWithD] + "] non valido");
+				} else {
+					this.currentRow.setVal_cod_bolletta(row[columnIndexWithD]);
+				}
+			}
+	
+			columnIndexWithD = df.getPos_dt_contabile() - 1;
+			if (columnIndexWithD < row.length) {
+				this.currentRow.setVal_dt_contabile_string(row[columnIndexWithD]);
+				try {
+					this.currentRow.setVal_dt_contabile(FORMATTER.parse(row[columnIndexWithD]));
+				} catch (java.lang.Exception e) {
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|" + e.getMessage());
+				}
+			} 
+	
+			columnIndexWithD = df.getPos_de_denominazione() - 1;
+			if (columnIndexWithD < row.length) {
+				this.currentRow.setVal_de_denominazione(row[columnIndexWithD]);
+			} 
+	
+			columnIndexWithD = df.getPos_de_causale() - 1;
+			if (columnIndexWithD < row.length) {
+				this.currentRow.setVal_de_causale(row[columnIndexWithD]);
+				
+				String iufEstratto = RegEx.estraiIdentificativo(row[columnIndexWithD], "IUF");
+				String iuvEstratto = RegEx.estraiIdentificativo(row[columnIndexWithD], "IUV");
+				if (iufEstratto != null && iufEstratto.length() > MAX_LENGTH_COD_IUF){
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|cod_id_univoco_flusso max length");
+				} 
+				if (iuvEstratto != null && iuvEstratto.length() > MAX_LENGTH_COD_IUV){
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|cod_id_univoco_versamento:exceed max length");
+				} 
+			} 
+	
+			columnIndexWithD = df.getPos_num_importo() - 1;
+			if (columnIndexWithD < row.length) {
+				this.currentRow.setVal_num_importo_string(row[columnIndexWithD]);
+				try {
+					this.currentRow.setVal_num_importo(new BigDecimal(row[columnIndexWithD]));
+				} catch (java.lang.Exception e) {
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|" + e.getMessage());
+				}
+			} 
+	
+			columnIndexWithD = df.getPos_dt_valuta() - 1;
+			if (columnIndexWithD < row.length) {
+				this.currentRow.setVal_dt_valuta_string(row[columnIndexWithD]);
+				try {				
+					this.currentRow.setVal_dt_valuta(FORMATTER.parse(row[columnIndexWithD]));
+				} catch (java.lang.Exception e) {
+					this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|" + e.getMessage());
+				}
+			} 	
+		
+		} catch (java.lang.Exception e) {
+			this.currentRow.setErrorMessage(this.currentRow.getErrorMessage() + "|Impossibile elaborare la riga");
+		}
+		return true;
+	}
+
+
+	/**
+	 * @return the csvReader
+	 */
+	public com.talend.csv.CSVReader getCsvReader() {
+		return csvReader;
+	}
+
+
+	/**
+	 * @param csvReader the csvReader to set
+	 */
+	public void setCsvReader(com.talend.csv.CSVReader csvReader) {
+		this.csvReader = csvReader;
+	}
+
+	/**
+	 * @return the currentRow
+	 */
+	public ValoriRigaTO getCurrentRow() {
+		return currentRow;
+	}
+
+	/**
+	 * @param currentRow the currentRow to set
+	 */
+	public void setCurrentRow(ValoriRigaTO currentRow) {
+		this.currentRow = currentRow;
+	}	
+
+}	

@@ -1,0 +1,129 @@
+/**
+ *     MyPivot - Accounting reconciliation system of Regione Veneto.
+ *     Copyright (C) 2022  Regione Veneto
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as
+ *     published by the Free Software Foundation, either version 3 of the
+ *     License, or (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+@import '../my-pay-table-pivot/my-pay-table-pivot.component.scss';
+
+@include mat-table-columns((
+  id: (width: 10%),
+  nomeFlusso: (width: 35%),
+  dataCaricamento: (width: 8em),
+  operatore: (width: 15%),
+  statoToShow: (width: 20%),
+));
+
+$buttonWidth: 110px;
+
+.file-buttons {
+  //Button dimensions
+  width: $buttonWidth;
+  min-width: $buttonWidth;
+  height: 36px;
+}
+
+#filebutton {
+  float:left;
+  position:absolute;
+  z-index:-1;
+}
+
+#fileinput {
+  opacity: 0; //Not visible
+  font-size: 0;
+  float: left;
+}
+
+#fileinput:hover {
+  cursor: pointer;
+}
+
+#filelabel {
+  float: left;
+  margin-left: 6px;
+  margin-top: 7px;
+}
+
+::ng-deep .badge-download {
+  color: $accent;
+  font-weight:900;
+}
+
+/* -- CDK Drag Drop -- */
+.dd-container {
+  padding: 0 8px;
+}
+
+.dd-list {
+  max-width: 100%;
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.dd-hor-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.dd-ver-list {
+  display: block;
+}
+
+.dd-box {
+  padding: 20px 10px;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+.dd-ver-box {
+  border-bottom: solid 1px #ccc;
+}
+.dd-hor-box {
+  border-right: solid 1px #ccc;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.dd-box:last-child,
+.dd-box:last-child {
+  border: none;
+}
+
+.dd-list.cdk-drop-list-dragging .dd-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

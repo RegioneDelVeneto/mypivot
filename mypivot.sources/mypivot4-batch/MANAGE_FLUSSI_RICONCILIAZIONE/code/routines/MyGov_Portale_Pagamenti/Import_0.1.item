@@ -1,0 +1,12 @@
+package routines;
+public class Import {
+
+public static void main(String[] args) {
+		
+
+       String codFedUserId= "zttcrmdfadf";
+       if(codFedUserId.endsWith("WS_USER")){
+    	   System.out.print("ws user");
+       }
+    }
+}

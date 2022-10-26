@@ -1,0 +1,86 @@
+package routines;
+
+
+public class FileBean implements Comparable<Object> {
+
+	private String fileName;
+	private String filePath;
+	private String fileExtension;
+	private Integer paginaCorrente;
+	
+	public FileBean(String fileName, String filePath, String fileExtension) {
+		super();
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.fileExtension = fileExtension;
+	}
+	
+	@Override
+	public int compareTo(Object o) {		
+		return Integer.compare(this.paginaCorrente, ((FileBean)o).getPaginaCorrente());
+	}
+	
+	@Override
+	public String toString() {
+		return "[ filePath=" + this.filePath + ", fileName=" + this.fileName + ", fileExtension=" + this.fileExtension + ", paginaCorrente=" + this.paginaCorrente + "]";
+	}
+
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	/**
+	 * @return the filePath
+	 */
+	public String getFilePath() {
+		return filePath;
+	}
+
+	/**
+	 * @param filePath the filePath to set
+	 */
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	/**
+	 * @return the fileExtension
+	 */
+	public String getFileExtension() {
+		return fileExtension;
+	}
+
+	/**
+	 * @param fileExtension the fileExtension to set
+	 */
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+
+	/**
+	 * @return the paginaCorrente
+	 */
+	public Integer getPaginaCorrente() {
+		return paginaCorrente;
+	}
+
+	/**
+	 * @param paginaCorrente the paginaCorrente to set
+	 */
+	public void setPaginaCorrente(Integer paginaCorrente) {
+		this.paginaCorrente = paginaCorrente;
+	}
+	
+	
+	
+}

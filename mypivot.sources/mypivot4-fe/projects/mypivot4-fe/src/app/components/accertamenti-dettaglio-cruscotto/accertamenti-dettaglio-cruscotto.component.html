@@ -1,0 +1,118 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Ente</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codiceIpaEnte" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="40%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Tipo Dovuto</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.deTipoDovuto" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>IUD</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codIud" placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>IUV</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codRpSilinviarpIdUnivocoVersamento" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>IUR</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codEDatiPagDatiSingPagIdUnivocoRiscoss" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Importo</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.numEDatiPagDatiSingPagSingoloImportoPagato | currency:'EUR'" (ngModelChange)="flussoRicevuta.numEDatiPagDatiSingPagSingoloImportoPagato=$event" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Data Esito</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.dtEDatiPagDatiSingPagDataEsitoSingoloPagamento | date:'dd/MM/yyyy'" (ngModelChange)="flussoRicevuta.dtEDatiPagDatiSingPagDataEsitoSingoloPagamento=$event"  placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Attestante</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.deEIstitAttDenominazioneAttestante"  placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Pagatore</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codESoggPagAnagraficaPagatore"  placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="55%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>CF/PIVA Pagatore</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codESoggPagIdUnivPagCodiceIdUnivoco + flussoRicevuta.tipoIdUnivocoPagatore"  placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="flussoRicevuta.codESoggVersAnagraficaVersante?.length > 0" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="45%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Versante</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codESoggVersAnagraficaVersante"  placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="55%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>CF/PIVA Versante</mat-label>
+            <input matInput readonly [ngModel]="flussoRicevuta.codESoggVersIdUnivVersCodiceIdUnivoco + flussoRicevuta.tipoIdUnivocoVersante"  placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="100%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Causale</mat-label>
+            <textarea matInput readonly [(ngModel)]="flussoRicevuta.deEDatiPagDatiSingPagCausaleVersamento"  placeholder="Inserire un testo">
+            </textarea>
+          </mat-form-field>
+        </div>
+
+    </div>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar" style="margin-top:5%;">
+        <button fxFlex="10em" type="button" mat-flat-button (click)="goBack()" color="primary">Torna indietro</button>
+        <div fxFlex></div>
+      </div>
+    </div>
+  </div>
+
+</div>

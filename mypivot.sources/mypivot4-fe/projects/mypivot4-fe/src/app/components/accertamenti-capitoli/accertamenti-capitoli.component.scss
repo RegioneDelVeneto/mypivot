@@ -1,0 +1,51 @@
+/**
+ *     MyPivot - Accounting reconciliation system of Regione Veneto.
+ *     Copyright (C) 2022  Regione Veneto
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as
+ *     published by the Free Software Foundation, either version 3 of the
+ *     License, or (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import '../my-pay-table-pivot/my-pay-table-pivot.component.scss';
+
+@include mat-table-columns((
+  deTipoDovuto: (width: 25%),
+  codUfficio: (width: 20%),
+  codCapitolo: (width: 20%),
+  codAccertamento: (width: 20%),
+  dtUltimaModifica: (width: 13%),
+));
+
+mat-checkbox {
+  margin-left: 1%;
+}
+
+/* Expended Content */
+::ng-deep app-accertamenti-capitoli td.detail-row-key {
+  width: 25%;
+}
+
+::ng-deep app-accertamenti-capitoli td.detail-row-value {
+  width: 75%;
+}
+
+::ng-deep app-accertamenti-capitoli td.detail-row-value span {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+::ng-deep app-accertamenti-capitoli td.detail-row-value span.flg-ufficio-attivo {
+  font-weight: normal !important;
+  font-size: 140%;
+}
+/* ================ */

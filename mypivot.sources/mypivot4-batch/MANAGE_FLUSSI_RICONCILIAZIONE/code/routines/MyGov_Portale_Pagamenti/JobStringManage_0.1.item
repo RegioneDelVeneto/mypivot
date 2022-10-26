@@ -1,0 +1,43 @@
+package routines;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
+
+
+public class JobStringManage {
+
+    /**
+     * getValue: Ritorna null se stringa isBlank.
+     * 
+     * {param} string("world") input: The string need to return.
+     * 
+     * 
+     */
+    public static String getValue(String message) {    
+    	if (StringUtils.isNotBlank(message)) 
+			return message;
+        return null;
+    }
+    
+    public static String tagliaStr(String message, int width) {
+		return StringUtils.abbreviate(message, width);
+	}
+    
+    public static String getFormatStringToDouble(Double val){
+		Locale loc = Locale.UK;
+		NumberFormat nf = NumberFormat.getNumberInstance(loc);
+		DecimalFormat df = (DecimalFormat)nf;
+		df.applyPattern("###.##");
+		return df.format(val);
+    }
+    
+    public static String formatDecimal(Double number) { 
+    	if (number != null) {
+			return String.format("%15.2f", number).trim();
+		}
+    	return null;	
+    }
+}

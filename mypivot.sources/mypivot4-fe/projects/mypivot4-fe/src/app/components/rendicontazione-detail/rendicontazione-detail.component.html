@@ -1,0 +1,180 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<ng-template #helpPage>
+  <div>
+    <p>Questa sezione rappresenta i pagamenti privi di RT e consente tramite un form di ricerca di ricercarli per IUV, IUR e data esito.</p>
+  </div>
+</ng-template>
+
+<div class="container">
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+  
+      <div class="title-row">
+        <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}} <my-pay-help *ngIf="this.typeSearch == 'IUV_NO_RT'" [template]="helpPage"></my-pay-help></h1>
+      </div>
+  
+      <div class="w100 mypay-search-form">
+        <form novalidate #sForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+  
+          <myp-search-chips #mypSearchChips [formDef]="formDef" [form]="form" [parentRef]="this" [removeFilterCallback]="onRemoveFilter">
+  
+            <!--visualizzato se classifiazione = rendicontazoine pagamenti non effettuati-->
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">            
+              <mat-form-field *ngIf="this.typeSearch == 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['iuv'].label}}</mat-label>
+                <input matInput formControlName="iuv" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['iuv']">{{ formErrors.iuv }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch == 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['iur'].label}}</mat-label>
+                <input matInput formControlName="iur" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['iur']">{{ formErrors.iur }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch == 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" fxFlex.gt-lg="17%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+                <mat-label>Intervallo data esito</mat-label>
+                <mat-date-range-input [rangePicker]="dtRangePickerEsito">
+                  <input matStartDate formControlName="dateEsitoFrom" placeholder="data da">
+                  <input matEndDate formControlName="dateEsitoTo" placeholder="data a">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="dtRangePickerEsito"></mat-datepicker-toggle>
+                <mat-date-range-picker #dtRangePickerEsito></mat-date-range-picker>
+                <mat-error *ngIf="formErrors['dateEsitoFrom']">{{ formErrors.dateEsitoFrom }}</mat-error>
+              </mat-form-field>
+            </div>
+  
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['iud'].label}}</mat-label>
+                <input matInput formControlName="iud" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['iud']">{{ formErrors.iud }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['iuv'].label}}</mat-label>
+                <input matInput formControlName="iuv" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['iuv']">{{ formErrors.iuv }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['iur'].label}}</mat-label>
+                <input matInput formControlName="iur" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['iur']">{{ formErrors.iur }}</mat-error>
+              </mat-form-field>
+            </div>
+  
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['codFiscalePagatore'].label}}</mat-label>
+                <input matInput formControlName="codFiscalePagatore" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['codFiscalePagatore']">{{ formErrors.codFiscalePagatore }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['anagPagatore'].label}}</mat-label>
+                <input matInput formControlName="anagPagatore" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['anagPagatore']">{{ formErrors.anagPagatore }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['codFiscaleVersante'].label}}</mat-label>
+                <input matInput formControlName="codFiscaleVersante" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['codFiscaleVersante']">{{ formErrors.codFiscaleVersante }}</mat-error>
+              </mat-form-field>
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['anagVersante'].label}}</mat-label>
+                <input matInput formControlName="anagVersante" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['anagVersante']">{{ formErrors.anagVersante }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['attestante'].label}}</mat-label>
+                <input matInput formControlName="attestante" placeholder="Inserire un testo">
+                <mat-error *ngIf="formErrors['attestante']">{{ formErrors.attestante }}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" fxFlex.gt-lg="17%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+                <mat-label>Intervallo data esito</mat-label>
+                <mat-date-range-input [rangePicker]="dtRangePickerEsito">
+                  <input matStartDate formControlName="dateEsitoFrom" placeholder="data da">
+                  <input matEndDate formControlName="dateEsitoTo" placeholder="data a">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matSuffix [for]="dtRangePickerEsito"></mat-datepicker-toggle>
+                <mat-date-range-picker #dtRangePickerEsito></mat-date-range-picker>
+                <mat-error *ngIf="formErrors['dateEsitoFrom']">{{ formErrors.dateEsitoFrom }}</mat-error>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="this.typeSearch != 'IUV_NO_RT'" fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}">
+                <mat-label>{{formDef['tipoDovuto'].label}}</mat-label>
+                <input type="text" matInput formControlName="tipoDovuto" [matAutocomplete]="autoTipoDovuto">
+                <mat-autocomplete #autoTipoDovuto="matAutocomplete" [displayWith]="tipoDovutoDisplayFn">
+                  <mat-option *ngFor="let optionTipoDovuto of tipoDovutoFilteredOptions | async" [value]="optionTipoDovuto">
+                    {{optionTipoDovuto.deTipo}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="formErrors['tipoDovuto']">{{ formErrors.tipoDovuto }}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+              <div fxFlex></div>
+              <button fxFlex="10" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+              <button fxFlex="10" type="submit" mat-flat-button [disabled]="form.invalid || blockingError" color="accent">Cerca</button>
+            </div>
+  
+          </myp-search-chips>
+
+        </form>
+      </div>
+
+      <div *ngIf="isStandaloneView" class="w100">
+        <mat-card >
+          <mat-card-header >
+            <mat-card-title >Rendicontazione</mat-card-title>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+          <mat-card-content>
+            <div gdGap="10px" gdColumns="repeat(auto-fill, minmax(300px, 1fr))">
+              <div *ngFor="let item of dataParent">
+                <span class="mat-body-strong break-word">{{item.key}}</span><br>
+                <span class="break-word">{{item.value || '&nbsp;'}}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      
+      <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+      <div *ngIf="isStandaloneView && hasSearched && tableData?.length>0" class="w100">
+          <p  class="info-text">
+            <fa-icon class="font-accent" [icon]="iconInfoCircle"></fa-icon> &nbsp; {{ infoTextBox }}
+          </p>
+      </div>
+            
+      <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+            [paginatorData]="paginatorData" [parentRef]="this" [onClickRowFun]="onClickRow">
+      </my-pay-table-pivot>
+     
+      <div *ngIf="isStandaloneView" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+        <button class="back-btn" fxFlex="8em" type="button" mat-flat-button (click)="back()" color="primary">Torna indietro</button>
+        <div fxFlex></div>
+      </div> 
+  
+    </div>
+  
+</div>

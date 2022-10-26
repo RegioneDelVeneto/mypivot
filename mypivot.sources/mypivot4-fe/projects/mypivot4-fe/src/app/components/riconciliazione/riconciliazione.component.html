@@ -1,0 +1,348 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<ng-template #helpPageAnomalie>
+  <div>
+    <p>Il filtro di ricerca messo qui a disposizione permette di cercare le anomalie (classificazioni negative) relative
+      alle riconciliazioni dei pagamenti, che possono essere:</p>
+    <ul>
+      <li>Pagamenti non correttamente notificati: pagamenti noti a MyPay ma non notificati dall'ente.</li>
+      <li>Pagamenti non correttamente rendicontati: pagamenti noti a MyPay ma non rendicontati dal PSP.</li>
+      <li>Rendicontazioni di pagamenti non eseguiti: pagamenti in cui vi sono rendicontazioni con IUV/IUR non presenti
+        in alcuna RT.</li>
+      <li>Rendicontazioni non correttamente riversate: pagamenti le cui rendicontazioni hanno IUF non presente in alcun
+        riversamento.</li>
+      <li>Rendicontazioni riversate con importo scorretto: pagamenti le cui rendicontazioni hanno un importo diverso.
+      </li>
+      <li>Riversamenti non rendicontati o di pagamenti non eseguiti: pagamenti senza rendicontazione oppure pagamenti
+        non eseguiti e comunque riversati</li>
+      <li>Riversamenti di tesoreria sconosciuti: riversamenti nelle cui causali non sono stati riconosciuti IUV o IUF;
+        tipicamente riversamenti non PagoPA.</li>
+      <li>Pagamenti doppi: pagamenti eseguiti 2 volte da psp differenti e relativa rendicontazione</li>
+    </ul>
+    <p>Il filtro per le date è lo stesso descritto nelle pagine precedenti, così come la visualizzazione delle
+      informazioni relative alle anomalie.
+    </p>
+    <p>Si precisa che la maschera è comune e i campi di ricerca si attivano e si disattivano a seconda della
+      Classificazione scelta.</p>
+  </div>
+</ng-template>
+
+<ng-template #helpPageRiconciliazioni>
+  <div>
+    <p>Attraverso la riconciliazione è possibile visualizzare i dati provenienti dalle Ricevute telematiche, dalla
+      rendicontazione e dal giornale di cassa in un quadro di insieme che consente di verificare se un pagamento è
+      effettivamente arrivato nei conti dell'ente.<br><br>
+      In questa pagina è possibile cercare le riconciliazioni dei pagamenti secondo le varie Classificazioni:
+    </p>
+    <ul>
+      <li>Pagamenti Notificati: pagamenti per cui è presente la RT e la notifica dell'Ente ma non è ancora pervenuta la
+        rendicontazione PagoPA.</li>
+      <li>Pagamenti Riversati Cumulativamente: pagamenti per cui è presente la RT, la rendicontazione PagoPA e il
+        Giornale di Cassa (Tesoreria).</li>
+      <li>Pagamenti Riversati Puntualmente: pagamenti per cui è presente la RT e il Giornale di cassa (Tesoreria). Per
+        questi pagamenti non è prevista la rendicontazione PagoPA.</li>
+      <li>Pagamenti Rendicontati: pagamenti per cui è presente la RT e la rendicontazione PagoPA e non è presente il
+        Giornale di Cassa (Tesoreria).</li>
+      <li>Pagamenti Notificati e Rendicontati: pagamenti per cui è presente la RT, la notifica dell'Ente e la
+        rendicontazione PagoPA.</li>
+    </ul>
+    <br><br>
+    <p>A seconda della classificazione sulla quale viene effettuata la ricerca alcuni parametri di ricerca sono
+      disabilitati, in quanto non significativi per il tipo di ricerca impostato.<br><br>
+      Le date disponibili nei parametri di ricerca sono:
+    </p>
+    <ul>
+      <li>Intervallo data ultima modifica dei dati, ossia, dell'aggiornamento.</li>
+      <li>Intervallo data esecuzione del pagamento.</li>
+      <li>Intervallo data esito, ossia, di emissione della Ricevuta Telematica.</li>
+      <li>Intervallo data regolamento, ossia, di emissione della rendicontazione.</li>
+      <li>Intervallo data contabile.</li>
+      <li>Intervallo data valuta.</li>
+    </ul>
+
+    <br><br>
+    <p>E' possibile prenotare l'esportazione dei risultati della ricerca, ossia, un flusso export.<br><br>
+      Quando l'esportazione dei dati è stata eseguita, l'operatore riceverà una comunicazione via email e il flusso
+      export sarà disponibile nell'area di Gestione dei flussi di MyPivot. I flussi export prodotti possono essere
+      individuati utilizzando un filtro per intervallo di data di esportazione, oppure inserendo il nome del flusso.
+    </p>
+  </div>
+</ng-template>
+
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}} <my-pay-help [template]="viewType=='A' ? helpPageAnomalie : helpPageRiconciliazioni"></my-pay-help></h1>
+    </div>
+
+    <div class="w100 mypay-search-form">
+      <form novalidate #sForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <myp-search-chips #mypSearchChips [formDef]="formDef" [form]="form" [parentRef]="this" [removeFilterCallback]="onRemoveFilter">
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['searchType'].label}}</mat-label>
+              <mat-select required formControlName="searchType" name="searchType">
+                <mat-option *ngFor="let searchTypeOption of allSearchTypes" [value]="searchTypeOption">
+                  {{searchTypeOption.label}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['iud'].label}}</mat-label>
+              <input matInput formControlName="iud" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['iud']">{{ formErrors.iud }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['iuv'].label}}</mat-label>
+              <input matInput formControlName="iuv" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['iuv']">{{ formErrors.iuv }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['iur'].label}}</mat-label>
+              <input matInput formControlName="iur" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['iur']">{{ formErrors.iur }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="34%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo data ultimo aggiornamento</mat-label>
+              <mat-date-range-input [rangePicker]="dtRangePickerUltMod">
+                <input matStartDate formControlName="dateUltModFrom" placeholder="data da">
+                <input matEndDate formControlName="dateUltModTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="dtRangePickerUltMod"></mat-datepicker-toggle>
+              <mat-date-range-picker #dtRangePickerUltMod></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dateUltModFrom']">{{ formErrors.dateUltModFrom }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo data esecuzione</mat-label>
+              <mat-date-range-input [rangePicker]="dtRangePickerEsecuzione">
+                <input matStartDate formControlName="dateEsecuzioneFrom" placeholder="data da">
+                <input matEndDate formControlName="dateEsecuzioneTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="dtRangePickerEsecuzione"></mat-datepicker-toggle>
+              <mat-date-range-picker #dtRangePickerEsecuzione></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dateEsecuzioneFrom']">{{ formErrors.dateEsecuzioneFrom }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo data esito</mat-label>
+              <mat-date-range-input [rangePicker]="dtRangePickerEsito">
+                <input matStartDate formControlName="dateEsitoFrom" placeholder="data da">
+                <input matEndDate formControlName="dateEsitoTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="dtRangePickerEsito"></mat-datepicker-toggle>
+              <mat-date-range-picker #dtRangePickerEsito></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dateEsitoFrom']">{{ formErrors.dateEsitoFrom }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="34%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo data regolamento</mat-label>
+              <mat-date-range-input [rangePicker]="dtRangePickerRegol">
+                <input matStartDate formControlName="dateRegolFrom" placeholder="data da">
+                <input matEndDate formControlName="dateRegolTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="dtRangePickerRegol"></mat-datepicker-toggle>
+              <mat-date-range-picker #dtRangePickerRegol></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtRangePickerRegol']">{{ formErrors.dtRangePickerRegol }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo data contabile</mat-label>
+              <mat-date-range-input [rangePicker]="dtRangePickerContab">
+                <input matStartDate formControlName="dateContabFrom" placeholder="data da">
+                <input matEndDate formControlName="dateContabTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="dtRangePickerContab"></mat-datepicker-toggle>
+              <mat-date-range-picker #dtRangePickerContab></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtRangePickerContab']">{{ formErrors.dtRangePickerContab }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="33%" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+              <mat-label>Intervallo data valuta</mat-label>
+              <mat-date-range-input [rangePicker]="dtRangePickerValuta">
+                <input matStartDate formControlName="dateValutaFrom" placeholder="data da">
+                <input matEndDate formControlName="dateValutaTo" placeholder="data a">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="dtRangePickerValuta"></mat-datepicker-toggle>
+              <mat-date-range-picker #dtRangePickerValuta></mat-date-range-picker>
+              <mat-error *ngIf="formErrors['dtRangePickerValuta']">{{ formErrors.dtRangePickerValuta }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codFiscalePagatore'].label}}</mat-label>
+              <input matInput formControlName="codFiscalePagatore" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codFiscalePagatore']">{{ formErrors.codFiscalePagatore }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['anagPagatore'].label}}</mat-label>
+              <input matInput formControlName="anagPagatore" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['anagPagatore']">{{ formErrors.anagPagatore }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codFiscaleVersante'].label}}</mat-label>
+              <input matInput formControlName="codFiscaleVersante" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codFiscaleVersante']">{{ formErrors.codFiscaleVersante }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['anagVersante'].label}}</mat-label>
+              <input matInput formControlName="anagVersante" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['anagVersante']">{{ formErrors.anagVersante }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['attestante'].label}}</mat-label>
+              <input matInput formControlName="attestante" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['attestante']">{{ formErrors.attestante }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['ordinante'].label}}</mat-label>
+              <input matInput formControlName="ordinante" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['ordinante']">{{ formErrors.ordinante }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['idRendicont'].label}}</mat-label>
+              <input matInput formControlName="idRendicont" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['idRendicont']">{{ formErrors.idRendicont }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['idRegolamento'].label}}</mat-label>
+              <input matInput formControlName="idRegolamento" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['idRegolamento']">{{ formErrors.idRegolamento }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['tipoDovuto'].label}}</mat-label>
+              <input type="text" matInput formControlName="tipoDovuto" [matAutocomplete]="autoTipoDovuto">
+              <mat-autocomplete #autoTipoDovuto="matAutocomplete" [displayWith]="tipoDovutoDisplayFn">
+                <mat-option *ngFor="let optionTipoDovuto of tipoDovutoFilteredOptions | async" [value]="optionTipoDovuto">
+                  {{optionTipoDovuto.deTipo}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="formErrors['tipoDovuto']">{{ formErrors.tipoDovuto }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['conto'].label}}</mat-label>
+              <input matInput formControlName="conto" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['conto']">{{ formErrors.conto }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['importoTesoreria'].label}}</mat-label>
+              <input matInput formControlName="importoTesoreria" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['importoTesoreria']">{{ formErrors.importoTesoreria }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="25%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['causale'].label}}</mat-label>
+              <input matInput formControlName="causale" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['causale']">{{ formErrors.causale }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field datepickerFormatYyyy fxFlex="100%" fxFlex.gt-sm="14%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoBolletta'].label}}</mat-label>
+              <input matInput formControlName="annoBolletta" [matDatepicker]="dtPickerAnnoBolletta">
+              <mat-datepicker-toggle matSuffix [for]="dtPickerAnnoBolletta"></mat-datepicker-toggle>
+              <mat-datepicker #dtPickerAnnoBolletta startView="multi-year" (yearSelected)="onYearChosen('annoBolletta', $event, dtPickerAnnoBolletta)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoBolletta']">{{ formErrors.annoBolletta }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="19%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codBolletta'].label}}</mat-label>
+              <input matInput formControlName="codBolletta" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codBolletta']">{{ formErrors.codBolletta }}</mat-error>
+            </mat-form-field>
+            <mat-form-field datepickerFormatYyyy fxFlex="100%" fxFlex.gt-sm="14%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoDocumento'].label}}</mat-label>
+              <input matInput formControlName="annoDocumento" [matDatepicker]="dtPickerAnnoDocumento">
+              <mat-datepicker-toggle matSuffix [for]="dtPickerAnnoDocumento"></mat-datepicker-toggle>
+              <mat-datepicker #dtPickerAnnoDocumento startView="multi-year" (yearSelected)="onYearChosen('annoDocumento', $event, dtPickerAnnoDocumento)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoDocumento']">{{ formErrors.annoDocumento }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="19%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codDocumento'].label}}</mat-label>
+              <input matInput formControlName="codDocumento" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codDocumento']">{{ formErrors.codDocumento }}</mat-error>
+            </mat-form-field>
+            <mat-form-field datepickerFormatYyyy fxFlex="100%" fxFlex.gt-sm="15%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoProvvisorio'].label}}</mat-label>
+              <input matInput formControlName="annoProvvisorio" [matDatepicker]="dtPickerAnnoProvvisorio">
+              <mat-datepicker-toggle matSuffix [for]="dtPickerAnnoProvvisorio"></mat-datepicker-toggle>
+              <mat-datepicker #dtPickerAnnoProvvisorio startView="multi-year" (yearSelected)="onYearChosen('annoProvvisorio', $event, dtPickerAnnoProvvisorio)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoProvvisorio']">{{ formErrors.annoProvvisorio }}</mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="19%" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codProvvisorio'].label}}</mat-label>
+              <input matInput formControlName="codProvvisorio" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codProvvisorio']">{{ formErrors.codProvvisorio }}</mat-error>
+            </mat-form-field>
+          </div>
+          
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+            <div fxFlex></div>
+            <button fxFlex="10" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+            <button fxFlex="10" type="submit" mat-flat-button [disabled]="form.invalid || blockingError" color="accent">Cerca</button>
+          </div>
+
+        </myp-search-chips>
+
+        <div *ngIf="exportEnabled" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mat-button-bar">
+          <mat-form-field fxFlex="10" appearance="{{'appearance'|global}}">
+            <mat-label>Versione tracciato</mat-label>
+            <mat-select formControlName="versioneTracciato" name="versioneTracciato">
+              <mat-option *ngFor="let versioneTracciatoOption of versioniTracciato" [value]="versioneTracciatoOption">
+                {{versioneTracciatoOption}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button fxFlex="10" type="button" mat-flat-button color="primary"
+            app-confirm="Confermi di voler prenotare l'export completo dei dati filtrati con l'ultima ricerca?" 
+            (clickConfirmed)="onExport()">Prenota export</button>
+        </div>
+
+      </form>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+    <div *ngIf="hasSearched && tableData?.length>0" class="w100">
+      <p  class="info-text">
+        <fa-icon class="font-accent" [icon]="iconInfoCircle"></fa-icon> &nbsp; {{ lastSearchSearchType.detailText }}
+      </p>
+    </div>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns" [parentRef]="this" 
+          [paginatorData]="paginatorData" [hasDetail]="hasDetail" [onClickRowFun]="onClickRow" [detailFilterExclude]="detailFilterExclude">
+    </my-pay-table-pivot>
+
+  </div>
+
+</div>
+

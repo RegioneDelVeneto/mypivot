@@ -1,0 +1,143 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Codice Ufficio</mat-label>
+            <input matInput readonly [ngModel]="codUfficio" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="70%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Denominazione Ufficio</mat-label>
+            <input matInput readonly [ngModel]="deUfficio" placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Codice Capitolo</mat-label>
+            <input matInput readonly [ngModel]="codCapitolo" placeholder="Inserire un testo">
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="70%" [class.mat-form-field-disabled]="true" appearance="{{'appearance'|global}}">
+            <mat-label>Denominazione Capitolo</mat-label>
+            <input matInput readonly [ngModel]="deCapitolo" placeholder="Inserire un testo">
+          </mat-form-field>
+        </div>
+
+    </div>
+
+    <div class="w100" style="margin-top: 20px;">
+      <mat-divider></mat-divider>
+    </div>
+
+    <h2 class="mat-h2 mt-3">Ricerca Ricevute Telematiche</h2>
+
+    <div class="w100">
+      <form fxFlex novalidate #sForm [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}" [floatLabel]="'always'">
+            <mat-label>Data Esito</mat-label>
+            <mat-date-range-input [rangePicker]="pickerDate">
+              <input matStartDate formControlName="dateFrom" placeholder="data da">
+              <input matEndDate formControlName="dateTo" placeholder="data a">
+            </mat-date-range-input>
+            <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickerDate></mat-date-range-picker>
+            <mat-error *ngIf="searchFormErrors['dateFrom']">{{ searchFormErrors.dateFrom }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>IUV</mat-label>
+            <input matInput formControlName="iuv" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['iuv']">{{ searchFormErrors.iuv }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>IUR</mat-label>
+            <input matInput formControlName="iur" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['iur']">{{ searchFormErrors.iur }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>Attestante</mat-label>
+            <input matInput formControlName="attestante" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['attestante']">{{ searchFormErrors.attestante }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>CF/PIVA Pagatore</mat-label>
+            <input matInput formControlName="cfPagatore" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['cfPagatore']">{{ searchFormErrors.cfPagatore }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>Anagrafica Pagatore</mat-label>
+            <input matInput formControlName="anagPagatore" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['anagPagatore']">{{ searchFormErrors.anagPagatore }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>CF/PIVA Versante</mat-label>
+            <input matInput formControlName="cfVersante" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['cfVersante']">{{ searchFormErrors.cfVersante }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="18em" appearance="{{'appearance'|global}}">
+            <mat-label>Anagrafica Versante</mat-label>
+            <input matInput formControlName="anagVersante" placeholder="Inserire un testo">
+            <mat-error *ngIf="searchFormErrors['anagVersante']">{{ searchFormErrors.anagVersante }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+          <div fxFlex></div>
+          <button fxFlex="5em" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+          <button fxFlex="5em" type="submit" mat-flat-button [disabled]="searchForm.invalid || blockingError" color="accent">Cerca</button>
+        </div>
+      </form>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+          [paginatorData]="paginatorData" [parentRef]="this" [onClickRowFun]="onClickRow">
+    </my-pay-table-pivot>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar" style="margin-top:5%;">
+        <button fxFlex="10em" type="button" mat-flat-button (click)="goBack()" color="primary">Torna indietro</button>
+        <div fxFlex></div>
+      </div>
+    </div>
+  </div>
+
+</div>

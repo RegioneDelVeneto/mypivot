@@ -1,0 +1,7 @@
+// THIS FILE IS GENERATED AUTOMATICALLY DURING BUILD
+// SHOULD NOT BE EDITED MANUALLY
+
+export const version = {
+  buildTime:'20201106_101452',
+  gitHash:'500a8ff'
+};

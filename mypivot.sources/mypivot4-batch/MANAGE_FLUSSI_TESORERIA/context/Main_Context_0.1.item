@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:talendfile="platform:/resource/org.talend.model/model/TalendFile.xsd">
+  <talendfile:ContextType xmi:id="_UB5CMF8eEeuv1aei7Sa06A" confirmationNeeded="false" name="Default">
+    <contextParameter xmi:id="_UB5CMV8eEeuv1aei7Sa06A" comment="" name="directory_talend" prompt="directory_talend?" promptNeeded="false" type="id_Directory" value="null"/>
+    <contextParameter xmi:id="_UB5CMl8eEeuv1aei7Sa06A" comment="" name="directory_root_enti" prompt="directory_root_enti?" promptNeeded="false" type="id_Directory" value="null"/>
+    <contextParameter xmi:id="_UB5CM18eEeuv1aei7Sa06A" comment="" name="numero_minuti_avviso" prompt="numero_minuti_avviso?" promptNeeded="false" type="id_Integer" value="null"/>
+    <contextParameter xmi:id="_UB5CNF8eEeuv1aei7Sa06A" comment="" name="numero_ore_trigger_batch" prompt="numero_ore_trigger_batch?" promptNeeded="false" type="id_Integer" value="null"/>
+    <contextParameter xmi:id="_UB5CNV8eEeuv1aei7Sa06A" comment="" name="numero_minuti_trigger_batch" prompt="numero_minuti_trigger_batch?" promptNeeded="false" type="id_Integer" value="null"/>
+    <contextParameter xmi:id="_UB5CNl8eEeuv1aei7Sa06A" comment="" name="directory_root_log" prompt="directory_root_log?" promptNeeded="false" type="id_Directory" value="null"/>
+    <contextParameter xmi:id="_UB5CN18eEeuv1aei7Sa06A" comment="" name="directory_root_elaborazione" prompt="directory_root_elaborazione?" promptNeeded="false" type="id_String" value="null"/>
+  </talendfile:ContextType>
+  <talendfile:ContextType xmi:id="_UB5COF8eEeuv1aei7Sa06A" confirmationNeeded="false" name="local">
+    <contextParameter xmi:id="_UB5COV8eEeuv1aei7Sa06A" comment="" name="directory_talend" prompt="directory_talend?" promptNeeded="false" type="id_Directory" value="null"/>
+    <contextParameter xmi:id="_UB5COl8eEeuv1aei7Sa06A" comment="" name="directory_root_enti" prompt="directory_root_enti?" promptNeeded="false" type="id_Directory" value="null"/>
+    <contextParameter xmi:id="_UB5CO18eEeuv1aei7Sa06A" comment="" name="numero_minuti_avviso" prompt="numero_minuti_avviso?" promptNeeded="false" type="id_Integer" value="null"/>
+    <contextParameter xmi:id="_UB5CPF8eEeuv1aei7Sa06A" comment="" name="numero_ore_trigger_batch" prompt="numero_ore_trigger_batch?" promptNeeded="false" type="id_Integer" value="null"/>
+    <contextParameter xmi:id="_UB5CPV8eEeuv1aei7Sa06A" comment="" name="numero_minuti_trigger_batch" prompt="numero_minuti_trigger_batch?" promptNeeded="false" type="id_Integer" value="null"/>
+    <contextParameter xmi:id="_UB5CPl8eEeuv1aei7Sa06A" comment="" name="directory_root_log" prompt="directory_root_log?" promptNeeded="false" type="id_Directory" value="null"/>
+    <contextParameter xmi:id="_UB5CP18eEeuv1aei7Sa06A" comment="" name="directory_root_elaborazione" prompt="directory_root_elaborazione?" promptNeeded="false" type="id_String" value="null"/>
+  </talendfile:ContextType>
+</xmi:XMI>

@@ -1,0 +1,69 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100">
+      <form fxFlex novalidate #sForm [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="40em" appearance="{{'appearance'|global}}">
+            <mat-label>Nome</mat-label>
+            <textarea matInput required [readonly]="modeAnag==='view'" formControlName="deNomeAccertamento" rows="3" placeholder="Inserire un testo">
+            </textarea>
+            <mat-error *ngIf="insertFormErrors['deNomeAccertamento']">{{ insertFormErrors.deNomeAccertamento }}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20em" appearance="{{'appearance'|global}}">
+            <mat-label>Tipo Dovuto</mat-label>
+            <input type="text" matInput required [readonly]="modeAnag==='view'" formControlName="tipoDovuto" [matAutocomplete]="autoTipoDovuto">
+            <mat-autocomplete #autoTipoDovuto="matAutocomplete" [displayWith]="tipoDovutoDisplayFn">
+              <mat-option *ngFor="let optionTipoDovuto of tipoDovutoFilteredOptions | async" [value]="optionTipoDovuto">
+                {{optionTipoDovuto.deTipo}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="insertFormErrors['tipoDovuto']">{{ insertFormErrors.tipoDovuto }}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+          <div fxFlex></div>
+          <button *ngIf="modeAnag==='insert'" fxFlex="7em" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+          <button *ngIf="modeAnag!=='view'" fxFlex="7em" type="button" mat-flat-button [disabled]="insertForm.invalid || blockingError" 
+          [app-confirm]="saveConfirmMsg(this)" (clickConfirmed)="onSubmit()" color="accent">Conferma</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mat-button-bar">
+        <button fxFlex="10em" type="button" mat-flat-button (click)="goback()" color="primary">Torna indietro</button>
+        <div fxFlex></div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+package routines;
+
+import java.io.File;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
+
+/**
+ * 
+ * @author regione del veneto
+ *
+ */
+public class Utilities {
+
+	public static String getFileNameWithoutExtension(String fileName) {
+    	return FilenameUtils.getBaseName(fileName);
+    }
+	
+    public static String getFileExtension(String fileName) {
+    	if(hasExtension(fileName))
+    		return FilenameUtils.getExtension(fileName);
+    	return null;
+    }
+    
+    public static boolean hasExtension(String fileName) {
+    	return StringUtils.isNotBlank(FilenameUtils.getExtension(fileName));
+    }
+    
+    public static String getFilePath(String fullPath) {
+    	String path = FilenameUtils.getFullPath(fullPath);
+    	if(!path.endsWith(File.separator))
+    		path += File.separator;
+    	return path;
+    }
+}

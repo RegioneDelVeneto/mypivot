@@ -1,0 +1,181 @@
+package routines;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+
+public class ValoriRigaTO {
+
+	 private String val_de_anno_bolletta = null;  
+	 private String val_cod_bolletta = null; 	 
+	 private String val_dt_contabile_string = null; 
+	 private Date val_dt_contabile = null; 
+	 private String val_de_denominazione = null;     
+	 private String val_de_causale = null;         
+	 private String val_num_importo_string = null;      
+	 private BigDecimal val_num_importo = null;   
+	 private Date val_dt_valuta = null;   
+	 private String val_dt_valuta_string = null; 
+	 private String errorMessage = "";   
+	 
+	 public ValoriRigaTO() {
+		super();
+	 }
+
+	/**
+	 * @return the val_de_anno_bolletta
+	 */
+	public String getVal_de_anno_bolletta() {
+		return val_de_anno_bolletta;
+	}
+
+	/**
+	 * @param val_de_anno_bolletta the val_de_anno_bolletta to set
+	 */
+	public void setVal_de_anno_bolletta(String val_de_anno_bolletta) {
+		this.val_de_anno_bolletta = val_de_anno_bolletta;
+	}
+
+	/**
+	 * @return the val_cod_bolletta
+	 */
+	public String getVal_cod_bolletta() {
+		return val_cod_bolletta;
+	}
+
+	/**
+	 * @param val_cod_bolletta the val_cod_bolletta to set
+	 */
+	public void setVal_cod_bolletta(String val_cod_bolletta) {
+		this.val_cod_bolletta = val_cod_bolletta;
+	}
+
+	/**
+	 * @return the val_dt_contabile
+	 */
+	public Date getVal_dt_contabile() {
+		return val_dt_contabile;
+	}
+
+	/**
+	 * @param val_dt_contabile the val_dt_contabile to set
+	 */
+	public void setVal_dt_contabile(Date val_dt_contabile) {
+		this.val_dt_contabile = val_dt_contabile;
+	}
+
+	/**
+	 * @return the val_de_denominazione
+	 */
+	public String getVal_de_denominazione() {
+		return val_de_denominazione;
+	}
+
+	/**
+	 * @param val_de_denominazione the val_de_denominazione to set
+	 */
+	public void setVal_de_denominazione(String val_de_denominazione) {
+		this.val_de_denominazione = val_de_denominazione;
+	}
+
+	/**
+	 * @return the val_de_causale
+	 */
+	public String getVal_de_causale() {
+		return val_de_causale;
+	}
+
+	/**
+	 * @param val_de_causale the val_de_causale to set
+	 */
+	public void setVal_de_causale(String val_de_causale) {
+		this.val_de_causale = val_de_causale;
+	}
+
+	/**
+	 * @return the val_num_importo
+	 */
+	public BigDecimal getVal_num_importo() {
+		return val_num_importo;
+	}
+
+	/**
+	 * @param val_num_importo the val_num_importo to set
+	 */
+	public void setVal_num_importo(BigDecimal val_num_importo) {
+		this.val_num_importo = val_num_importo;
+	}
+
+	/**
+	 * @return the val_dt_valuta
+	 */
+	public Date getVal_dt_valuta() {
+		return val_dt_valuta;
+	}
+
+	/**
+	 * @param val_dt_valuta the val_dt_valuta to set
+	 */
+	public void setVal_dt_valuta(Date val_dt_valuta) {
+		this.val_dt_valuta = val_dt_valuta;
+	}
+
+	/**
+	 * @return the errorMessage
+	 */
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	/**
+	 * @param errorMessage the errorMessage to set
+	 */
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+	/**
+	 * @return the val_dt_contabile_string
+	 */
+	public String getVal_dt_contabile_string() {
+		return val_dt_contabile_string;
+	}
+
+	/**
+	 * @param val_dt_contabile_string the val_dt_contabile_string to set
+	 */
+	public void setVal_dt_contabile_string(String val_dt_contabile_string) {
+		this.val_dt_contabile_string = val_dt_contabile_string;
+	}
+
+	/**
+	 * @return the val_num_importo_string
+	 */
+	public String getVal_num_importo_string() {
+		return val_num_importo_string;
+	}
+
+	/**
+	 * @param val_num_importo_string the val_num_importo_string to set
+	 */
+	public void setVal_num_importo_string(String val_num_importo_string) {
+		this.val_num_importo_string = val_num_importo_string;
+	}
+
+	/**
+	 * @return the val_dt_valuta_string
+	 */
+	public String getVal_dt_valuta_string() {
+		return val_dt_valuta_string;
+	}
+
+	/**
+	 * @param val_dt_valuta_string the val_dt_valuta_string to set
+	 */
+	public void setVal_dt_valuta_string(String val_dt_valuta_string) {
+		this.val_dt_valuta_string = val_dt_valuta_string;
+	}
+	 
+	 
+
+}

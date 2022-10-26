@@ -1,0 +1,64 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <img class="logo" fxShow="false" fxShow.gt-xs src="assets/images/logo-MyPivot-white.png" alt="Logo MyPivot">
+    <button mat-icon-button aria-label="Apri menù" (click)="toggleSidenav()" focusvisible="true"><fa-icon [icon]="iconBars" size="2x" class="active" alt="Menu"></fa-icon></button>
+
+    <span class="flex-spacer"></span>
+
+    <form *ngIf="userService.isLogged() && enteService.isNeedEnte()" novalidate #enteForm="ngForm" [formGroup]="form">
+      <mat-form-field *ngIf="enteFilteredOptions" class="ente-field" appearance="fill" color="accent">
+        <img matPrefix *ngIf="form.value?.ente?.thumbLogoEnte" class="thumbnail-ente thumbnail-ente-pb" src="{{'data:image/png;base64,'+form.value?.ente?.thumbLogoEnte}}" alt="Immagine Ente" aria-hidden="true">
+        <mat-label id="ente-label">Ente</mat-label>
+        <input type="text" matInput class="ente-input" formControlName="ente" [matAutocomplete]="autoEnte"
+            (focusout)="enteFocusout($event)" [readonly]="singleEnte">
+        <mat-autocomplete #autoEnte="matAutocomplete" [displayWith]="enteDisplayFn"
+            (optionSelected)="enteSelected($event.option.value)" (closed)="enteClosed()">
+          <mat-option *ngFor="let option of enteFilteredOptions | async" [value]="option">
+            <img *ngIf="option.thumbLogoEnte" class="thumbnail-ente" src="{{'data:image/png;base64,'+option.thumbLogoEnte}}" alt="Immagine Ente" aria-hidden="true">
+            {{option.deNomeEnte}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field *ngIf="!enteFilteredOptions" class="ente-field" appearance="fill" color="accent">
+        <mat-label id="ente-label-load">Ente</mat-label>
+        <input type="text" matInput class="ente-input" value="Attendere - Caricamento elenco enti in corso.." readonly="true">
+      </mat-form-field>
+    </form>
+
+    <a fxShow="false" fxShow.gt-xs *ngIf="userService.isLogged()" mat-button [matMenuTriggerFor]="menuUser">
+      <span class="side-user-icon" matTooltip="Utente autenticato: {{ userService.getLoggedUserString() }}"> <fa-icon [icon]="iconUser" size="lg"></fa-icon></span>
+    </a>
+    <mat-menu #menuUser="matMenu">
+      <button mat-menu-item disabled>
+        <fa-icon [icon]="iconUser"></fa-icon>
+        <span> {{ userService.getLoggedUserString() }}</span>
+      </button>
+      <button mat-menu-item (click)="logout()">
+        <fa-icon [icon]="itemSignOut"></fa-icon>
+        <span> Esci</span>
+      </button>
+    </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+

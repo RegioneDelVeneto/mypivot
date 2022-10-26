@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    k8tz.io/injected: "true"
+    k8tz.io/timezone: Europe/Rome
+  name: mypivot4-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: mypivot4-frontend
+  template:
+    metadata:
+      annotations:
+        k8tz.io/injected: "true"
+        k8tz.io/timezone: Europe/Rome
+      labels:
+        run: mypivot4-frontend
+    spec:
+      containers:
+      - env:
+        - name: FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
+          value: mypivot4_frontend.access
+        - name: TZ
+          value: Europe/Rome
+        envFrom:
+        - secretRef:
+            name: mypivot4-fluent-config-secret
+        image: _REGISTRY_ENTE_/common/mypay4-fluentd:latest
+        imagePullPolicy: Always
+        name: fluentd-agent
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 1Gi
+          requests:
+            cpu: "0.1"
+            memory: 100Mi
+        volumeMounts:
+        - mountPath: /mypivot4/logs
+          name: access-logs
+        - mountPath: /fluentd/etc
+          name: mypivot4-fe-fluent-config
+        - mountPath: /etc/localtime
+          name: k8tz
+          readOnly: true
+          subPath: Europe/Rome
+        - mountPath: /usr/share/zoneinfo
+          name: k8tz
+          readOnly: true
+      - env:
+        - name: TZ
+          value: Europe/Rome
+        image: _REGISTRY_ENTE_/mypivot4/mypivot4-fe:latest
+        imagePullPolicy: Always
+        name: mypivot4-frontend
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1Gi
+          requests:
+            cpu: 0.1m
+            memory: 256Mi
+        volumeMounts:
+        - mountPath: /mypivot4/logs
+          name: access-logs
+        - mountPath: /mypivot4/mypivot4-fe/assets/conf/
+          name: mypivot4-fe-configs
+        - mountPath: /etc/localtime
+          name: k8tz
+          readOnly: true
+          subPath: Europe/Rome
+        - mountPath: /usr/share/zoneinfo
+          name: k8tz
+          readOnly: true
+      imagePullSecrets:
+      - name: registry-_ENTE_-secret
+      securityContext:
+        fsGroup: 9001
+        runAsGroup: 9001
+        runAsUser: 9002
+      volumes:
+      - emptyDir: {}
+        name: access-logs
+      - configMap:
+          name: mypivot4-fe-configs
+        name: mypivot4-fe-configs
+      - configMap:
+          name: mypivot4-fe-fluent-config
+        name: mypivot4-fe-fluent-config
+      - hostPath:
+          path: /usr/share/zoneinfo
+        name: k8tz

@@ -1,0 +1,117 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100">
+      <form fxFlex novalidate #sForm [formGroup]="searchForm" (ngSubmit)="onSearch()">
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="0px">
+
+          <div fxFlex="100%" fxFlex.gt-sm="30em" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-radio-group formControlName="dtType" layout="row">
+              <mat-radio-button value="1" class="md-primary">AAAA</mat-radio-button>
+              <mat-radio-button value="2"> MM/AAAA</mat-radio-button>
+              <mat-radio-button value="3"> GG/MM/AAAA</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field datepickerFormatYyyy *ngIf="searchForm.get('dtType').value==='1'" fxFlex="24%" appearance="{{'appearance'|global}}">
+                <mat-label>AAAA</mat-label>
+                <input matInput formControlName="dtYearly" [matDatepicker]="dtPickerYearly" [min]="minDate" [max]="maxDate">
+                <mat-datepicker-toggle matSuffix [for]="dtPickerYearly"></mat-datepicker-toggle>
+                <mat-datepicker #dtPickerYearly startView="multi-year" (yearSelected)="chosenYearly($event, dtPickerYearly)"></mat-datepicker>
+                <mat-error *ngIf="searchFormErrors['dtYearly']">{{ searchFormErrors.dtYearly }}</mat-error>
+            </mat-form-field>
+            <mat-form-field datepickerFormatMmYyyy *ngIf="searchForm.get('dtType').value==='2'" fxFlex="24%" appearance="{{'appearance'|global}}">
+                <mat-label>MM/AAAA</mat-label>
+                <input matInput formControlName="dtMonthly" [matDatepicker]="dtPickerMonthly" [min]="minDate" [max]="maxDate">
+                <mat-datepicker-toggle matSuffix [for]="dtPickerMonthly"></mat-datepicker-toggle>
+                <mat-datepicker #dtPickerMonthly startView="year" (monthSelected)="chosenMonthly($event, dtPickerMonthly)"></mat-datepicker>
+                <mat-error *ngIf="searchFormErrors['dtMonthly']">{{ searchFormErrors.dtMonthly }}</mat-error>
+            </mat-form-field>
+            <mat-form-field *ngIf="searchForm.get('dtType').value==='3'" fxFlex="24%" appearance="{{'appearance'|global}}">
+                <mat-label>GG/MM/AAAA</mat-label>
+                <input matInput formControlName="dtDaily" [matDatepicker]="dtPickerDaily" [min]="minDate" [max]="maxDate">
+                <mat-datepicker-toggle matSuffix [for]="dtPickerDaily"></mat-datepicker-toggle>
+                <mat-datepicker #dtPickerDaily></mat-datepicker>
+                <mat-error *ngIf="searchFormErrors['dtDaily']">{{ searchFormErrors.dtDaily }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="5%"></div>
+
+          <div fxFlex="100%" fxFlex.gt-sm="30em" fxLayout="column" fxLayoutAlign="center start" fxLayoutGap="0px">
+            <h2 class="mat-h2 text-center">Seleziona importi da mostrare</h2>
+            <div style="width: 100%;" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
+              <mat-checkbox fxFlex="25%" formControlName="flgPagati" (change)="flgImportiOnChange();">Pagati</mat-checkbox>
+              <mat-checkbox fxFlex="25%" formControlName="flgRendicontati" (change)="flgImportiOnChange();">Rendicontati</mat-checkbox>
+              <mat-checkbox *ngIf="ente?.flgTesoreria" fxFlex="25%" formControlName="flgIncassati" (change)="flgImportiOnChange();">Incassati</mat-checkbox>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="statisticheMode === 'accertamenti'" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="0px">
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="20em" appearance="{{'appearance'|global}}">
+            <mat-label>Tipo Dovuto</mat-label>
+            <mat-select required formControlName="tipoDovuto" name="tipoDovuto" [compareWith]="compareTipoDovuto"
+                (selectionChange)="tipoDovutoOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let tipo of tipiDovuto" [value]="tipo">
+                {{tipo.deTipo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="25em" appearance="{{'appearance'|global}}">
+            <mat-label>Ufficio</mat-label>
+            <mat-select required formControlName="ufficio" name="ufficio" [compareWith]="compareUfficio"
+                (selectionChange)="ufficioOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let ufficio of uffici" [value]="ufficio">
+                {{ufficio?.deComboUfficio}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field fxFlex="100%" fxFlex.gt-sm="25em" appearance="{{'appearance'|global}}">
+            <mat-label>Capitolo</mat-label>
+            <mat-select required formControlName="capitolo" name="capitolo" [compareWith]="compareCapitolo"
+                (selectionChange)="capitoloOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let capitolo of capitoli" [value]="capitolo">
+                {{capitolo?.deComboCapitolo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+          <div fxFlex></div>
+          <button fxFlex="5em" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+          <button fxFlex="5em" type="submit" mat-flat-button [disabled]="isSearchFormInvalid" color="accent">Cerca</button>
+        </div>
+      </form>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+            [paginatorData]="paginatorData" [parentRef]="this" [hasDetail]=false [showTotalFooter]="true">
+    </my-pay-table-pivot>
+  </div>
+
+</div>

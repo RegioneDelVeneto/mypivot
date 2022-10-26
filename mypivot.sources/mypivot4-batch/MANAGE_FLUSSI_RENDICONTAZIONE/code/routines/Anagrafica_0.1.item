@@ -1,0 +1,53 @@
+package routines;
+
+public class Anagrafica {
+
+	private String codStato;
+	private String deTipoStato;
+	
+	public Anagrafica() {
+	}
+	
+	public Anagrafica(String codStato, String deTipoStato) {
+		this.codStato = codStato;
+		this.deTipoStato = deTipoStato;
+	}
+	
+	public String getCodStato() {
+		return codStato;
+	}
+	public void setCodStato(String codStato) {
+		this.codStato = codStato;
+	}
+	public String getDeTipoStato() {
+		return deTipoStato;
+	}
+	public void setDeTipoStato(String deTipoStato) {
+		this.deTipoStato = deTipoStato;
+	}
+	
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Anagrafica other = (Anagrafica) obj;
+        if (!codStato.equalsIgnoreCase(other.codStato))
+            return false;
+        if (!deTipoStato.equalsIgnoreCase(other.deTipoStato))
+            return false;
+        return true;
+    }
+    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((codStato == null) ? 0 : codStato.hashCode());
+        result = prime * result + ((deTipoStato == null) ? 0 : deTipoStato.hashCode());
+        return result;
+    }    
+}

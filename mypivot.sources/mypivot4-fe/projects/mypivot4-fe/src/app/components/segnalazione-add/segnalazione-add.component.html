@@ -1,0 +1,45 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="start start">
+  <h2>Nuova segnalazione</h2>
+  <span class="flex-spacer"></span>
+  <button mat-flat-button aria-label="Chiudi" mat-dialog-close><fa-icon [icon]="iconTimes" size="lg"></fa-icon></button>
+</div>
+
+<form novalidate #sForm="ngForm" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="mat-typography">
+    <mat-card class="mat-elevation-z0">
+      <mat-card-content>
+        <div class="w100 mypay-search-form"> 
+          <mat-form-field fxFlex="100%" appearance="{{'appearance'|global}}">
+            <mat-label>Nota</mat-label>
+            <textarea required matInput cdkTextareaAutosize cdkAutosizeMinRows="3" 
+                      formControlName="nota" placeholder="Inserire il testo della segnalazione"></textarea>
+            <mat-error *ngIf="formErrors['codFiscaleVersante']">{{ formErrors.nota }}</mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button fxFlex="10" type="button" mat-flat-button mat-dialog-close color="primary">Annulla</button>
+    <button fxFlex="10" type="submit" mat-flat-button [disabled]="form.invalid" color="accent">Salva</button>
+  </mat-dialog-actions>
+</form>

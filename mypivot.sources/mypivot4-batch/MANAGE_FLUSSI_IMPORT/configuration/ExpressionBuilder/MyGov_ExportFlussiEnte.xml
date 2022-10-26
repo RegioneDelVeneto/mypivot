@@ -1,0 +1,494 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:expression="http:///expression.ecore">
+  <expression:EMFExpression id="null=>row4=>cod_stato" expression="&quot;CARICATO&quot;">
+    <variables name="row2.id_flusso" value="0" talendType="id_Integer"/>
+    <variables name="row2.version" value="0" talendType="id_Integer"/>
+    <variables name="row2.fk_ente" value="0" talendType="id_Integer"/>
+    <variables name="row2.fk_stato_flusso" value="0" talendType="id_Integer"/>
+    <variables name="row2.iuf" value="null" talendType="id_String"/>
+    <variables name="row2.num_righe_totali" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.num_righe_importate_correttamente" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row2.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row2.flg_attivo" value="false" talendType="id_Boolean"/>
+    <variables name="row3.id_ente" value="0" talendType="id_Integer"/>
+    <variables name="row3.version" value="0" talendType="id_Integer"/>
+    <variables name="row3.cod_ipa_ente" value="null" talendType="id_String"/>
+    <variables name="row3.codice_fiscale_ente" value="null" talendType="id_String"/>
+    <variables name="row3.de_nome_ente" value="null" talendType="id_String"/>
+    <variables name="row3.tipo_versamento_default" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row3.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row3.ente_benef_id_benef_tipo_identificativo_unico" value="null" talendType="id_String"/>
+    <variables name="row3.ente_benef_id_benef_codice_identificativo_univoco" value="null" talendType="id_String"/>
+    <variables name="row3.ente_benef_denominazione_beneficiario" value="null" talendType="id_String"/>
+    <variables name="row3.ente_benef_codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_nazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_commissione_carico_pa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_iban_accredito" value="null" talendType="id_String"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_bic_accredito" value="null" talendType="id_String"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_iban_appoggio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_bic_appoggio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_credenziali_pagatore" value="null" talendType="id_String"/>
+    <variables name="row3.email_amministratore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row4.id_stato" value="0" talendType="id_Integer"/>
+    <variables name="row4.version" value="0" talendType="id_Integer"/>
+    <variables name="row4.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row4.de_stato" value="null" talendType="id_String"/>
+    <variables name="row4.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row4.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row4.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>row3=>cod_ipa_ente" expression="(String)globalMap.get(&quot;codIpaEnte&quot;) ">
+    <variables name="row2.id_flusso" value="0" talendType="id_Integer"/>
+    <variables name="row2.version" value="0" talendType="id_Integer"/>
+    <variables name="row2.fk_ente" value="0" talendType="id_Integer"/>
+    <variables name="row2.fk_stato_flusso" value="0" talendType="id_Integer"/>
+    <variables name="row2.iuf" value="null" talendType="id_String"/>
+    <variables name="row2.num_righe_totali" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.num_righe_importate_correttamente" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row2.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row2.flg_attivo" value="false" talendType="id_Boolean"/>
+    <variables name="row3.id_ente" value="0" talendType="id_Integer"/>
+    <variables name="row3.version" value="0" talendType="id_Integer"/>
+    <variables name="row3.cod_ipa_ente" value="null" talendType="id_String"/>
+    <variables name="row3.codice_fiscale_ente" value="null" talendType="id_String"/>
+    <variables name="row3.de_nome_ente" value="null" talendType="id_String"/>
+    <variables name="row3.tipo_versamento_default" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row3.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row3.ente_benef_id_benef_tipo_identificativo_unico" value="null" talendType="id_String"/>
+    <variables name="row3.ente_benef_id_benef_codice_identificativo_univoco" value="null" talendType="id_String"/>
+    <variables name="row3.ente_benef_denominazione_beneficiario" value="null" talendType="id_String"/>
+    <variables name="row3.ente_benef_codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.ente_benef_nazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_commissione_carico_pa" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_iban_accredito" value="null" talendType="id_String"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_bic_accredito" value="null" talendType="id_String"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_iban_appoggio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_bic_appoggio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row3.dati_vers_dati_singolo_vers_credenziali_pagatore" value="null" talendType="id_String"/>
+    <variables name="row3.email_amministratore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row4.id_stato" value="0" talendType="id_Integer"/>
+    <variables name="row4.version" value="0" talendType="id_Integer"/>
+    <variables name="d_univ_pag_cod" value="ivoc" talendType="id_String"/>
+    <variables name="row4.de_stato" value="null" talendType="id_String"/>
+    <variables name="row4.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row4.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row4.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>out=>iuf" expression="row2.iuf.replaceAll(&quot;\&quot;&quot;, &quot;&quot;) ">
+    <variables name="row2.iuf" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dt_scadenza_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_id_pag_tipo_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_id_pag_codice_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_anagrafica_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_indirizzo_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_civico_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_cap_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_localita_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_provincia_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_nazione_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sog_pag_email_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_dati_singolo_vers_importo_singolo_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_dati_singolo_vers_causale_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_dati_singolo_vers_dati_specifici_riscossione" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_tipo_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_data_esecuzione_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_iuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_codice_contesto_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_iban_addebito" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_bic_addebito" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_vers_firma_ricevuta" value="null" talendType="id_String" nullable="true"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>out_row=>iuf" expression="">
+    <variables name="row2.iuf" value="null" talendType="id_String"/>
+    <variables name="row2.num_riga_flusso" value="0" talendType="id_Double"/>
+    <variables name="row2.cod_iud" value="null" talendType="id_String"/>
+    <variables name="row2.cod_iuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_versione_oggetto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_dominio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_stazione_richiedente" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_id_messaggio_ricevuta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_data_ora_messaggio_ricevuta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_messaggio_richiesta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_data_richiesta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denominazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_codice_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denom_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_indirizzo_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_civico_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_cap_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_localita_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_provincia_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_nazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denominazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_nazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_anagrafica_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_indirizzo_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_civico_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_cap_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_localita_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_provincia_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_nazione_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_email_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_anagrafica_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_indirizzo_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_civico_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_cap_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_localita_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_provincia_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_nazione_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_email_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_esito_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_importo_totale_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_contesto_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_dati_sing_pag_singolo_importo_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_esito_singolo_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dt_e_dati_pag_dati_sing_pag_data_esito_singolo_pagamento" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_dati_sing_pag_id_univoco_riscoss" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_causale_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_dati_specifici_riscossione" value="null" talendType="id_String" nullable="true"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="lue=&quot;null&quot; talendType=&quot;id_String&quot; nu" expression="new DecimalFormat(&quot;#.##&quot;).format(row2.num_e_dati_pag_importo_totale_pagato)">
+    <variables name="row2.iuf" value="null" talendType="id_String"/>
+    <variables name="row2.num_riga_flusso" value="0" talendType="id_Double"/>
+    <variables name="row2.cod_iud" value="null" talendType="id_String"/>
+    <variables name="row2.cod_rp_silinviarp_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_versione_oggetto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_dominio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_stazione_richiedente" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_id_messaggio_ricevuta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_data_ora_messaggio_ricevuta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_messaggio_richiesta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_data_richiesta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denominazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_codice_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denom_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_indirizzo_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_civico_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_cap_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_localita_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_provincia_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_nazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denominazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_nazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_anagrafica_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_indirizzo_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_civico_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_cap_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_localita_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_provincia_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_nazione_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_email_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_anagrafica_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_indirizzo_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_civico_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_cap_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_localita_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_provincia_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_nazione_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_email_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_esito_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_importo_totale_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_contesto_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_dati_sing_pag_singolo_importo_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_esito_singolo_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dt_e_dati_pag_dati_sing_pag_data_esito_singolo_pagamento" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_dati_sing_pag_id_univoco_riscoss" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_causale_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_dati_specifici_riscossione" value="null" talendType="id_String" nullable="true"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>UPDATE_EXPORT=>de_nome_file_generato" expression="(String) globalMap.get(&quot;nome_file_generato&quot;) ">
+    <variables name="row5.mygov_export_dovuti_id" value="0" talendType="id_Long"/>
+    <variables name="row5.version" value="0" talendType="id_Integer"/>
+    <variables name="row5.mygov_ente_id" value="0" talendType="id_Long"/>
+    <variables name="row5.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row5.de_email_richiedente" value="null" talendType="id_String"/>
+    <variables name="row5.de_nome_file_generato" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row5.num_dimensione_file_generato" value="null" talendType="id_Long" nullable="true"/>
+    <variables name="row5.dt_inizio_estrazione" value="null" talendType="id_Date"/>
+    <variables name="row5.dt_fine_estrazione" value="null" talendType="id_Date"/>
+    <variables name="row6.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row6.version" value="0" talendType="id_Integer"/>
+    <variables name="row6.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row6.de_stato" value="null" talendType="id_String"/>
+    <variables name="row6.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row6.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row6.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>UPDATE_EXPORT=>num_dimensione_file_generato" expression="(Long) globalMap.get(&quot;size_file_generato&quot;)  ">
+    <variables name="row5.mygov_export_dovuti_id" value="0" talendType="id_Long"/>
+    <variables name="row5.version" value="0" talendType="id_Integer"/>
+    <variables name="row5.mygov_ente_id" value="0" talendType="id_Long"/>
+    <variables name="row5.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row5.de_email_richiedente" value="null" talendType="id_String"/>
+    <variables name="row5.de_nome_file_generato" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row5.num_dimensione_file_generato" value="null" talendType="id_Long" nullable="true"/>
+    <variables name="row5.dt_inizio_estrazione" value="null" talendType="id_Date"/>
+    <variables name="row5.dt_fine_estrazione" value="null" talendType="id_Date"/>
+    <variables name="row6.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row6.version" value="0" talendType="id_Integer"/>
+    <variables name="row6.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row6.de_stato" value="null" talendType="id_String"/>
+    <variables name="row6.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row6.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row6.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>out_row=>importo_totale_pagato" expression="JobStringManage.getFormatStringToDouble(row2.num_e_dati_pag_importo_totale_pagato);">
+    <variables name="row2.iuf" value="null" talendType="id_String"/>
+    <variables name="row2.num_riga_flusso" value="0" talendType="id_Double"/>
+    <variables name="row2.cod_iud" value="null" talendType="id_String"/>
+    <variables name="row2.cod_rp_silinviarp_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_versione_oggetto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_dominio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_stazione_richiedente" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_id_messaggio_ricevuta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_data_ora_messaggio_ricevuta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_messaggio_richiesta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_data_richiesta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denominazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_codice_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denom_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_indirizzo_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_civico_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_cap_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_localita_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_provincia_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_nazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denominazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_nazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_anagrafica_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_indirizzo_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_civico_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_cap_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_localita_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_provincia_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_nazione_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_email_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_anagrafica_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_indirizzo_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_civico_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_cap_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_localita_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_provincia_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_nazione_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_email_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_esito_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_importo_totale_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_contesto_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_dati_sing_pag_singolo_importo_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_esito_singolo_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dt_e_dati_pag_dati_sing_pag_data_esito_singolo_pagamento" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_dati_sing_pag_id_univoco_riscoss" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_causale_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_dati_specifici_riscossione" value="null" talendType="id_String" nullable="true"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>out_row=>singolo_importo_pagato" expression="JobStringManage.getFormatStringToDouble(row2.num_e_dati_pag_dati_sing_pag_singolo_importo_pagato)&#xD;&#xD;&#xA;    ">
+    <variables name="row2.iuf" value="null" talendType="id_String"/>
+    <variables name="row2.num_riga_flusso" value="0" talendType="id_Double"/>
+    <variables name="row2.cod_iud" value="null" talendType="id_String"/>
+    <variables name="row2.cod_rp_silinviarp_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_versione_oggetto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_dominio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dom_id_stazione_richiedente" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_id_messaggio_ricevuta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_data_ora_messaggio_ricevuta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_messaggio_richiesta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_riferimento_data_richiesta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_id_univ_att_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denominazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_codice_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_denom_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_indirizzo_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_civico_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_cap_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_localita_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_istit_att_provincia_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_istit_att_nazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_id_univ_benef_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denominazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_ente_benef_cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_ente_benef_provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="e=&quot;true&quot;/>&#xD;&#xA;    &lt;variables name=&quot;row2.sogg" value=".sog" talendType="univoco&quot; " nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_id_univ_vers_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_anagrafica_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_indirizzo_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_civico_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_cap_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_localita_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_provincia_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_vers_nazione_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_vers_email_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_tipo_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_id_univ_pag_codice_id_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_anagrafica_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_indirizzo_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_civico_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_cap_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_localita_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_provincia_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_sogg_pag_nazione_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_sogg_pag_email_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_esito_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_importo_totale_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_id_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_codice_contesto_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.num_e_dati_pag_dati_sing_pag_singolo_importo_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_esito_singolo_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dt_e_dati_pag_dati_sing_pag_data_esito_singolo_pagamento" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.cod_e_dati_pag_dati_sing_pag_id_univoco_riscoss" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_causale_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.de_e_dati_pag_dati_sing_pag_dati_specifici_riscossione" value="null" talendType="id_String" nullable="true"/>
+    <variables name="&#xA;    &lt;variables name=&quot;row2.anagrafica_paga" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cod_iuv" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.versione_oggetto" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.identificativo_dominio" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.identificativo_stazione_richiedente" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.identificativo_messaggio_ricevuta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.data_ora_messaggio_ricevuta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.riferimento_messaggio_richiesta" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.riferimento_data_richiesta" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.tipo_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.codice_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.denominazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.codice_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.denom_unit_oper_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.indirizzo_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.civico_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cap_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.localita_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.provincia_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.nazione_attestante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.ente_benef_tipo_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.ente_benef_codice_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.denominazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.codice_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.denom_unit_oper_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.indirizzo_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.civico_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cap_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.localita_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.provincia_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.nazione_beneficiario" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sogg_vers_tipo_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sogg_vers_codice_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.anagrafica_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.indirizzo_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.civico_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cap_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.localita_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.provincia_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.nazione_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.email_versante" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sogg_pag_tipo_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.sogg_pag_codice_identificativo_univoco" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.anagrafica_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.indirizzo_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.civico_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.cap_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.localita_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.provincia_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.nazione_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.email_pagatore" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.codice_esito_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.importo_totale_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.identificativo_univoco_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.codice_contesto_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.singolo_importo_pagato" value="null" talendType="id_Double" nullable="true"/>
+    <variables name="row2.esito_singolo_pagamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.data_esito_singolo_pagamento" value="null" talendType="id_Date" nullable="true"/>
+    <variables name="row2.identificativo_univoco_riscoss" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.causale_versamento" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row2.dati_specifici_riscossione" value="null" talendType="id_String" nullable="true"/>
+  </expression:EMFExpression>
+  <expression:EMFExpression id="null=>UPDATE_TABLE_EXPORT=>de_nome_file_generato" expression="(String) globalMap.get(&quot;nome_file_generato&quot;) != null ? &quot;/&quot; + (String) globalMap.get(&quot;cartellaPathRelativo&quot;) + &quot;/&quot; + (String) globalMap.get(&quot;nome_file_generato&quot;) : null    ">
+    <variables name="row5.mygov_export_dovuti_id" value="0" talendType="id_Long"/>
+    <variables name="row5.version" value="0" talendType="id_Integer"/>
+    <variables name="row5.mygov_ente_id" value="0" talendType="id_Long"/>
+    <variables name="row5.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row5.de_email_richiedente" value="null" talendType="id_String"/>
+    <variables name="row5.de_nome_file_generato" value="null" talendType="id_String" nullable="true"/>
+    <variables name="row5.num_dimensione_file_generato" value="null" talendType="id_Long" nullable="true"/>
+    <variables name="row5.dt_inizio_estrazione" value="null" talendType="id_Date"/>
+    <variables name="row5.dt_fine_estrazione" value="null" talendType="id_Date"/>
+    <variables name="row5.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row5.dt_ultima_modifica" value="null" talendType="id_Date"/>
+    <variables name="row6.mygov_anagrafica_stato_id" value="0" talendType="id_Long"/>
+    <variables name="row6.version" value="0" talendType="id_Integer"/>
+    <variables name="row6.cod_stato" value="null" talendType="id_String"/>
+    <variables name="row6.de_stato" value="null" talendType="id_String"/>
+    <variables name="row6.de_tipo_stato" value="null" talendType="id_String"/>
+    <variables name="row6.dt_creazione" value="null" talendType="id_Date"/>
+    <variables name="row6.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  </expression:EMFExpression>
+</xmi:XMI>

@@ -1,0 +1,61 @@
+/**
+ *     MyPivot - Accounting reconciliation system of Regione Veneto.
+ *     Copyright (C) 2022  Regione Veneto
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU Affero General Public License as
+ *     published by the Free Software Foundation, either version 3 of the
+ *     License, or (at your option) any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU Affero General Public License for more details.
+ *
+ *     You should have received a copy of the GNU Affero General Public License
+ *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+@import '../my-pay-table-pivot/my-pay-table-pivot.component.scss';
+
+@include mat-table-columns((
+  deTipoDovuto: (width: 16%),
+  dataUltimoAgg: (width: 7em),
+  //notifica
+  iuv: (width: 12%),
+  iud: (width: 12%),
+  iur: (width: 12%),
+  importo: (width: 6em, justify: right),
+  dataEsecuzione: (width: 7em),
+  pagatoreCodFisc: (width: 10%),
+  datiSpecificiRiscossione: (width: 12%),
+  //ricevuta telematica
+  attestanteAnagrafica: (width: 12%),
+  dataEsito: (width: 7em),
+  //rendicontazione
+  idRendicontazione: (width: 12%),
+  idRegolamento: (width: 12%),
+  dataRegolamento: (width: 7em),
+  importoTotale: (width: 6em, justify: right),
+  dataFlusso: (width: 12em),
+  //sospeso - giornale di cassa
+  importoTesoreria: (width: 6em, justify: right),
+  conto: (width: 10%),
+  dataValuta: (width: 7em),
+  dataContabile: (width: 7em),
+  ordinante: (width: 12%),
+  iufKey: (width: 16%),
+  annoBolletta: (width: 3em),
+  codiceBolletta: (width: 10%),
+  causaleRiversamento: (width: 16%),
+));
+
+.info-text {
+  padding: 5px;
+  border: 1px solid $accent;
+  width: max-content;
+}
+
+::ng-deep .add-segnalazione-panel {
+  width: 70vw;
+  //height: 70vh;
+}

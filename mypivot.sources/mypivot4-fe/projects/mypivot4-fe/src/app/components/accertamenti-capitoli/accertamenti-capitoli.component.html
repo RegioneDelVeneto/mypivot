@@ -1,0 +1,122 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}}</h1>
+    </div>
+
+    <div class="w100 mypay-search-form">
+      <form fxFlex novalidate #sForm [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <myp-search-chips #mypSearchChips [formDef]="formDef" [form]="form" [parentRef]="this" [removeFilterCallback]="onRemoveFilter">
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="20em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['tipoDovuto'].label}}</mat-label>
+              <input type="text" matInput formControlName="tipoDovuto" [matAutocomplete]="autoTipoDovuto">
+              <mat-autocomplete #autoTipoDovuto="matAutocomplete" [displayWith]="tipoDovutoDisplayFn">
+                <mat-option *ngFor="let optionTipoDovuto of tipoDovutoFilteredOptions | async" [value]="optionTipoDovuto">
+                  {{optionTipoDovuto.deTipo}}
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="formErrors['tipoDovuto']">{{ formErrors.tipoDovuto }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="17em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codUfficio'].label}}</mat-label>
+              <input matInput formControlName="codUfficio" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codUfficio']">{{ formErrors.codUfficio }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="17em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['deUfficio'].label}}</mat-label>
+              <input matInput formControlName="deUfficio" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['deUfficio']">{{ formErrors.deUfficio }}</mat-error>
+            </mat-form-field>
+
+            <mat-checkbox fxFlex="100%" fxFlex.gt-sm="15em" formControlName="flgUfficioAttivo">{{formDef['flgUfficioAttivo'].label}}</mat-checkbox>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <div fxFlex="0%" fxFlex.gt-sm="20em" class="mat-form-field"></div>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="17em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codCapitolo'].label}}</mat-label>
+              <input matInput formControlName="codCapitolo" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codCapitolo']">{{ formErrors.codCapitolo }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="17em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['deCapitolo'].label}}</mat-label>
+              <input matInput formControlName="deCapitolo" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['deCapitolo']">{{ formErrors.deCapitolo }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field datepickerFormatYyyy fxFlex="100%" fxFlex.gt-sm="15em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['annoCapitolo'].label}}</mat-label>
+              <input matInput formControlName="annoCapitolo" [matDatepicker]="dpAnnoCapitolo">
+              <mat-datepicker-toggle matSuffix [for]="dpAnnoCapitolo"></mat-datepicker-toggle>
+              <mat-datepicker #dpAnnoCapitolo startView="multi-year" (yearSelected)="onYearChosen('annoCapitolo', $event, dpAnnoCapitolo)"></mat-datepicker>
+              <mat-error *ngIf="formErrors['annoCapitolo']">{{ formErrors.annoCapitolo}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="5px">
+            <div fxFlex="0%" fxFlex.gt-sm="20em" class="mat-form-field"></div>
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="17em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['codAccertamento'].label}}</mat-label>
+              <input matInput formControlName="codAccertamento" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['codAccertamento']">{{ formErrors.codAccertamento }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="17em" appearance="{{'appearance'|global}}">
+              <mat-label>{{formDef['deAccertamento'].label}}</mat-label>
+              <input matInput formControlName="deAccertamento" placeholder="Inserire un testo">
+              <mat-error *ngIf="formErrors['deAccertamento']">{{ formErrors.deAccertamento }}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-2 mat-button-bar">
+            <div fxFlex></div>
+            <button fxFlex="5em" type="button" mat-flat-button (click)="onReset()" color="primary">Reset</button>
+            <button fxFlex="5em" type="submit" mat-flat-button [disabled]="form.invalid || blockingError" color="accent">Cerca</button>
+          </div>
+        </myp-search-chips>
+      </form>
+    </div>
+
+    <div class="w100">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-4 mt-2 mb-1 mat-button-bar">
+        <div fxFlex></div>
+        <button *ngIf="ente?.codIpaEnte !== 'R_VENETO'" fxFlex="10em" type="button" mat-flat-button
+            (click)="gotoImportMassivo()" color="primary">Import Massivo</button>
+        <button fxFlex="10em" type="button" mat-flat-button (click)="gotoAnagrafica()" color="primary">Nuova Anagrafica</button>
+      </div>
+    </div>
+
+    <p *ngIf="hasSearched && tableData?.length==0">Nessun dato trovato con i criteri di ricerca impostati.</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+          [paginatorData]="paginatorData" [parentRef]="this" [onClickRowFun]="onClickRow">
+    </my-pay-table-pivot>
+  </div>
+
+</div>

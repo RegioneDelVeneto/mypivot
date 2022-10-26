@@ -1,0 +1,80 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div>
+      <h1 class="mat-h1">Accertamento - Scelta ufficio, capitolo e accertamento</h1>
+    </div>
+
+    <div class="w100">
+      <form fxFlex novalidate #sForm [formGroup]="insertForm" (ngSubmit)="onSubmit()">
+
+        <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+          <mat-form-field fxFlex="100%" class="w80" appearance="{{'appearance'|global}}">
+            <mat-label>Ufficio</mat-label>
+            <mat-select required formControlName="ufficio" name="ufficio" [compareWith]="compareUfficio"
+                (selectionChange)="ufficioOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let ufficio of uffici" [value]="ufficio">
+                {{ufficio?.codUfficio}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" class="w80" appearance="{{'appearance'|global}}">
+            <mat-label>Anno Esercizio Capitolo</mat-label>
+            <input type="text" readonly class="mat-input-element" formControlName="annoEsercizio"/>
+            <input matInput style="display:none;" formControlName="dpAnnoEsercizio" [matDatepicker]="dtPickerYearly" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="dtPickerYearly"></mat-datepicker-toggle>
+            <mat-datepicker #dtPickerYearly startView="multi-year" (yearSelected)="chosenYearly($event, dtPickerYearly)"></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" class="w80" appearance="{{'appearance'|global}}">
+            <mat-label>Capitolo</mat-label>
+            <mat-select required formControlName="capitolo" name="capitolo" [compareWith]="compareCapitolo"
+                (selectionChange)="capitoloOnChange($event.value)" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let capitolo of capitoli" [value]="capitolo">
+                {{capitolo?.deCapitolo}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="100%" class="w80" appearance="{{'appearance'|global}}">
+            <mat-label>Accertamento</mat-label>
+            <mat-select required formControlName="accertamento" name="accertamento" [compareWith]="compareAccertamento" typeaheadDebounceInterval="800">
+              <mat-option *ngFor="let accertamento of accertamenti" [value]="accertamento">
+                {{accertamento?.deAccertamento}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px" class="mx-2 mb-3 mat-button-bar">
+            <button fxFlex="8em" type="button" mat-flat-button (click)="close()" color="primary">Chiudi</button>
+            <button *ngIf="!pagamentiSalvati" fxFlex="8em" type="button" mat-flat-button [disabled]="insertForm.invalid"
+                app-confirm="Confermi di voler aggiungere i pagamenti selezionati?" (clickConfirmed)="onSubmit()" color="accent">Conferma</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>

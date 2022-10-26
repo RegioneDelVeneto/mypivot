@@ -1,0 +1,260 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+categories:
+  - it-management
+  - collaboration
+description:
+  it:
+    features:
+      - |-
+        Funzionalità di visualizzazione dei pagamenti riconciliati totalmente o
+        parzialmente e  anomalie
+      - Funzionalità di gestione dei flussi dei dati relativi ai pagamenti
+      - |-
+        Funzionalità di visualizzazione di statistiche sui pagamenti effettuati
+        e riconciliati
+      - 'Funzionalità di gestione degli accertamenti e capitoli '
+    genericName: Product & Payment Manager
+    longDescription: |
+      Il decreto di semplificazione “Switch off PagoPA e strumenti di pagamento
+      elettronico – Artt. 24 e 24-bis, D.L. 76/2020 (art. 65, D.Lgs. 217/2017)”
+      cita l’obbligo per i prestatori di servizi di pagamento abilitati
+      all’utilizzo della piattaforma PagoPA per i pagamenti verso le PA di
+      dotarsi di una piattaforma evoluta in grado di soddisfare i requisiti
+      d'integrazione con Nodo Centrale Nazionale dei Pagamenti e dettagliati
+      nelle SANP periodicamente aggiornate e pubblicate da PagoPA.
+
+
+      Il progetto myPay è rivolto agli Enti della PA aderenti al Sistema dei
+      pagamenti elettronici pagoPA, che vogliano assumere il ruolo di
+      intermediario tecnologico. Il Progetto implementa un’ piattaforma
+      territoriale dei pagamenti elettronici che garantisce omogeneità di
+      utilizzo del sistema da parte dei cittadini e delle imprese sul territorio
+      e consente a tutti gli enti aderenti di operare con un unico sistema di
+      intermediazione con il nodo nazionale “PagoPa”.
+
+
+      Tale piattaforma consente la gestione dei pagamenti e regolarizzazione e
+      riconciliazione delle posizioni debitorie tale da soddisfare i requisiti
+      imposti dalle SANP indicate da PagoPa, e rendere disponibili funzionalità
+      dedicate a cittadini e operatori degli enti per la verifica e gestione
+      delle informazioni relative alle posizioni debitorie pagate e non pagate
+      da parte di Enti (anche se non riscossori)
+
+
+      L'obiettivi del progetto è rendere disponibile una piattaforma dedicata al
+      mondo dei pagamenti in grado di soddisfare le esigenze di gestione dei
+      pagamenti degli enti che necessitano di gestire le posizioni debitorie
+      pagate tramite il Nodo Nazionale dei Pagamenti PagoPA e conseguentemente
+      da regolarizzare e riconciliare con i sistemi interno dell’ente stesso.
+
+
+      Col progetto si vogliono offrire servizi compatibili con le linee guida
+      Agid in termini di adempienza agli SLA, all’accessibilità (UNI-en
+      301549-2018), all’enhancement della piattaforma in termini di usabilità e
+      user experience per i cittadini, gli operatori e gli Enti.
+
+
+      Il progetto si basa sulle Specifiche Attuative del Nodo dei Pagamenti –
+      SPC Versione 2.4.3
+
+
+      Il sistema è fortemente orientata al mondo cloud e incentrata su concetti
+      di scalabilità orizzontale e verticale al fine di potersi adattare in modo
+      dinamico ed automatico ai crescenti carichi previsti vista la forte spinta
+      all’utilizzo di strumenti di pagamenti telematici integrati con PagoPa.
+
+
+      La soluzione è composta dalle seguenti componenti:
+
+
+      - L'applicazione MyPivot Operatore App orientata agli operatori sia degli
+      Enti Locali intermediati. L'applicazione prevede che in funzione del
+      proprio profilo applicativo ogni operatore possa usufruire di diverse
+      funzionalità per la gestione della posizioni debitorie pagate,
+      rendicontate da PagoPA e riversae dai vari PSP che permettono di avere
+      evidenza della regolarizzazione e riconciliazione totale o parziale
+
+
+      **Funzionalità Applicative**
+
+
+      Le macrocategorie di funzionalità applicative sono funzionalità di
+      backoffice relative ai pagamenti con forte orientamento agli aspetti
+      contabili:
+
+
+      - Funzionalità di visualizzazione dei pagamenti riconciliati totalmente o
+      parzialmente e relative anomalie 
+
+      - Funzionalità di gestione dei flussi dei dati relativi ai pagamenti
+
+      - Funzionalità di gestione degli accertamenti e capitoli 
+
+      - Funzionalità di visualizzazione di statistiche sui pagamenti effettuati
+      e riconciliati
+
+      - Funzionalità di censimento di tipologie di dovuti e associazione agli
+      operatori dell'ente
+
+
+      ++Funzionalità di visualizzazione dei pagamenti riconciliati totalmente o
+      parzialmente e relative anomalie ++
+
+
+      Visualizzazione dei dati relativi a ciascun elemento coinvolto nella
+      riconciliazione contabile: la rendicontazione, le ricevute telematiche e
+      il giornale di cassa col dettaglio di eventuali situazioni anomale che si
+      possono verificare quando la riconciliazione non si chiude correttamente 
+
+
+      ​
+
+       - filtrare e/o visualizzare l’elenco dei movimenti che compongono il giornale di cassa
+
+       - visualizzare la rendicontazione e le RT associate
+
+       - visualizzare l’elenco delle RT per un ente filtrabile
+
+       - visualizzare i pagamenti riconciliati e notificati
+
+       - visualizzare i pagamenti riversati cumulativamente
+
+       - visualizzare i pagamenti riversati puntualmente
+
+       - visualizzare i pagamenti riconciliati e rendicontati
+
+       - visualizzare i pagamenti riconciliati e con notifica
+
+      -  visualizzare i pagamenti notificati dal SIL per cui non esiste la RT
+
+       - visualizzare i pagamenti con RT, Rendicontazione e giornale di cassa, ma senza notifica da parte del SIL
+
+       - visualizzare i pagamenti con RT, ma senza rendicontazione
+
+       - visualizzare i pagamenti con rendicontazione, ma senza RT
+
+       - visualizzare i pagamenti con rendicontazione, ma senza sospeso di cassa
+
+       - visualizzare i pagamenti con rendicontazione, ma con sospeso di cassa con importo non coerente
+
+       - visualizzare i sospesi di cassa per cui non esiste rendicontazione o RT
+
+       - visualizzare i sospesi di cassa le cui causali non sono nel formato previsto da PagoPA
+
+       - visualizzare Anomalie-Pagamenti Doppi
+
+       - visualizzare dettaglio iuv incassato e non rendicontato
+
+       - Ricerca Giornale di Cassa per Anno Documento, Codice Documento, Anno Provvisorio e Codice Provvisorio
+
+       - inserire una segnalazione sul pagamento riconciliato e che sia successivamente visualizzabile e modificabile dagli operatori dell’ente
+
+      ++Funzionalità di gestione dei flussi dei dati relativi ai pagamenti++
+
+
+      Importazione dei flussi relativi a rendicontazioni pagoPA, ricevute
+      telematiche e giornale di cassa ed esportazione i flussi presenti in
+      MyPivot. 
+
+       - importare le ricevute telematiche da apposita funzione di frontend e o tramite web service indipendentemente dall’intermediario tecnologico che ha gestito il pagamento
+
+       - importare le rendicontazioni fornite dal Nodo PagoPA da apposita funzione di frontend o tramite web service indipendentemente dall’intermediario tecnologico che ha gestito il pagamento
+
+       - importare il giornale di cassa nel formato OPI da apposita funzione di frontend o tramite web service
+
+       - importare il giornale di cassa nel formato CSV da apposita funzione di frontend o tramite web service
+
+       - importare l’estratto conto postale da apposita funzione di frontend o tramite web service
+
+       - importare il giornale di cassa in formato XLS da apposita funzione di frontend o tramite webservice
+
+       - filtrare e/o visualizzare l'elenco dei flussi importati, in corso di importazione o da importare nell’ente di amminsitrazione, con possibilità di scaricare i dati scartati o il file caricato
+
+       - importare in mypivot il flusso dei pagamenti notificati tramite web service
+
+      ++Funzionalità di gestione degli accertamenti e capitoli ++
+
+       Gestione dei capitoli e gli accertamenti contabili associati ai singoli pagamenti. 
+
+      - visualizzare l'elenco degli accertamenti contabili e il rispettivo
+      dettaglio dell’Ente di Amministrazione
+
+       - annullare il singolo accertamento, in modo da poter rettificare eventuali errori
+
+       - chiudere un singolo accertamento contabile in modo da poterne inserire uno di nuovo per un cambio di annualità
+
+       - inserire un nuovo accertamento in modo da poterne censire uno per ogni casistica come (Nuova annualità, Nuovo tipo dovuto)
+
+       - Abbinare pagamenti all'accertamento
+
+       - Modificare l'anagrafica di un accertamento contabile
+
+      ++Funzionalità di visualizzazione di statistiche sui pagamenti effettuati
+      e riconciliati++
+
+
+      Monitoraggio statistico delle entrate. Disponibilità di varie tipologie di
+      report che possono mostrare la suddivisione degli importi per le seguenti
+      categorie: pagati, rendicontati e incassati. Un parametro comune a tutte
+      le ricerche è l’intervallo temporale. A partire dagli importi visualizzati
+      è possibile accedere al relativo dettaglio, evidenziato tramite link, ove
+      disponibile. 
+
+       - visualizzare le informazioni dei pagamenti totali per anno/mese/giorno
+
+       - visualizzare le informazioni dei pagamenti totali per tipo dovuto
+
+       - visualizzare le informazioni dei pagamenti totali per capitolo
+
+       - visualizzare le informazioni dei pagamenti totali per ufficio
+
+       - visualizzare le informazioni dei pagamenti totali per accertamento
+
+      ​
+
+
+      ++Funzionalità di censimento di tipologie di dovuti e associazione agli
+      operatori dell'ente++
+
+       gestione di Tipi Dovuto esterni per i vari enti e abilitare ad essi gli operatori degli enti 
+    shortDescription: 'MyPivot, pagamenti e loro regolarizzazione e riconciliazione contabile'
+developmentStatus: stable
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: false
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: false
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: true
+    spid: false
+  riuso:
+    codiceIPA: r_veneto
+legal:
+  license: AGPL-3.0-or-later
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - email: antonino.mola@regione.veneto.it
+      name: Antonino Mola
+  contractors:
+    - name: SPAC Community
+      until: '2024-04-30'
+  type: internal
+name: MyPivot
+platforms:
+  - web
+  - linux
+releaseDate: '2022-06-25'
+softwareType: standalone/backend
+url: 'https://github.com/RegioneDelVeneto/mypivot.git'

@@ -1,0 +1,73 @@
+<!--
+
+        MyPivot - Accounting reconciliation system of Regione Veneto.
+        Copyright (C) 2022  Regione Veneto
+
+        This program is free software: you can redistribute it and/or modify
+        it under the terms of the GNU Affero General Public License as
+        published by the Free Software Foundation, either version 3 of the
+        License, or (at your option) any later version.
+
+        This program is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+        GNU Affero General Public License for more details.
+
+        You should have received a copy of the GNU Affero General Public License
+        along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+-->
+<ng-template #helpPage>
+  <div>
+    <p>Gestione tipi dovuto esterni.</p>
+  </div>
+</ng-template>
+
+<div class="container">
+
+  <div fxFlex fxLayout="column" fxLayoutAlign="start center">
+
+    <div class="title-row">
+      <h1 class="mat-h1 bold"><fa-icon class="pr-1" *ngIf="titleIcon" [icon]="titleIcon" aria-hidden="true"></fa-icon> {{titleLabel}} <my-pay-help [template]="helpPage"></my-pay-help></h1>
+    </div>
+    <h2 class="mat-h2 text-center">
+      <img *ngIf="ente?.thumbLogoEnte" class="thumbnail-ente" src="{{'data:image/png;base64,'+ente?.thumbLogoEnte}}" alt="Immagine Ente" aria-hidden="true">
+      {{ente?.deNomeEnte}}
+    </h2>
+
+    <mat-expansion-panel #insertExpansionPanel class="mypay-search-expansion-panel w100 mat-elevation-z0">
+      <mat-expansion-panel-header collapsedHeight="auto">
+        <mat-panel-title>
+          <h2 class="mat-h2">Inserisci un nuovo tipo dovuto esterno</h2>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="w100 mypay-search-form">
+        <form novalidate #sForm="ngForm" [formGroup]="form" (ngSubmit)="onInsert()">
+          <div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="0px">
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="30%" appearance="{{'appearance'|global}}">
+                <mat-label>Codice tipo dovuto</mat-label>
+                <input matInput required formControlName="codTipoDovuto">
+                <mat-error *ngIf="formErrors['codTipoDovuto']">{{ formErrors.codTipoDovuto }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field fxFlex="100%" fxFlex.gt-sm="70%" appearance="{{'appearance'|global}}">
+                <mat-label>Descrizione</mat-label>
+                <input matInput required formControlName="descr">
+                <mat-error *ngIf="formErrors['descr']">{{ formErrors.descr }}</mat-error>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <mat-action-row>
+        <button type="button" (click)="onInsert()" mat-flat-button [disabled]="form.invalid || blockingError" color="accent">Inserisci</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-divider class="mt-3 mb-2 w100"></mat-divider>
+
+    <p *ngIf="tableData?.length==0">Nessun tipo dovuto esterno per questo ente.</p>
+    <my-pay-table-pivot #myPayTable [tableData]="tableData" [tableColumns]="tableColumns"
+        [paginatorData]="paginatorData" [hasDetail]=false [parentRef]="this">
+    </my-pay-table-pivot>
+  </div>
+</div>

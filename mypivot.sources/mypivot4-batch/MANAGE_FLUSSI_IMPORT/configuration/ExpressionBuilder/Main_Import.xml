@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<expression:EMFExpression xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:expression="http:///expression.ecore" id="null=>cartella_output=>cartella" expression="context.directory_root_enti + &quot;/&quot; + row2.cod_ipa_ente + &quot;/IMPORT&quot;">
+  <variables name="row2.mygov_ente_id" value="0" talendType="id_Long"/>
+  <variables name="row2.version" value="0" talendType="id_Integer"/>
+  <variables name="row2.cod_ipa_ente" value="null" talendType="id_String"/>
+  <variables name="row2.codice_fiscale_ente" value="null" talendType="id_String"/>
+  <variables name="row2.de_nome_ente" value="null" talendType="id_String"/>
+  <variables name="row2.email_amministratore" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row2.dt_creazione" value="null" talendType="id_Date"/>
+  <variables name="row2.dt_ultima_modifica" value="null" talendType="id_Date"/>
+  <variables name="row2.cod_rp_dati_vers_tipo_versamento" value="null" talendType="id_String"/>
+  <variables name="row2.num_rp_dati_vers_dati_sing_vers_commissione_carico_pa" value="null" talendType="id_Double" nullable="true"/>
+  <variables name="row2.cod_rp_dati_vers_dati_sing_vers_iban_accredito" value="null" talendType="id_String"/>
+  <variables name="row2.cod_rp_dati_vers_dati_sing_vers_bic_accredito" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row2.cod_rp_dati_vers_dati_sing_vers_iban_appoggio" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row2.cod_rp_dati_vers_dati_sing_vers_bic_appoggio" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row2.mybox_client_key" value="null" talendType="id_String"/>
+  <variables name="row2.mybox_client_secret" value="null" talendType="id_String"/>
+  <variables name="row2.ente_sil_invia_risposta_pagamento_url" value="null" talendType="id_String" nullable="true"/>
+  <variables name="row2.cod_global_location_number" value="null" talendType="id_String" nullable="true"/>
+</expression:EMFExpression>

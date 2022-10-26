@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendMetadata:DelimitedFileConnection xmi:id="_7I-q8EjzEeaZB_0-lgY27w" name="FlussoImportPagati" dataPackage="_7I-q8UjzEeaZB_0-lgY27w" Server="Localhost 127.0.0.1" FilePath="_USER_REPO_" Format="WINDOWS" Encoding="UTF-8" FieldSeparatorValue="&quot;;&quot;" RowSeparatorValue="&quot;\n&quot;" UseHeader="true" HeaderValue="1" FirstLineCaption="true"/>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_7I-q8UjzEeaZB_0-lgY27w" name="default" dataManager="_7I-q8EjzEeaZB_0-lgY27w">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_7I-q8kjzEeaZB_0-lgY27w" id="_MbfKAEjzEeaZB_0-lgY27w" label="metadata">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q80jzEeaZB_0-lgY27w" label="cod_iud" length="35" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="35"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q9EjzEeaZB_0-lgY27w" label="cod_rp_silinviarp_id_univoco_versamento" length="35" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="35"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q9UjzEeaZB_0-lgY27w" label="cod_rp_sogg_pag_id_univ_pag_tipo_id_univoco" length="1" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="1"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q9kjzEeaZB_0-lgY27w" label="cod_rp_sogg_pag_id_univ_pag_codice_id_univoco" length="35" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="35"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q90jzEeaZB_0-lgY27w" label="de_rp_sogg_pag_anagrafica_pagatore" length="70" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="70"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q-EjzEeaZB_0-lgY27w" label="de_rp_sogg_pag_indirizzo_pagatore" length="70" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="70"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q-UjzEeaZB_0-lgY27w" label="de_rp_sogg_pag_civico_pagatore" length="16" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="16"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q-kjzEeaZB_0-lgY27w" label="cod_rp_sogg_pag_cap_pagatore" length="16" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="16"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q-0jzEeaZB_0-lgY27w" label="de_rp_sogg_pag_localita_pagatore" length="35" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="35"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q_EjzEeaZB_0-lgY27w" label="de_rp_sogg_pag_provincia_pagatore" length="2" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="2"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q_UjzEeaZB_0-lgY27w" label="cod_rp_sogg_pag_nazione_pagatore" length="2" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="2"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q_kjzEeaZB_0-lgY27w" label="de_rp_sogg_pag_email_pagatore" length="256" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="256"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-q_0jzEeaZB_0-lgY27w" label="dt_rp_dati_vers_data_esecuzione_pagamento" length="255" talendType="id_Date" nullable="false" pattern="&quot;yyyy-MM-dd&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rAEjzEeaZB_0-lgY27w" label="cod_rp_dati_vers_tipo_versamento" length="32" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="32"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rAUjzEeaZB_0-lgY27w" label="num_rp_dati_vers_dati_sing_vers_importo_singolo_versamento" length="12" precision="2" talendType="id_BigDecimal" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="12"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rAkjzEeaZB_0-lgY27w" label="num_rp_dati_vers_dati_sing_vers_commissione_carico_pa" length="12" precision="2" talendType="id_BigDecimal" pattern="&quot;dd-MM-yyyy&quot;" originalLength="12"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rA0jzEeaZB_0-lgY27w" label="de_rp_dati_vers_dati_sing_vers_causale_versamento" length="140" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="140"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rBEjzEeaZB_0-lgY27w" label="de_rp_dati_vers_dati_sing_vers_dati_specifici_riscossione" length="140" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="140"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rBUjzEeaZB_0-lgY27w" label="cod_tipo_dovuto" length="64" talendType="id_String" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" originalLength="64"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_7I-rBkjzEeaZB_0-lgY27w" label="bilancio" length="4096" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;" originalLength="4096"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>
