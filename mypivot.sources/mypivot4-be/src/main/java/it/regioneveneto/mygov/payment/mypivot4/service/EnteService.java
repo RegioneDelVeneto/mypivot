@@ -19,6 +19,7 @@ package it.regioneveneto.mygov.payment.mypivot4.service;
 
 import it.regioneveneto.mygov.payment.mypay4.exception.MyPayException;
 import it.regioneveneto.mygov.payment.mypay4.logging.LogExecution;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypay4.service.common.ThumbnailService;
 import it.regioneveneto.mygov.payment.mypay4.util.Constants;
 import it.regioneveneto.mygov.payment.mypay4.util.VerificationUtils;
@@ -44,31 +45,31 @@ public class EnteService {
   @Autowired
   ThumbnailService thumbnailService;
 
-  @Cacheable(value="allObjectCache", key="{#root.method}")
+  @Cacheable(value= CacheService.CACHE_NAME_ALL_OBJECTS, key="{#root.method}")
   public List<Ente> getAllEnti() {
     return enteDao.getAllEnti();
   }
 
-  @Cacheable(value="enteCache")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE)
   public List<Ente> searchEnti(String codIpaEnte, String deNome, String codFiscale) {
     return enteDao.searchEnti(codIpaEnte, deNome, codFiscale);
   }
 
-  @Cacheable(value="enteCache", key="{'id',#id}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE, key="{'id',#id}", unless="#result==null")
   @LogExecution(params = LogExecution.ParamMode.ON, returns = LogExecution.ParamMode.ON)  //TODO to remove: added just as a configuration example
   public Ente getEnteById(Long id) {
     return enteDao.getEnteById(id);
   }
-  @Cacheable(value="enteCache", key="{'codIpa',#codIpa}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE, key="{'codIpa',#codIpa}", unless="#result==null")
   public Ente getEnteByCodIpa(String codIpa) {
     return enteDao.getEnteByCodIpa(codIpa);
   }
-  @Cacheable(value="enteCache", key="{'codFiscale',#codFiscale}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE, key="{'codFiscale',#codFiscale}", unless="#result==null")
   public Ente getEnteByCodFiscale(String codFiscale) {
     return enteDao.getEnteByCodFiscale(codFiscale);
   }
 
-  @Cacheable(value="enteCache")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE)
   public List<Ente> getEntiByOperatoreUsername(String operatoreUsername) {
     return enteDao.getEntiByOperatoreUsername(operatoreUsername);
   }

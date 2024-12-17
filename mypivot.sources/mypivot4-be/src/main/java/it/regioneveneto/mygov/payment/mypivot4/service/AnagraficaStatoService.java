@@ -17,6 +17,7 @@
  */
 package it.regioneveneto.mygov.payment.mypivot4.service;
 
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.dao.AnagraficaStatoDao;
 import it.regioneveneto.mygov.payment.mypivot4.model.AnagraficaStato;
 import lombok.extern.slf4j.Slf4j;
@@ -33,12 +34,12 @@ public class AnagraficaStatoService {
   @Autowired
   private AnagraficaStatoDao anagraficaStatoDao;
 
-  @Cacheable(value="anagraficaStatoCache", key="{'codStato+deTipoStato',#codStato,#deTipoStato}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_ANAGRAFICA_STATO, key="{'codStato+deTipoStato',#codStato,#deTipoStato}", unless="#result==null")
   public AnagraficaStato getByCodStatoAndTipoStato(String codStato, String deTipoStato) {
     return anagraficaStatoDao.getByCodStatoAndTipoStato(codStato, deTipoStato);
   }
 
-  @Cacheable(value="anagraficaStatoCache", key="{'id',#mygovAnagraficaStatoId}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_ANAGRAFICA_STATO, key="{'id',#mygovAnagraficaStatoId}", unless="#result==null")
   public AnagraficaStato getById(Long mygovAnagraficaStatoId) {
     return anagraficaStatoDao.getById(mygovAnagraficaStatoId);
   }

@@ -17,10 +17,13 @@
  */
 import { TipoDovuto } from './tipo-dovuto';
 import { AnagraficaStato } from './anagrafica-stato';
-import { WithActions } from './../../../../mypay4-fe-common/src/lib/table/with-actions';
 import { DateTime } from 'luxon';
+import { MapperDef, MapperType, WithActions } from 'projects/mypay4-fe-common/src/public-api';
 
 export class Accertamento extends WithActions{
+  public static readonly MAPPER_S2C_DEF = [
+    new MapperDef(MapperType.DateTime,'dtUltimaModifica','local-date')
+  ];
 
   id: number;
   deNomeAccertamento: string;

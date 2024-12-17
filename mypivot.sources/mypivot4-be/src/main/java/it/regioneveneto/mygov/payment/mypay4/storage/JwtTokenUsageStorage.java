@@ -17,6 +17,7 @@
  */
 package it.regioneveneto.mygov.payment.mypay4.storage;
 
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -26,27 +27,37 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class JwtTokenUsageStorage {
 
-  private final static String CACHE_NAME = "jwtTokenUsageCache";
-
-  @Cacheable(value=CACHE_NAME, key="{'usage',#jti}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_TOKEN_USAGE, key="{'usage',#jti}", unless="#result==null")
   public Long getTokenUsageTime(String jti){
     log.debug("getTokenUsageTime: "+jti);
     return null;
   }
 
-  @CachePut(value=CACHE_NAME, key="{'usage',#jti}")
+  @CachePut(value= CacheService.CACHE_NAME_TOKEN_USAGE, key="{'usage',#jti}")
   public Long markTokenUsed(String jti){
     log.debug("markTokenUsed: "+jti);
     return System.currentTimeMillis();
   }
 
-  @Cacheable(value=CACHE_NAME, key="{'rolling',#jti}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_TOKEN_USAGE, key="{'reqUid',#jti}", unless="#result==null")
+  public String getTokenUsageReqUid(String jti){
+    log.debug("getTokenUsageReqUid: "+jti);
+    return null;
+  }
+
+  @CachePut(value= CacheService.CACHE_NAME_TOKEN_USAGE, key="{'reqUid',#jti}")
+  public String markTokenUsedReqUid(String jti, String reqUid){
+    log.debug("markTokenUsedReqUid: "+jti);
+    return reqUid;
+  }
+
+  @Cacheable(value= CacheService.CACHE_NAME_TOKEN_USAGE, key="{'rolling',#jti}", unless="#result==null")
   public Long wasTokenRolled(String jti){
     log.debug("getRollingToken: "+jti);
     return null;
   }
 
-  @CachePut(value=CACHE_NAME, key="{'rolling',#jti}")
+  @CachePut(value= CacheService.CACHE_NAME_TOKEN_USAGE, key="{'rolling',#jti}")
   public Long markTokenRolled(String jti){
     log.debug("setRollingToken: "+jti);
     return System.currentTimeMillis();

@@ -25,10 +25,16 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import it.regioneveneto.mygov.payment.mypay4.exception.MyPayException;
+import it.regioneveneto.mygov.payment.mypay4.util.Possibly;
 import it.regioneveneto.mygov.payment.mypivot4.dto.WsImportTo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
@@ -43,6 +49,8 @@ import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @Slf4j
@@ -97,6 +105,21 @@ public class JwtTokenUtil {
   private String secret;
   @Value("${jwt.validity.seconds:36000}") //default: 10 hours
   private int jwtTokenValidity;
+
+  private final Map<String, PublicKey> clientApplicationsPublicKey;
+
+  public JwtTokenUtil(@Autowired ConfigurableEnvironment env){
+    this.clientApplicationsPublicKey = StreamSupport.stream(env.getPropertySources().spliterator(), false)
+      .filter(ps -> ps instanceof EnumerablePropertySource)
+      .map(ps -> ((EnumerablePropertySource<?>) ps).getPropertyNames())
+      .flatMap(Arrays::stream)
+      .filter(name -> name.startsWith("a2a.public."))
+      .distinct()
+      .map(name -> Pair.of(name.substring("a2a.public.".length()), this.getPublicKeyFromString(env.getProperty(name))))
+      //.map(pair -> {log.debug(pair.getKey()+":"+pair.getValue()); return pair;})
+      .collect(Collectors.toUnmodifiableMap(Pair::getKey, Pair::getValue));
+    log.debug("A2A client applications: "+clientApplicationsPublicKey.keySet());
+  }
 
 
   private String getAppBePath(){
@@ -192,6 +215,9 @@ public class JwtTokenUtil {
   public boolean isWsAuthToken(Jws<Claims> token){
     return TOKEN_TYPE_WSAUTH.equals(token.getBody().getOrDefault(TOKEN_TYPE, null));
   }
+  public boolean isA2AAuthToken(Jws<Claims> token){
+    return TOKEN_TYPE_A2A.equals(token.getBody().getOrDefault(TOKEN_TYPE, null));
+  }
 
   public String generateToken(String username, UserWithAdditionalInfo user) {
     Map<String, Object> claims = new HashMap<>();
@@ -283,6 +309,17 @@ public class JwtTokenUtil {
     return jws;
   }
 
+  private Jws<Claims> parseJwsTokenImpl(String token, Key secretKey){
+    Jws<Claims> jws;
+    try{
+      jws = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
+    } catch(Exception e){
+      log.error("error parsing jwt token [{}]: {}", token, e.toString());
+      throw e;
+    }
+    return jws;
+  }
+
   //while creating the token -
 //1. Define  claims of the token, like Issuer, Expiration, Subject, and the ID
 //2. Sign the JWT using the HS512 algorithm and secret key.
@@ -321,6 +358,22 @@ public class JwtTokenUtil {
     } catch (Exception e){
       throw new MyPayException("invalid public key", e);
     }
+  }
+
+  public Pair<String, Jws<Claims>> parseA2AAuthorizationToken(String token) {
+    ImmutablePair<String, Jws<Claims>> pairAppJws = this.clientApplicationsPublicKey.keySet().stream()
+        .map(Possibly.of((String app) -> new ImmutablePair<>(app,
+            parseJwsTokenImpl(token, this.clientApplicationsPublicKey.get(app)))))
+        .filter(Possibly::is)
+        .map(Possibly::orNull)
+        .findFirst()
+        .orElseThrow(() -> new InvalidJwtException(null, null, "Invalid token for A2A call"));
+
+    if (!isA2AAuthToken(pairAppJws.getRight())){
+      throw new InvalidJwtException(pairAppJws.getRight().getHeader(), pairAppJws.getRight().getBody(), "Invalid token type");
+    }
+
+    return pairAppJws;
   }
 
   public static void main(String[] args) {

@@ -23,4 +23,5 @@ import java.util.Set;
 public interface MyProfileServiceI {
   Map<String, Set<String>> getUserTenantsAndRoles(String userCode);
   void clearUserTenantsAndRoles(String userCode);
+  boolean isSystemAdministrator(Map<String, Set<String>> userTenantsAndRoles);
 }

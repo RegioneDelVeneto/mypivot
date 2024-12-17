@@ -16,7 +16,11 @@
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
-    ApiInvokerService, ConfigurationService, Ente as CommonEnte, environment, UserService
+  ApiInvokerService,
+  Ente as CommonEnte,
+  ConfigurationService,
+  UserService,
+  environment
 } from 'projects/mypay4-fe-common/src/public-api';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -120,7 +124,7 @@ export class EnteService implements OnDestroy{
   }
 
   getEntiByUtente(): Observable<Ente[]> {
-    return this.apiInvokerService.get<Ente[]>(this.baseApiUrl + 'enti/byUtente', {skipHandleError: true});
+    return this.apiInvokerService.get<Ente[]>(this.baseApiUrl + 'enti/byUtente', {skipHandleError: true, skipErrorByNavigationDisabled: true});
   }
 
   getListTipoDovutoByEnte(ente: Ente): Observable<TipoDovuto[]> {

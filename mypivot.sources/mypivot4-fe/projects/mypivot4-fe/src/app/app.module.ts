@@ -15,6 +15,7 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { Settings } from 'luxon';
 import { FileSaverModule } from 'ngx-filesaver';
 import { MAT_LUXON_DATE_ADAPTER_OPTIONS, MatLuxonDateModule } from 'ngx-material-luxon';
 import { ToastContainerModule, ToastrModule } from 'ngx-toastr';
@@ -164,6 +165,7 @@ import { TesorerieComponent } from './components/tesorerie/tesorerie.component';
 import { SidenavService } from './services/sidenav.service';
 
 registerLocaleData(localeIt, localeItExtra);
+Settings.defaultLocale = 'it-it';
 
 export function bootstrapMyPayConfig(configurationService: ConfigurationService) {
   return () => configurationService.bootstrapConfig();

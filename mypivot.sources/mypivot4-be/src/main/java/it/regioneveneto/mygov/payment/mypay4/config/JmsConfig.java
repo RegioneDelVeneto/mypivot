@@ -20,22 +20,56 @@ package it.regioneveneto.mygov.payment.mypay4.config;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
 
 @Configuration
 @Slf4j
+@EnableJms
 public class JmsConfig {
+
   @Bean
   public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory)
   {
     JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
     jmsTemplate.setSessionTransacted(true);
-    //((CachingConnectionFactory)connectionFactory).setCacheProducers(false);
     log.info("Creating TRANSACTION ENABLED jms template ["+connectionFactory.getClass().getName()+"]");
     return jmsTemplate;
   }
+
+//  @Bean
+//  public ConnectionFactoryBeanProcessor connectionFactoryBeanProcessor(){
+//    return new ConnectionFactoryBeanProcessor();
+//  }
+
+//  @Bean
+//  public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory,
+//                                                                        DefaultJmsListenerContainerFactoryConfigurer configurer) {
+//    log.info("creating instance of jmsListenerContainerFactory (DefaultJmsListenerContainerFactory)");
+//    DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+//    // This provides all boot's default to this factory, including the message converter
+//    configurer.configure(factory, connectionFactory);
+//    // custom settings
+//    factory.setSessionTransacted(false);
+//    factory.setSessionAcknowledgeMode(Session.AUTO_ACKNOWLEDGE);
+//    //factory.setSessionAcknowledgeMode(ActiveMQJMSConstants.INDIVIDUAL_ACKNOWLEDGE);
+//    if(connectionFactory instanceof ActiveMQConnectionFactory) {
+//      ActiveMQConnectionFactory amqFactory = (ActiveMQConnectionFactory) connectionFactory;
+//      log.info("setting ConsumerWindowSize to 0 (see https://issues.apache.org/jira/browse/ARTEMIS-2417)");
+//      amqFactory.setConsumerWindowSize(0);
+//    }
+//    factory.setErrorHandler(t -> log.error("error occurred handling received JMS Message", t) );
+//    factory.setExceptionListener(t -> log.error("error occurred handling JMS connection", t) );
+//    try{
+//      log.info("class of ConnectionFactory: {}", connectionFactory.getClass().getName());
+//      log.info("DefaultJmsListenerContainerFactory: {}",ReflectionToStringBuilder.toString(factory));
+//    }catch(Exception e){
+//      log.warn("error inspecting DefaultJmsListenerContainerFactory",e);
+//    }
+//    return factory;
+//  }
 
 //  @Bean
 //  public PlatformTransactionManager transactionManager(ConnectionFactory connectionFactory) {
@@ -43,3 +77,24 @@ public class JmsConfig {
 //  }
 
 }
+
+//@Slf4j
+//class ConnectionFactoryBeanProcessor implements BeanPostProcessor {
+//  @Override
+//  public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+//    if (bean instanceof ActiveMQConnectionFactory) {
+//      log.info("processing bean name[{}] class[{}]", beanName, bean.getClass().getName());
+//      ActiveMQConnectionFactory activeMQConnectionFactory = (ActiveMQConnectionFactory) bean;
+//      if (activeMQConnectionFactory.getConsumerWindowSize() != 0) {
+//        log.info("setting ConsumerWindowSize to 0 (see https://issues.apache.org/jira/browse/ARTEMIS-2417)");
+//        try{
+//          activeMQConnectionFactory.setConsumerWindowSize(0);
+//        }catch(Exception e){
+//          log.error("error setting ConsumerWindowSize to 0; ignoring it", e);
+//        }
+//        log.info("Connection factory [{}]", activeMQConnectionFactory);
+//      }
+//    }
+//    return bean;
+//  }
+//}

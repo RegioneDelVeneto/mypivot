@@ -219,8 +219,8 @@ export class FlussiImportComponent implements OnInit, OnDestroy, WithTitle {
   downloadFlussoEnabled(type: string){
     return function(element: FlussoImport, thisRef: FlussiImportComponent){
       switch(type){
-        case 'originale': return element.filePathOriginale && element.filePathOriginale.trim().length > 0;
-        case 'scartati': return element.filePathScarti && element.filePathScarti.trim().length > 0;
+        case 'originale': return element.showDownload && element.filePathOriginale && element.filePathOriginale.trim().length > 0;
+        case 'scartati': return element.showDownload && element.filePathScarti && element.filePathScarti.trim().length > 0;
         default: throw new Error("invalid download type: "+type);
       }
     }

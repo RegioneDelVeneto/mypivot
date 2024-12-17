@@ -21,6 +21,7 @@ import it.regioneveneto.mygov.payment.mypay4.exception.ManagedException;
 import it.regioneveneto.mygov.payment.mypay4.exception.MyPayException;
 import it.regioneveneto.mygov.payment.mypay4.exception.NotFoundException;
 import it.regioneveneto.mygov.payment.mypay4.logging.LogExecution;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypay4.util.Constants;
 import it.regioneveneto.mygov.payment.mypay4.util.VerificationUtils;
 import it.regioneveneto.mygov.payment.mypivot4.dao.EnteDao;
@@ -63,12 +64,12 @@ public class EnteTipoDovutoService {
   @Resource
   private EnteTipoDovutoService self;
 
-  @Cacheable(value="enteTipoDovutoCache", key = "{'mygovEnteId+operatoreUsername',#mygovEnteId,#operatoreUsername}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'mygovEnteId+operatoreUsername',#mygovEnteId,#operatoreUsername}", unless="#result==null")
   public List<EnteTipoDovuto> getByMygovEnteIdAndOperatoreUsername(Long mygovEnteId, String operatoreUsername) {
     return enteTipoDovutoDao.getByMygovEnteIdAndOperatoreUsername(mygovEnteId, operatoreUsername);
   }
 
-  @Cacheable(value="enteTipoDovutoCache", key = "{'mygovEnteId+flags',#mygovEnteId, #esterno}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'mygovEnteId+flags',#mygovEnteId, #esterno}", unless="#result==null")
   public List<EnteTipoDovuto> getByMygovEnteIdAndFlags(Long mygovEnteId, Boolean esterno) {
     return  enteTipoDovutoDao.getByMygovEnteIdAndFlags(mygovEnteId, esterno);
   }
@@ -77,18 +78,18 @@ public class EnteTipoDovutoService {
     return enteTipoDovutoDao.getTipoByCodIpaEnte(codIpaEnte);
   }
 
-  @Cacheable(value="enteTipoDovutoCache", key="{'id',#id}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key="{'id',#id}", unless="#result==null")
   @LogExecution(params = LogExecution.ParamMode.ON, returns = LogExecution.ParamMode.ON)  //TODO to remove: added just as a configuration example
   public Optional<EnteTipoDovuto> getById(Long id) {
     return enteTipoDovutoDao.getById(id);
   }
 
-  @Cacheable(value="enteTipoDovutoCache", key="{'codTipo',#codTipo,#codIpaEnte}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key="{'codTipo',#codTipo,#codIpaEnte}", unless="#result==null")
   public Optional<EnteTipoDovuto> getByCodTipo(String codTipo, String codIpaEnte) {
     return enteTipoDovutoDao.getByCodTipo(codTipo, codIpaEnte);
   }
 
-  @Cacheable(value="enteTipoDovutoCache", key="{'codTipoEnteId',#codTipo,#idEnte}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key="{'codTipoEnteId',#codTipo,#idEnte}", unless="#result==null")
   public Optional<EnteTipoDovuto> getByCodTipo(String codTipo, Long idEnte) {
     return enteTipoDovutoDao.getByCodTipoEnteId(codTipo, idEnte);
   }
@@ -110,7 +111,7 @@ public class EnteTipoDovutoService {
     return null;
   }
 
-  @CacheEvict(value="enteTipoDovutoCache", allEntries = true)
+  @CacheEvict(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, allEntries = true)
   @Transactional(propagation = Propagation.REQUIRED)
   public EnteTipoDovutoTo insertTipoDovuto(EnteTipoDovutoTo enteTipoDovutoTo) {
     EnteTipoDovutoTo retValue =  enteTipoDovutoDao.getByCodTipoEnteId(enteTipoDovutoTo.getCodTipo(), enteTipoDovutoTo.getMygovEnteId())
@@ -129,7 +130,7 @@ public class EnteTipoDovutoService {
     return retValue;
   }
 
-  @CacheEvict(value="enteTipoDovutoCache", allEntries = true)
+  @CacheEvict(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, allEntries = true)
   @Transactional(propagation = Propagation.REQUIRED)
   public int updateTipoDovuto(Long mygovEnteTipoDovutoId, String codTipo, String deTipo){
     int retValue = enteTipoDovutoDao.getById(mygovEnteTipoDovutoId)
@@ -140,7 +141,7 @@ public class EnteTipoDovutoService {
     return retValue;
   }
 
-  @CacheEvict(value="enteTipoDovutoCache", allEntries = true)
+  @CacheEvict(value=CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, allEntries = true)
   @Transactional(propagation = Propagation.REQUIRED)
   public int deleteTipoDovuto(Long mygovEnteTipoDovutoId){
     int retValue = enteTipoDovutoDao.getById(mygovEnteTipoDovutoId)

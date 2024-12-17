@@ -23,7 +23,9 @@ import it.regioneveneto.mygov.payment.mypivot4.dao.EnteDao;
 import it.regioneveneto.mygov.payment.mypivot4.dao.ManageFlussoDao;
 import it.regioneveneto.mygov.payment.mypivot4.dao.UtenteDao;
 import it.regioneveneto.mygov.payment.mypivot4.model.AnagraficaStato;
+import it.regioneveneto.mygov.payment.mypivot4.model.Ente;
 import it.regioneveneto.mygov.payment.mypivot4.model.ManageFlusso;
+import it.regioneveneto.mygov.payment.mypivot4.model.Utente;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +74,27 @@ public class ManageFlussoService {
     return manageFlussoDao.insert(manageFlusso);
   }
 
+  @Transactional(propagation = Propagation.REQUIRED)
+  public Long insertForEnteSecondario(String codTipoFlusso, Ente ente, AnagraficaStato anagraficaStato, Utente utente) {
+    ManageFlusso manageFlusso = new ManageFlusso();
+    manageFlusso.setMygovTipoFlussoId(tipoFlussoService.getByCodTipo(codTipoFlusso)
+            .orElseThrow(()->new NotFoundException(("tipo flusso not found"))));
+    manageFlusso.setMygovEnteId(ente);
+    manageFlusso.setMygovAnagraficaStatoId(anagraficaStato);
+    manageFlusso.setCodRequestToken("n/a");
+    manageFlusso.setMygovUtenteId(utente);
+    manageFlusso.setCodProvenienzaFile("queue");
+    manageFlusso.setDePercorsoFile("n/a");
+    manageFlusso.setDeNomeFile("n/a");
+
+    manageFlusso.setDtCreazione(new Timestamp(System.currentTimeMillis()));
+    manageFlusso.setDtUltimaModifica(new Timestamp(System.currentTimeMillis()));
+    manageFlusso.setNumRigheTotali(0L);
+    manageFlusso.setNumRigheImportateCorrettamente(0L);
+
+    return manageFlussoDao.insert(manageFlusso);
+  }
+
   public boolean isDuplicateFileName(String deNomeFile) {
     return manageFlussoDao.countDuplicateFileName(deNomeFile) > 0;
   }
@@ -84,4 +107,7 @@ public class ManageFlussoService {
     return manageFlussoDao.existingRequestToken(codRequestToken);
   }
 
+  public Long getIdByTypeSecondaryEnte(String codTipo, String codiceFiscaleEnte) {
+    return manageFlussoDao.getByTypeSecondaryEnte(codTipo, codiceFiscaleEnte);
+  }
 }

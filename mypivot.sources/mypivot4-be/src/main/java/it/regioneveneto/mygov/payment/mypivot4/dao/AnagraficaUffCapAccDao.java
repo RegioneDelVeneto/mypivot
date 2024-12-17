@@ -18,7 +18,6 @@
 package it.regioneveneto.mygov.payment.mypivot4.dao;
 
 import it.regioneveneto.mygov.payment.mypay4.dao.BaseDao;
-import it.regioneveneto.mygov.payment.mypivot4.model.Accertamento;
 import it.regioneveneto.mygov.payment.mypivot4.model.AnagraficaUffCapAcc;
 import it.regioneveneto.mygov.payment.mypivot4.model.EnteTipoDovuto;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
@@ -48,7 +47,7 @@ public interface AnagraficaUffCapAccDao extends BaseDao {
           " ,dt_creazione" +
           " ,dt_ultima_modifica" +
           ") VALUES (" +
-          " nextval('mygov_anagrafica_stato_mygov_anagrafica_stato_id_seq')" +
+          " nextval('mygov_anag_uff_cap_acc_mygov_anag_uff_cap_acc_id_seq')" +
           " ,:d.mygovEnteId" +
           " ,:d.codTipoDovuto" +
           " ,:d.codUfficio" +

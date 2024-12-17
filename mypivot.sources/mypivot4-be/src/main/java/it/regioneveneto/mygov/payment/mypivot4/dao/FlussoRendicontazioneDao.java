@@ -125,7 +125,7 @@ public interface FlussoRendicontazioneDao extends BaseDao {
           "  join mygov_ente " + Ente.ALIAS+" ON " + Ente.ALIAS+".mygov_ente_id = " + FlussoRendicontazione.ALIAS+".mygov_ente_id"  +
           "  join mygov_manage_flusso " + ManageFlusso.ALIAS+" ON " + ManageFlusso.ALIAS+".mygov_manage_flusso_id = " + FlussoRendicontazione.ALIAS+".mygov_manage_flusso_id" +
           " where " + Ente.ALIAS+".cod_ipa_ente = :codIpaEnte " +
-          "   and " + FlussoRendicontazione.ALIAS+".cod_identificativo_flusso = :iuf"
+          "   and upper(" + FlussoRendicontazione.ALIAS+".cod_identificativo_flusso) = upper(:iuf)"
   )
   @RegisterFieldMapper(FlussoRendicontazione.class)
   List<FlussoRendicontazione> getByCodIpaIUF(String codIpaEnte, String iuf);

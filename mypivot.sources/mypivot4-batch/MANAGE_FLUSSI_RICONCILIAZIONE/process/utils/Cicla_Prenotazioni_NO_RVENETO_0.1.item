@@ -7,84 +7,41 @@
     <contextParameter comment="" name="password" prompt="password?" promptNeeded="false" type="id_String" value="null"/>
     <contextParameter comment="" name="url" prompt="url?" promptNeeded="false" type="id_String" value="null"/>
     <contextParameter comment="" name="username" prompt="username?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_db" prompt="conn_db?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_host" prompt="conn_host?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_port" prompt="conn_port?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_psw" prompt="conn_psw?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_schema" prompt="conn_schema?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_usr" prompt="conn_usr?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_ambiente" prompt="email_ambiente?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_amministratore" prompt="email_amministratore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_flag_attiva" prompt="email_flag_attiva?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="email_indirizzo_gestore" prompt="email_indirizzo_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_psw_gestore" prompt="email_psw_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_sendername" prompt="email_sendername?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_smptHost_gestore" prompt="email_smptHost_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_smptPort_gestore" prompt="email_smptPort_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_ssl_support" prompt="email_ssl_support?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="email_tls_support" prompt="email_tls_support?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="email_usr_gestore" prompt="email_usr_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="ambiente" prompt="ambiente?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="cod_stato_iniziale" prompt="cod_stato_iniziale?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="commit_freq" prompt="commit_freq?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Long" value="null"/>
-    <contextParameter comment="" name="de_tipo_stato_batch" prompt="de_tipo_stato_batch?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="directory_root_elaborazione" prompt="directory_root_elaborazione?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Directory" value="null"/>
-    <contextParameter comment="" name="directory_root_enti" prompt="directory_root_enti?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Directory" value="null"/>
-    <contextParameter comment="" name="directory_talend" prompt="directory_talend?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="export_url" prompt="export_url?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="numero_minuti_avviso" prompt="numero_minuti_avviso?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Integer" value="null"/>
-    <contextParameter comment="" name="numero_ore_avviso" prompt="numero_ore_avviso?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Integer" value="null"/>
-    <contextParameter comment="" name="secondi_trigger_batch" prompt="secondi_trigger_batch?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Integer" value="null"/>
-    <contextParameter comment="" name="versione_oggetto" prompt="versione_oggetto?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_codice_applicazione" prompt="nagios_codice_applicazione?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_codice_servizio" prompt="nagios_codice_servizio?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_flag_attiva" prompt="nagios_flag_attiva?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="nagios_password" prompt="nagios_password?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_url" prompt="nagios_url?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_username" prompt="nagios_username?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-  </context>
-  <context confirmationNeeded="false" name="locale">
-    <contextParameter comment="" name="email_amministratore_ente" prompt="email_amministratore_ente?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="codice_applicazione" prompt="codice_applicazione?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="codice_servizio" prompt="codice_servizio?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="password" prompt="password?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="url" prompt="url?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="username" prompt="username?" promptNeeded="false" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_db" prompt="conn_db?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_host" prompt="conn_host?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_port" prompt="conn_port?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_psw" prompt="conn_psw?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_schema" prompt="conn_schema?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="conn_usr" prompt="conn_usr?" promptNeeded="false" repositoryContextId="_uvoh8LDeEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_ambiente" prompt="email_ambiente?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_amministratore" prompt="email_amministratore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_flag_attiva" prompt="email_flag_attiva?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="email_indirizzo_gestore" prompt="email_indirizzo_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_psw_gestore" prompt="email_psw_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_sendername" prompt="email_sendername?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_smptHost_gestore" prompt="email_smptHost_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_smptPort_gestore" prompt="email_smptPort_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="email_ssl_support" prompt="email_ssl_support?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="email_tls_support" prompt="email_tls_support?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="email_usr_gestore" prompt="email_usr_gestore?" promptNeeded="false" repositoryContextId="_NPdhcLDfEeO2tNG9zhet7Q" type="id_String" value="null"/>
-    <contextParameter comment="" name="ambiente" prompt="ambiente?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="cod_stato_iniziale" prompt="cod_stato_iniziale?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="commit_freq" prompt="commit_freq?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Long" value="null"/>
-    <contextParameter comment="" name="de_tipo_stato_batch" prompt="de_tipo_stato_batch?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="directory_root_elaborazione" prompt="directory_root_elaborazione?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Directory" value="null"/>
-    <contextParameter comment="" name="directory_root_enti" prompt="directory_root_enti?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Directory" value="null"/>
-    <contextParameter comment="" name="directory_talend" prompt="directory_talend?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="export_url" prompt="export_url?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="numero_minuti_avviso" prompt="numero_minuti_avviso?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Integer" value="null"/>
-    <contextParameter comment="" name="numero_ore_avviso" prompt="numero_ore_avviso?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Integer" value="null"/>
-    <contextParameter comment="" name="secondi_trigger_batch" prompt="secondi_trigger_batch?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_Integer" value="null"/>
-    <contextParameter comment="" name="versione_oggetto" prompt="versione_oggetto?" promptNeeded="false" repositoryContextId="_sG8doLjPEeOa-4vJfwxx6A" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_codice_applicazione" prompt="nagios_codice_applicazione?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_codice_servizio" prompt="nagios_codice_servizio?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_flag_attiva" prompt="nagios_flag_attiva?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_Boolean" value="null"/>
-    <contextParameter comment="" name="nagios_password" prompt="nagios_password?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_url" prompt="nagios_url?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
-    <contextParameter comment="" name="nagios_username" prompt="nagios_username?" promptNeeded="false" repositoryContextId="_fzB5QCCUEeWvtsyhMT3IfQ" type="id_String" value="null"/>
+    <contextParameter comment="" name="conn_db" prompt="conn_db?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="conn_host" prompt="conn_host?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="conn_port" prompt="conn_port?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="conn_psw" prompt="conn_psw?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="conn_schema" prompt="conn_schema?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="conn_usr" prompt="conn_usr?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_ambiente" prompt="email_ambiente?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_amministratore" prompt="email_amministratore?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_flag_attiva" prompt="email_flag_attiva?" promptNeeded="false" type="id_Boolean" value=""/>
+    <contextParameter comment="" name="email_indirizzo_gestore" prompt="email_indirizzo_gestore?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_psw_gestore" prompt="email_psw_gestore?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_sendername" prompt="email_sendername?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_smptHost_gestore" prompt="email_smptHost_gestore?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_smptPort_gestore" prompt="email_smptPort_gestore?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="email_ssl_support" prompt="email_ssl_support?" promptNeeded="false" type="id_Boolean" value="false"/>
+    <contextParameter comment="" name="email_tls_support" prompt="email_tls_support?" promptNeeded="false" type="id_Boolean" value="false"/>
+    <contextParameter comment="" name="email_usr_gestore" prompt="email_usr_gestore?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="ambiente" prompt="ambiente?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="cod_stato_iniziale" prompt="cod_stato_iniziale?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="commit_freq" prompt="commit_freq?" promptNeeded="false" type="id_Long" value=""/>
+    <contextParameter comment="" name="de_tipo_stato_batch" prompt="de_tipo_stato_batch?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="directory_root_elaborazione" prompt="directory_root_elaborazione?" promptNeeded="false" type="id_Directory" value=""/>
+    <contextParameter comment="" name="directory_root_enti" prompt="directory_root_enti?" promptNeeded="false" type="id_Directory" value=""/>
+    <contextParameter comment="" name="directory_talend" prompt="directory_talend?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="export_url" prompt="export_url?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="numero_minuti_avviso" prompt="numero_minuti_avviso?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="numero_ore_avviso" prompt="numero_ore_avviso?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="secondi_trigger_batch" prompt="secondi_trigger_batch?" promptNeeded="false" type="id_Integer" value=""/>
+    <contextParameter comment="" name="versione_oggetto" prompt="versione_oggetto?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="nagios_codice_applicazione" prompt="nagios_codice_applicazione?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="nagios_codice_servizio" prompt="nagios_codice_servizio?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="nagios_flag_attiva" prompt="nagios_flag_attiva?" promptNeeded="false" type="id_Boolean" value=""/>
+    <contextParameter comment="" name="nagios_password" prompt="nagios_password?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="nagios_url" prompt="nagios_url?" promptNeeded="false" type="id_String" value="null"/>
+    <contextParameter comment="" name="nagios_username" prompt="nagios_username?" promptNeeded="false" type="id_String" value="null"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
@@ -115,8 +72,6 @@
     <elementParameter field="CHECK" name="OVERRIDE_ENCODING_FLAG" value="false" show="false"/>
     <elementParameter field="ENCODING_TYPE" name="OVERRIDE_ENCODING_IN_EXTRA" value="ISO-8859-15" show="false"/>
     <elementParameter field="TECHNICAL" name="OVERRIDE_ENCODING_IN_EXTRA:ENCODING_TYPE" value="ISO-8859-15" show="false"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:PROPERTY_TYPE" value="" show="false"/>
-    <elementParameter field="TECHNICAL" name="PROPERTY_TYPE_IMPLICIT_CONTEXT:REPOSITORY_PROPERTY_TYPE" value="" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_TYPE_IMPLICIT_CONTEXT" value="" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION_IMPLICIT_CONTEXT" value="" show="false"/>
     <elementParameter field="TEXT" name="URL_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -129,7 +84,7 @@
     <elementParameter field="TEXT" name="PROPERTIES_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:81GwzB8T5cmUB2f+l+6Lho7YOJzZ1Fdaqgw1z3jF" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS_IMPLICIT_CONTEXT" value="enc:system.encryption.key.v1:zsCQulWrA1tNqMfxuvWF107ODTG6AAs1oaWViP/V" show="false"/>
     <elementParameter field="FILE" name="DBFILE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="DBTABLE_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="QUERY_CONDITION_IMPLICIT_CONTEXT" value="&quot;&quot;" show="false"/>
@@ -144,7 +99,7 @@
     <elementParameter field="CHECK" name="ON_METERCATCHER_FLAG" value="false"/>
     <elementParameter field="CHECK" name="ON_CONSOLE_FLAG" value="false" show="false"/>
     <elementParameter field="CHECK" name="ON_FILES_FLAG" value="false" show="false"/>
-    <elementParameter field="DIRECTORY" name="FILE_PATH" value="&quot;_USER_REPO_&quot;" show="false"/>
+    <elementParameter field="DIRECTORY" name="FILE_PATH" value="&quot;C:/talend/TOS_DI-Win32-20200219_1130-V7.3.1/workspace/.metadata&quot;" show="false"/>
     <elementParameter field="TEXT" name="FILENAME_STATS" value="&quot;stats_file.txt&quot;" show="false"/>
     <elementParameter field="TEXT" name="FILENAME_LOGS" value="&quot;logs_file.txt&quot;" show="false"/>
     <elementParameter field="TEXT" name="FILENAME_METTER" value="&quot;meter_file.txt&quot;" show="false"/>
@@ -152,7 +107,7 @@
     <elementParameter field="TECHNICAL" name="ENCODING:ENCODING_TYPE" value="ISO-8859-15" show="false"/>
     <elementParameter field="CHECK" name="ON_DATABASE_FLAG" value="false" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_TYPE" value="tJDBCOutput" show="false"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="ORACLE_11" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="ORACLE_12" show="false"/>
     <elementParameter field="TEXT" name="URL" value="&quot;&quot;" show="false"/>
     <elementParameter field="TABLE" name="DRIVER_JAR" show="false"/>
     <elementParameter field="TEXT" name="DRIVER_CLASS" value="&quot;&quot;" show="false"/>
@@ -164,7 +119,7 @@
     <elementParameter field="TEXT" name="PROPERTIES" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="&quot;&quot;" show="false"/>
     <elementParameter field="TEXT" name="USER" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:h8TqyUt0Emx07QQVxfdTlBnj5EZqNBKo+v/R9UJU" show="false"/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:Xv8/+sYW9D/aDbRnqO0tWkWgU0Xe9uyRIes5RjKh" show="false"/>
     <elementParameter field="FILE" name="DBFILE" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_STATS" value="&quot;&quot;" show="false"/>
     <elementParameter field="DBTABLE" name="TABLE_LOGS" value="&quot;&quot;" show="false"/>
@@ -376,13 +331,13 @@
     <elementParameter field="TEXT" name="DBNAME" value="context.conn_db + &quot;?currentSchema=&quot; + context.conn_schema"/>
     <elementParameter field="TEXT" name="SCHEMA_DB" value="context.conn_schema"/>
     <elementParameter field="TEXT" name="USER" value="context.conn_usr"/>
-    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:/+JIExo8rHDwCvMaRi95qy/GcfmOJv2SqZ0Wbor9t3uwpcVbQWGFtCMcyaU="/>
+    <elementParameter field="PASSWORD" name="PASS" value="enc:system.encryption.key.v1:m/trhYEqfOwGK+rvqU535nnpk+fkE7dhNda2S2G4jJEZbCzZqmDvcB34aAA="/>
     <elementParameter field="DBTABLE" name="TABLE" value="&quot;mygov_prenotazione_flusso_riconciliazione&quot;"/>
     <elementParameter field="QUERYSTORE_TYPE" name="QUERYSTORE" value="&quot;&quot;"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:REPOSITORY_QUERYSTORE_TYPE" value="" show="false"/>
     <elementParameter field="TECHNICAL" name="QUERYSTORE:QUERYSTORE_TYPE" value="BUILT_IN"/>
     <elementParameter field="GUESS_SCHEMA" name="GUESS_SCHEMA" value="&quot;&quot;"/>
-    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT  &#xA;  mpfr.mygov_prenotazione_flusso_riconciliazione_id,&#xA;  mpfr.version,&#xA;  mpfr.mygov_ente_id,&#xA;  mpfr.mygov_anagrafica_stato_id,&#xA;  mpfr.mygov_utente_id,&#xA;  mpfr.cod_request_token,&#xA;  mpfr.de_nome_file_generato,&#xA;  mpfr.num_dimensione_file_generato,&#xA;  mpfr.cod_codice_classificazione,&#xA;  mpfr.de_tipo_dovuto,&#xA;  mpfr.cod_id_univoco_versamento,&#xA;  mpfr.cod_id_univoco_rendicontazione,&#xA;  mpfr.dt_data_ultimo_aggiornamento_da,&#xA;  mpfr.dt_data_ultimo_aggiornamento_a,&#xA;  mpfr.dt_data_esecuzione_da,&#xA;  mpfr.dt_data_esecuzione_a,&#xA;  mpfr.dt_data_esito_da,&#xA;  mpfr.dt_data_esito_a,&#xA;  mpfr.dt_data_regolamento_da,&#xA;  mpfr.dt_data_regolamento_a,&#xA;  mpfr.dt_data_contabile_da,&#xA;  mpfr.dt_data_contabile_a,&#xA;  mpfr.dt_data_valuta_da,&#xA;  mpfr.dt_data_valuta_a,&#xA;  mpfr.cod_id_univoco_dovuto,&#xA;  mpfr.cod_id_univoco_riscossione,&#xA;  mpfr.cod_id_univoco_pagatore,&#xA;  mpfr.de_anagrafica_pagatore,&#xA;  mpfr.cod_id_univoco_versante,&#xA;  mpfr.de_anagrafica_versante,&#xA;  mpfr.de_denominazione_attestante,&#xA;  mpfr.de_ordinante,&#xA;  mpfr.cod_id_regolamento,&#xA;  mpfr.cod_conto_tesoreria,&#xA;  mpfr.de_importo_tesoreria,&#xA;  mpfr.de_causale,&#xA;  mpfr.dt_creazione,&#xA;  mpfr.dt_ultima_modifica,&#xA;  mpfr.versione_tracciato&#xA;FROM mygov_prenotazione_flusso_riconciliazione mpfr&#xD;&#xA;JOIN mygov_ente ente on mpfr.mygov_ente_id= ente.mygov_ente_id&#xA;WHERE mpfr.mygov_anagrafica_stato_id = (&#xA;  SELECT ags.mygov_anagrafica_stato_id &#xA;  FROM mygov_anagrafica_stato ags&#xA;  WHERE ags.cod_stato = '&quot; + context.cod_stato_iniziale + &quot;' AND ags.de_tipo_stato = '&quot; + context.de_tipo_stato_batch + &quot;')&#xD;&#xA;and ente.cod_ipa_ente != '_COD_IPA_ENTE_'&quot;"/>
+    <elementParameter field="MEMO_SQL" name="QUERY" value="&quot;SELECT  &#xA;  mpfr.mygov_prenotazione_flusso_riconciliazione_id,&#xA;  mpfr.version,&#xA;  mpfr.mygov_ente_id,&#xA;  mpfr.mygov_anagrafica_stato_id,&#xA;  mpfr.mygov_utente_id,&#xA;  mpfr.cod_request_token,&#xA;  mpfr.de_nome_file_generato,&#xA;  mpfr.num_dimensione_file_generato,&#xA;  mpfr.cod_codice_classificazione,&#xA;  mpfr.de_tipo_dovuto,&#xA;  mpfr.cod_id_univoco_versamento,&#xA;  mpfr.cod_id_univoco_rendicontazione,&#xA;  mpfr.dt_data_ultimo_aggiornamento_da,&#xA;  mpfr.dt_data_ultimo_aggiornamento_a,&#xA;  mpfr.dt_data_esecuzione_da,&#xA;  mpfr.dt_data_esecuzione_a,&#xA;  mpfr.dt_data_esito_da,&#xA;  mpfr.dt_data_esito_a,&#xA;  mpfr.dt_data_regolamento_da,&#xA;  mpfr.dt_data_regolamento_a,&#xA;  mpfr.dt_data_contabile_da,&#xA;  mpfr.dt_data_contabile_a,&#xA;  mpfr.dt_data_valuta_da,&#xA;  mpfr.dt_data_valuta_a,&#xA;  mpfr.cod_id_univoco_dovuto,&#xA;  mpfr.cod_id_univoco_riscossione,&#xA;  mpfr.cod_id_univoco_pagatore,&#xA;  mpfr.de_anagrafica_pagatore,&#xA;  mpfr.cod_id_univoco_versante,&#xA;  mpfr.de_anagrafica_versante,&#xA;  mpfr.de_denominazione_attestante,&#xA;  mpfr.de_ordinante,&#xA;  mpfr.cod_id_regolamento,&#xA;  mpfr.cod_conto_tesoreria,&#xA;  mpfr.de_importo_tesoreria,&#xA;  mpfr.de_causale,&#xA;  mpfr.dt_creazione,&#xA;  mpfr.dt_ultima_modifica,&#xA;  mpfr.versione_tracciato&#xA;FROM mygov_prenotazione_flusso_riconciliazione mpfr&#xD;&#xA;JOIN mygov_ente ente on mpfr.mygov_ente_id= ente.mygov_ente_id&#xA;WHERE mpfr.mygov_anagrafica_stato_id = (&#xA;  SELECT ags.mygov_anagrafica_stato_id &#xA;  FROM mygov_anagrafica_stato ags&#xA;  WHERE ags.cod_stato = '&quot; + context.cod_stato_iniziale + &quot;' AND ags.de_tipo_stato = '&quot; + context.de_tipo_stato_batch + &quot;')&#xD;&#xA;and ente.cod_ipa_ente != 'R_VENETO'&quot;"/>
     <elementParameter field="LABEL" name="NOTE" value="This option only applies when deploying and running in the Talend Runtime"/>
     <elementParameter field="CHECK" name="SPECIFY_DATASOURCE_ALIAS" value="false"/>
     <elementParameter field="TEXT" name="DATASOURCE_ALIAS" value="&quot;&quot;" show="false"/>
@@ -772,6 +727,47 @@
       <column comment="" key="false" length="-1" name="dt_ultima_modifica" nullable="false" pattern="&quot;yyyy-MM-dd'T'HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
       <column comment="" key="false" length="35" name="versione_tracciato" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
     </metadata>
+    <metadata connector="FLOW" name="tabellaToJob_1_4">
+      <column comment="" defaultValue="" key="true" length="-1" name="mygov_prenotazione_flusso_riconciliazione_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="version" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="mygov_ente_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="mygov_anagrafica_stato_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="mygov_utente_id" nullable="false" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_request_token" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_nome_file_generato" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="-1" name="num_dimensione_file_generato" nullable="true" pattern="" precision="-1" sourceType="" type="id_Long" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_codice_classificazione" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_tipo_dovuto" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_univoco_versamento" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_univoco_rendicontazione" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_ultimo_aggiornamento_da" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_ultimo_aggiornamento_a" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_esecuzione_da" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_esecuzione_a" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="0" sourceType="DATE" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_esito_da" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_esito_a" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_regolamento_da" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_regolamento_a" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_contabile_da" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_contabile_a" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_valuta_da" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_data_valuta_a" nullable="true" pattern="&quot;yyyy-MM-dd&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_univoco_dovuto" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_univoco_riscossione" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_univoco_pagatore" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_anagrafica_pagatore" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_univoco_versante" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_anagrafica_versante" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_denominazione_attestante" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_ordinante" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_id_regolamento" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="cod_conto_tesoreria" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_importo_tesoreria" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="de_causale" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_creazione" nullable="false" pattern="&quot;yyyy-MM-dd'T'HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="dt_ultima_modifica" nullable="false" pattern="&quot;yyyy-MM-dd'T'HH:mm:ss&quot;" precision="-1" sourceType="" type="id_Date" usefulColumn="true"/>
+      <column comment="" key="false" length="35" name="versione_tracciato" nullable="false" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" usefulColumn="true"/>
+    </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
@@ -899,6 +895,47 @@
         <mapperTableEntries name="versione_tracciato" expression="row1.versione_tracciato" type="id_String"/>
       </outputTables>
       <outputTables sizeState="INTERMEDIATE" name="tabellaToJob_1_3" expressionFilter="row1.versione_tracciato.equals(&quot;1.3&quot;)" activateExpressionFilter="true">
+        <mapperTableEntries name="mygov_prenotazione_flusso_riconciliazione_id" expression="row1.mygov_prenotazione_flusso_riconciliazione_id" type="id_Long"/>
+        <mapperTableEntries name="version" expression="row1.version" type="id_Integer"/>
+        <mapperTableEntries name="mygov_ente_id" expression="row1.mygov_ente_id" type="id_Long"/>
+        <mapperTableEntries name="mygov_anagrafica_stato_id" expression="row1.mygov_anagrafica_stato_id" type="id_Long"/>
+        <mapperTableEntries name="mygov_utente_id" expression="row1.mygov_utente_id" type="id_Long"/>
+        <mapperTableEntries name="cod_request_token" expression="row1.cod_request_token" type="id_String"/>
+        <mapperTableEntries name="de_nome_file_generato" expression="row1.de_nome_file_generato" type="id_String" nullable="true"/>
+        <mapperTableEntries name="num_dimensione_file_generato" expression="row1.num_dimensione_file_generato" type="id_Long" nullable="true"/>
+        <mapperTableEntries name="cod_codice_classificazione" expression="row1.cod_codice_classificazione" type="id_String"/>
+        <mapperTableEntries name="de_tipo_dovuto" expression="row1.de_tipo_dovuto" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_id_univoco_versamento" expression="row1.cod_id_univoco_versamento" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_id_univoco_rendicontazione" expression="row1.cod_id_univoco_rendicontazione" type="id_String" nullable="true"/>
+        <mapperTableEntries name="dt_data_ultimo_aggiornamento_da" expression="row1.dt_data_ultimo_aggiornamento_da" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_ultimo_aggiornamento_a" expression="row1.dt_data_ultimo_aggiornamento_a" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_esecuzione_da" expression="row1.dt_data_esecuzione_da" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_esecuzione_a" expression="row1.dt_data_esecuzione_a" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_esito_da" expression="row1.dt_data_esito_da" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_esito_a" expression="row1.dt_data_esito_a" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_regolamento_da" expression="row1.dt_data_regolamento_da" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_regolamento_a" expression="row1.dt_data_regolamento_a" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_contabile_da" expression="row1.dt_data_contabile_da" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_contabile_a" expression="row1.dt_data_contabile_a" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_valuta_da" expression="row1.dt_data_valuta_da" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="dt_data_valuta_a" expression="row1.dt_data_valuta_a" type="id_Date" nullable="true"/>
+        <mapperTableEntries name="cod_id_univoco_dovuto" expression="row1.cod_id_univoco_dovuto" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_id_univoco_riscossione" expression="row1.cod_id_univoco_riscossione" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_id_univoco_pagatore" expression="row1.cod_id_univoco_pagatore" type="id_String" nullable="true"/>
+        <mapperTableEntries name="de_anagrafica_pagatore" expression="row1.de_anagrafica_pagatore" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_id_univoco_versante" expression="row1.cod_id_univoco_versante" type="id_String" nullable="true"/>
+        <mapperTableEntries name="de_anagrafica_versante" expression="row1.de_anagrafica_versante" type="id_String" nullable="true"/>
+        <mapperTableEntries name="de_denominazione_attestante" expression="row1.de_denominazione_attestante" type="id_String" nullable="true"/>
+        <mapperTableEntries name="de_ordinante" expression="row1.de_ordinante" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_id_regolamento" expression="row1.cod_id_regolamento" type="id_String" nullable="true"/>
+        <mapperTableEntries name="cod_conto_tesoreria" expression="row1.cod_conto_tesoreria" type="id_String" nullable="true"/>
+        <mapperTableEntries name="de_importo_tesoreria" expression="row1.de_importo_tesoreria" type="id_String" nullable="true"/>
+        <mapperTableEntries name="de_causale" expression="row1.de_causale" type="id_String" nullable="true"/>
+        <mapperTableEntries name="dt_creazione" expression="row1.dt_creazione" type="id_Date"/>
+        <mapperTableEntries name="dt_ultima_modifica" expression="row1.dt_ultima_modifica" type="id_Date"/>
+        <mapperTableEntries name="versione_tracciato" expression="row1.versione_tracciato" type="id_String"/>
+      </outputTables>
+      <outputTables sizeState="INTERMEDIATE" name="tabellaToJob_1_4" expressionFilter="row1.versione_tracciato.equals(&quot;1.4&quot;)" activateExpressionFilter="true">
         <mapperTableEntries name="mygov_prenotazione_flusso_riconciliazione_id" expression="row1.mygov_prenotazione_flusso_riconciliazione_id" type="id_Long"/>
         <mapperTableEntries name="version" expression="row1.version" type="id_Integer"/>
         <mapperTableEntries name="mygov_ente_id" expression="row1.mygov_ente_id" type="id_Long"/>
@@ -1469,6 +1506,109 @@
     <elementParameter field="TEXT" name="LABEL" value="ELABORA_1_3"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tRunJob_5"/>
+  </node>
+  <node componentName="tRunJob" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="320">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tRunJob_6" show="false"/>
+    <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
+    <elementParameter field="CHECK" name="USE_DYNAMIC_JOB" value="false"/>
+    <elementParameter field="TEXT" name="CONTEXT_JOB" value="" show="false"/>
+    <elementParameter field="PROCESS_TYPE" name="PROCESS" value="MyGov_ExportFlussiEnte_1_4"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_CONTEXT" value="main"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_PROCESS" value="MANAGE_FLUSSI_RICONCILIAZIONE:_Dc_hwFrIEe2ER8FtWH9pAw"/>
+    <elementParameter field="TECHNICAL" name="PROCESS:PROCESS_TYPE_VERSION" value="Latest"/>
+    <elementParameter field="TEXT" name="CONTEXT_NAME" value="Default" show="false"/>
+    <elementParameter field="CHECK" name="USE_INDEPENDENT_PROCESS" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_CHILD_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="TRANSMIT_WHOLE_CONTEXT" value="true"/>
+    <elementParameter field="TABLE" name="CONTEXTPARAMS">
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="idAttuale"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.mygov_prenotazione_flusso_riconciliazione_id"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="version"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.version"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="mygov_ente_id"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.mygov_ente_id"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="mygov_anagrafica_stato_id"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.mygov_anagrafica_stato_id"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="mygov_utente_id"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.mygov_utente_id"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_request_token"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_request_token"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_nome_file_generato"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_nome_file_generato"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="num_dimensione_file_generato"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.num_dimensione_file_generato"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_codice_classificazione"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_codice_classificazione"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_tipo_dovuto"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_tipo_dovuto"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_univoco_versamento"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_univoco_versamento"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_univoco_rendicontazione"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_univoco_rendicontazione"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_ultimo_aggiornamento_da"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_ultimo_aggiornamento_da"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_ultimo_aggiornamento_a"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_ultimo_aggiornamento_a"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_esecuzione_da"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_esecuzione_da"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_esecuzione_a"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_esecuzione_a"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_esito_da"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_esito_da"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_esito_a"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_esito_a"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_regolamento_da"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_regolamento_da"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_regolamento_a"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_regolamento_a"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_contabile_da"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_contabile_da"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_contabile_a"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_contabile_a"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_valuta_da"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_valuta_da"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_data_valuta_a"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_data_valuta_a"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_univoco_dovuto"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_univoco_dovuto"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_univoco_riscossione"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_univoco_riscossione"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_univoco_pagatore"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_univoco_pagatore"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_anagrafica_pagatore"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_anagrafica_pagatore"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_univoco_versante"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_univoco_versante"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_anagrafica_versante"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_anagrafica_versante"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_denominazione_attestante"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_denominazione_attestante"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_ordinante"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_ordinante"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_id_regolamento"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_id_regolamento"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="cod_conto_tesoreria"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.cod_conto_tesoreria"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_importo_tesoreria"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_importo_tesoreria"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="de_causale"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.de_causale"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_creazione"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_creazione"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="dt_ultima_modifica"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.dt_ultima_modifica"/>
+      <elementValue elementRef="PARAM_NAME_COLUMN" value="versione_tracciato"/>
+      <elementValue elementRef="PARAM_VALUE_COLUMN" value="tabellaToJob_1_4.versione_tracciato"/>
+    </elementParameter>
+    <elementParameter field="CHECK" name="PROPAGATE_CHILD_RESULT" value="false"/>
+    <elementParameter field="CHECK" name="PRINT_PARAMETER" value="false"/>
+    <elementParameter field="CHECK" name="TRANSMIT_ORIGINAL_CONTEXT" value="true" show="false"/>
+    <elementParameter field="RADIO" name="USE_CHILD_JVM_SETTING" value="true" show="false"/>
+    <elementParameter field="RADIO" name="USE_CUSTOM_JVM_SETTING" value="false" show="false"/>
+    <elementParameter field="TABLE" name="JVM_ARGUMENTS" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="ELABORA_1_4"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tRunJob_6"/>
   </node>
   <connection connectorName="FLOW" label="row3" lineStyle="0" metaname="tStatCatcher_1" offsetLabelX="0" offsetLabelY="0" source="tStatCatcher_1" target="tMap_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
@@ -2225,6 +2365,10 @@
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tabellaToJob_1_3" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="tabellaToJob_1_4" lineStyle="0" metaname="tabellaToJob_1_4" offsetLabelX="0" offsetLabelY="0" outputId="5" source="tMap_2" target="tRunJob_6">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tabellaToJob_1_4" show="false"/>
   </connection>
   <subjob>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tStatCatcher_1" show="false"/>

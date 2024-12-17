@@ -110,7 +110,7 @@ export class UserService {
           {username: username, password: password}, null, new Mappers({mapperS2C:User}))
       .pipe(map( user => {
         if(!user || !user.username)
-          throw 'errore di autenticazione';
+          throw new Error('errore di autenticazione');
         this.setUser(user, rememberMe);
         return null;
       }));
@@ -129,12 +129,21 @@ export class UserService {
   }
 
   public getAppInfoString(): Observable<string> {
-    return this.retrieveAppInfo().pipe( map (appInfo =>
-      //"Versione BE: "+appInfo.version+"</br>"+
-      "Build BE: "+appInfo.gitHash+"-"+appInfo.branchName?.substring(0,3)+"@"+appInfo.buildTime?.toISO()+"</br>"+
-      "Start BE: "+appInfo.startTime?.toISO()+"</br>"+
-      //"Versione FE: "+versionInfo.version+"</br>"+
-      "Build FE: "+versionInfo.gitHash+"-"+versionInfo.branchName?.substring(0,3)+"@"+versionInfo.buildTime) );
+    return this.retrieveAppInfo().pipe( map (appInfo => {
+      const buildBeString = appInfo.commitDistance===0
+        ? appInfo.lastTag
+        : (appInfo.gitHash+"-"+appInfo.branchName?.substring(0,3)+"@"+appInfo.buildTime?.toISO());
+      const buildFeString = _.isEmpty(versionInfo.tag)
+        ? (versionInfo.gitHash+"-"+versionInfo.branchName?.substring(0,3)+"@"+versionInfo.buildTime)
+        : versionInfo.tag;
+      const appInfoString =
+        //"Versione BE: "+appInfo.version+"</br>"+
+        "Versione BE: "+buildBeString+"</br>"+
+        "Start BE: "+appInfo.startTime?.toISO()+"</br>"+
+        //"Versione FE: "+versionInfo.version+"</br>"+
+        "Versione FE: "+buildFeString;
+      return appInfoString;
+    }) );
   }
 
   public updateUserData(newUserData: User): void {
@@ -197,7 +206,6 @@ export class UserService {
       else
         this.localStorageService.remove('accessToken');
     }
-    //console.log('set access token to: ',accessToken);
   }
 
   logout(redirectHome:boolean = true): void {
@@ -211,7 +219,6 @@ export class UserService {
     logoutFun.pipe(first()).subscribe( () => {
       //redirect to home
       if(redirectHome){
-        //console.log('redirecting to home');
         this.router.navigate(['home']);
       }
     });

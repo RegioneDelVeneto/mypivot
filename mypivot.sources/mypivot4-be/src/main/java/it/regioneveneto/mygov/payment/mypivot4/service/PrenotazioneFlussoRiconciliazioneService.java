@@ -19,15 +19,12 @@ package it.regioneveneto.mygov.payment.mypivot4.service;
 
 import it.regioneveneto.mygov.payment.mypay4.exception.ValidatorException;
 import it.regioneveneto.mygov.payment.mypay4.util.Constants;
+import it.regioneveneto.mygov.payment.mypay4.util.MaxResultsHelper;
 import it.regioneveneto.mygov.payment.mypay4.util.Utilities;
 import it.regioneveneto.mygov.payment.mypay4.util.VerificationUtils;
 import it.regioneveneto.mygov.payment.mypivot4.dao.PrenotazioneFlussoRiconciliazioneDao;
 import it.regioneveneto.mygov.payment.mypivot4.dto.FlussoExportTo;
-import it.regioneveneto.mygov.payment.mypivot4.model.AnagraficaStato;
-import it.regioneveneto.mygov.payment.mypivot4.model.Ente;
-import it.regioneveneto.mygov.payment.mypivot4.model.OperatoreEnteTipoDovuto;
-import it.regioneveneto.mygov.payment.mypivot4.model.PrenotazioneFlussoRiconciliazione;
-import it.regioneveneto.mygov.payment.mypivot4.model.Utente;
+import it.regioneveneto.mygov.payment.mypivot4.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,11 +35,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -56,6 +49,9 @@ public class PrenotazioneFlussoRiconciliazioneService {
 
   @Autowired
   private PrenotazioneFlussoRiconciliazioneDao prenotazioneFlussoRiconciliazioneDao;
+
+  @Autowired
+  private MaxResultsHelper maxResultsHelper;
 
   @Autowired
   private MessageSource messageSource;
@@ -175,7 +171,7 @@ public class PrenotazioneFlussoRiconciliazioneService {
     if (dateTo.isBefore(dateFrom)) {
       throw new ValidatorException(messageSource.getMessage("pa.messages.invalidDataIntervallo", null, Locale.ITALY));
     }
-    dateTo = dateTo.plusDays(1);
+    LocalDate dateToFinal = dateTo.plusDays(1);
     final List<String> listCodStatoRiconciliazione = Arrays.asList(
         Constants.COD_TIPO_STATO_EXPORT_FLUSSO_RICONCILIAZIONE_PRENOTATO,
         Constants.COD_TIPO_STATO_EXPORT_FLUSSO_RICONCILIAZIONE_ERRORE_EXPORT_FLUSSO_RICONCILIAZIONE,
@@ -184,8 +180,11 @@ public class PrenotazioneFlussoRiconciliazioneService {
         Constants.COD_TIPO_STATO_EXPORT_FLUSSO_RICONCILIAZIONE_EXPORT_ESEGUITO_NESSUN_RECORD_TROVATO,
         Constants.COD_TIPO_STATO_EXPORT_FLUSSO_RICONCILIAZIONE_VERSIONE_TRACCIATO_ERRATA);
 
-    return prenotazioneFlussoRiconciliazioneDao.getByNomeFileDtCreazione(mygovEnteId, codFedUserId, nomeFile,
-        listCodStatoRiconciliazione, dateFrom, dateTo);
+    return maxResultsHelper.manageMaxResults( maxResults -> prenotazioneFlussoRiconciliazioneDao.getByNomeFileDtCreazione(
+      mygovEnteId, codFedUserId, nomeFile, listCodStatoRiconciliazione, dateFrom, dateToFinal, maxResults),
+      () -> prenotazioneFlussoRiconciliazioneDao.getByNomeFileDtCreazioneCount(
+        mygovEnteId, codFedUserId, nomeFile, listCodStatoRiconciliazione, dateFrom, dateTo)
+    );
   }
 
   public List<PrenotazioneFlussoRiconciliazione> getByRequestToken(String codRequestToken) {

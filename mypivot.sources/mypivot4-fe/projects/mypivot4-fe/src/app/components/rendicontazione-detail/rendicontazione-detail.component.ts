@@ -28,8 +28,8 @@ import {
 } from 'projects/mypay4-fe-common/src/lib/components/myp-search-chips/myp-search-chips.component';
 import { WithTitle } from 'projects/mypay4-fe-common/src/lib/components/with-title';
 import {
-    DateValidators, manageError, MapPipe, OverlaySpinnerService, PaginatorData, PATTERNS, SearchFilterDef,
-    TableColumn, validateFormFun
+    DateValidators, manageError, MapPipe, OverlaySpinnerService, PaginatorData, PATTERNS,
+    SearchFilterDef, TableColumn, validateFormFun
 } from 'projects/mypay4-fe-common/src/public-api';
 import { Observable, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -263,8 +263,9 @@ export class RendicontazioneDetailComponent implements OnInit, OnDestroy, WithTi
     if(this.isStandaloneView){
       element.details = details;
       return;
-    } else
-      return thisRef.ricevuteTelematicheSercice.getMypayInfo(thisRef.enteService.getCurrentEnte(), element.codRpSilinviarpIdUnivocoVersamento)
+    } else {
+      return thisRef.ricevuteTelematicheSercice.getMypayInfo(
+        thisRef.enteService.getCurrentEnte().mygovEnteId, element.codRpSilinviarpIdUnivocoVersamento, element.codFiscalePa1)
         .pipe(map(mypayInfo => {
           element.details = details;
           if(mypayInfo.codRpSilinviarpIdUnivocoVersamento)
@@ -281,6 +282,7 @@ export class RendicontazioneDetailComponent implements OnInit, OnDestroy, WithTi
               {key:'Errore', value:'Nessun dato trovato'},
             ] );
         }));
+    }
   }
 
   ngOnDestroy(): void {

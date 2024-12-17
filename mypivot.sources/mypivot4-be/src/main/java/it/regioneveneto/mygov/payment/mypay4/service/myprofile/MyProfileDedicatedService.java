@@ -22,6 +22,8 @@ import it.regioneveneto.mygov.payment.mypay4.dto.myprofile.MyProfileRoleTo;
 import it.regioneveneto.mygov.payment.mypay4.dto.myprofile.MyProfileTenantResponseTo;
 import it.regioneveneto.mygov.payment.mypay4.dto.myprofile.MyProfileTenantTo;
 import it.regioneveneto.mygov.payment.mypay4.exception.MyPayException;
+import it.regioneveneto.mygov.payment.mypay4.security.Operatore;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,6 +49,9 @@ public class MyProfileDedicatedService implements MyProfileServiceI {
   @Value("${myprofile.applCode}")
   public String applCode;
 
+  @Value("${mypivot.codIpaEntePredefinito}")
+  private String adminEnteCodIpa;
+
   private final RestTemplate restTemplate;
 
   public MyProfileDedicatedService(RestTemplateBuilder restTemplateBuilder) {
@@ -56,29 +61,39 @@ public class MyProfileDedicatedService implements MyProfileServiceI {
 
   private Set<String> getUserRoles(String tenantCode, String userCode){
     String url = baseUrl + String.format("roles/%s/%s/%s.json", userCode, tenantCode, applCode);
-    MyProfileRoleResponseTo response = this.restTemplate.getForObject(url, MyProfileRoleResponseTo.class);
-    if(!StringUtils.equalsIgnoreCase(response.getMessage(), "OK")) {
-      log.error("error invoking MyProfile to get userRoles message[{}] userCode[{}], tenantCode[{}]", response.getMessage(), userCode, tenantCode);
-      throw new MyPayException("error invoking MyProfile to get userRoles");
+    try{
+      MyProfileRoleResponseTo response = this.restTemplate.getForObject(url, MyProfileRoleResponseTo.class);
+      if(!StringUtils.equalsIgnoreCase(response.getMessage(), "OK")) {
+        log.error("error invoking MyProfile to get userRoles url[{}] message[{}] userCode[{}], tenantCode[{}]", url, response.getMessage(), userCode, tenantCode);
+        throw new MyPayException("error invoking MyProfile to get userRoles");
+      }
+      Set<String> roleSet = response.getResultRoles().stream().map(MyProfileRoleTo::getRoleCode).collect(Collectors.toUnmodifiableSet());
+      log.debug("MyProfile - roles for user {} tenant {}: {}", userCode, tenantCode, Arrays.toString(roleSet.toArray()));
+      return roleSet;
+    }catch(Exception e){
+      log.error("error invoking MyProfile getUserRoles url[{}]", url, e);
+      throw e;
     }
-    Set<String> roleSet = response.getResultRoles().stream().map(MyProfileRoleTo::getRoleCode).collect(Collectors.toUnmodifiableSet());
-    log.debug("MyProfile - roles for user {} tenant {}: {}", userCode, tenantCode, Arrays.toString(roleSet.toArray()));
-    return roleSet;
   }
 
   private Set<String> getUserTenants(String userCode){
     String url = baseUrl + String.format("tenants/%s/%s.json", userCode, applCode);
-    MyProfileTenantResponseTo response = this.restTemplate.getForObject(url, MyProfileTenantResponseTo.class);
-    if(!StringUtils.equalsIgnoreCase(response.getMessage(), "OK")) {
-      log.error("error invoking MyProfile to get tenants message[{}] userCode[{}]", response.getMessage(), userCode);
-      throw new MyPayException("error invoking MyProfile to get tenants");
+    try{
+      MyProfileTenantResponseTo response = this.restTemplate.getForObject(url, MyProfileTenantResponseTo.class);
+      if(!StringUtils.equalsIgnoreCase(response.getMessage(), "OK")) {
+        log.error("error invoking MyProfile to get tenants url[{}] message[{}] userCode[{}]", url, response.getMessage(), userCode);
+        throw new MyPayException("error invoking MyProfile to get tenants");
+      }
+      Set<String> tenantSet = response.getResultTenants().stream().map(MyProfileTenantTo::getTenantCode).collect(Collectors.toUnmodifiableSet());
+      log.debug("MyProfile - tenants for user {}: {}", userCode, Arrays.toString(tenantSet.toArray()));
+      return tenantSet;
+    }catch(Exception e){
+      log.error("error invoking MyProfile getUserTenants url[{}]", url, e);
+      throw e;
     }
-    Set<String> tenantSet = response.getResultTenants().stream().map(MyProfileTenantTo::getTenantCode).collect(Collectors.toUnmodifiableSet());
-    log.debug("MyProfile - tenants for user {}: {}", userCode, Arrays.toString(tenantSet.toArray()));
-    return tenantSet;
   }
 
-  @Cacheable(value="myProfileCache", key="{'userCode',#userCode}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_MY_PROFILE, key="{'userCode',#userCode}", unless="#result==null")
   public Map<String, Set<String>> getUserTenantsAndRoles(String userCode){
     return getUserTenants(userCode).stream()
         .map(tenant -> new AbstractMap.SimpleImmutableEntry<>(tenant, getUserRoles(tenant, userCode)))
@@ -87,7 +102,11 @@ public class MyProfileDedicatedService implements MyProfileServiceI {
             AbstractMap.SimpleImmutableEntry::getValue));
   }
 
-  @CacheEvict(value="myProfileCache",key="{'userCode',#userCode}")
+  @CacheEvict(value=CacheService.CACHE_NAME_MY_PROFILE,key="{'userCode',#userCode}")
   public void clearUserTenantsAndRoles(String userCode){}
+
+  public boolean isSystemAdministrator(Map<String, Set<String>> userTenantsAndRoles) {
+    return userTenantsAndRoles.getOrDefault(adminEnteCodIpa, Set.of()).contains(Operatore.Role.ROLE_ADMIN.name());
+  }
 
 }

@@ -50,7 +50,7 @@ public class ErrorAttributes extends DefaultErrorAttributes {
         PSQLException psqlException = (PSQLException) error.getCause();
         ServerErrorMessage sem = psqlException.getServerErrorMessage();
         //case of "value too long for field..:"
-        if(PSQLState.STRING_DATA_RIGHT_TRUNCATION.getState().equals(sem.getSQLState())){
+        if(sem!=null && PSQLState.STRING_DATA_RIGHT_TRUNCATION.getState().equals(sem.getSQLState())){
           //value too long for string field exception: return bed request
           customMessage = "È stato inserito un valore troppo lungo in un campo";
         }

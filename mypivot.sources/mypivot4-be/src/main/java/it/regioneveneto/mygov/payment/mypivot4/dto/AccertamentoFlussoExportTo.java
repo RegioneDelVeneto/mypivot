@@ -17,7 +17,6 @@
  */
 package it.regioneveneto.mygov.payment.mypivot4.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import it.regioneveneto.mygov.payment.mypay4.dto.BaseTo;
 import lombok.AllArgsConstructor;
@@ -26,7 +25,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -49,10 +48,8 @@ public class AccertamentoFlussoExportTo extends BaseTo {
   private String anagraficaPagatore;
   private String codiceIdentificativoUnivocoPagatore;
   private String tipoIdentificativoUnivocoPagatore;
-  @JsonFormat(pattern="yyyy/MM/dd-HH:mm:ss")
-  private Date dtUltimoAggiornamento;
-  @JsonFormat(pattern="yyyy/MM/dd-HH:mm:ss")
-  private Date dtEsitoSingoloPagamento;
+  private LocalDateTime dtUltimoAggiornamento;
+  private LocalDateTime dtEsitoSingoloPagamento;
   private String causaleVersamento;
   private BigDecimal singoloImportoPagato;
 }

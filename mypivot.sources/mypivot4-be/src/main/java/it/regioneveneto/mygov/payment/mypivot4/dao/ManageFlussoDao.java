@@ -23,6 +23,7 @@ import it.regioneveneto.mygov.payment.mypivot4.model.*;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.customizer.BindList;
+import org.jdbi.v3.sqlobject.customizer.Define;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
@@ -127,25 +128,35 @@ public interface ManageFlussoDao extends BaseDao {
   @RegisterFieldMapper(ManageFlusso.class)
   List<ManageFlusso> getByEnte(Long mygovEnteId);
 
+  String SQL_SEARCH =
+    "  from mygov_manage_flusso " + ManageFlusso.ALIAS +
+    "  join mygov_ente "+Ente.ALIAS+" on "+ManageFlusso.ALIAS+".mygov_ente_id = "+Ente.ALIAS+".mygov_ente_id " +
+    "  join mygov_anagrafica_stato "+ AnagraficaStato.ALIAS+
+    "    on "+AnagraficaStato.ALIAS+".mygov_anagrafica_stato_id = "+ManageFlusso.ALIAS+".mygov_anagrafica_stato_id " +
+    "  join mygov_tipo_flusso "+ TipoFlusso.ALIAS+
+    "    on "+TipoFlusso.ALIAS+".mygov_tipo_flusso_id = "+ManageFlusso.ALIAS+".mygov_tipo_flusso_id " +
+    "  left join mygov_utente "+ Utente.ALIAS+
+    "    on "+Utente.ALIAS+".mygov_utente_id = "+ManageFlusso.ALIAS+".mygov_utente_id " +
+    " where "+ManageFlusso.ALIAS+".mygov_ente_id = :mygovEnteId " +
+    "   and "+TipoFlusso.ALIAS+".cod_tipo = :codTipo " +
+    "   and ("+ManageFlusso.ALIAS+".dt_creazione >= :dateFrom::DATE and "+ManageFlusso.ALIAS+".dt_creazione < :dateTo::DATE) " +
+    "   and (:codIdentificativoFlusso is null or "+ManageFlusso.ALIAS+".de_nome_file ilike '%' || :codIdentificativoFlusso || '%')" +
+    "   and "+AnagraficaStato.ALIAS+".de_tipo_stato = '"+Constants.DE_TIPO_STATO_MANAGE+"'" +
+    "   and "+AnagraficaStato.ALIAS+".cod_stato in (<listCodStatoManage>) " +
+    "   and (:codFedUserId is null or "+Utente.ALIAS+".cod_fed_user_id = :codFedUserId) ";
   @SqlQuery(
       "    select "+ManageFlusso.ALIAS+ALL_FIELDS +", "+AnagraficaStato.FIELDS+", "+Ente.FIELDS+", "+ Utente.FIELDS+", "+ TipoFlusso.FIELDS +
-          "  from mygov_manage_flusso " + ManageFlusso.ALIAS +
-          "  join mygov_ente "+Ente.ALIAS+" on "+ManageFlusso.ALIAS+".mygov_ente_id = "+Ente.ALIAS+".mygov_ente_id " +
-          "  join mygov_anagrafica_stato "+ AnagraficaStato.ALIAS+
-          "    on "+AnagraficaStato.ALIAS+".mygov_anagrafica_stato_id = "+ManageFlusso.ALIAS+".mygov_anagrafica_stato_id " +
-          "  join mygov_tipo_flusso "+ TipoFlusso.ALIAS+
-          "    on "+TipoFlusso.ALIAS+".mygov_tipo_flusso_id = "+ManageFlusso.ALIAS+".mygov_tipo_flusso_id " +
-          "  left join mygov_utente "+ Utente.ALIAS+
-          "    on "+Utente.ALIAS+".mygov_utente_id = "+ManageFlusso.ALIAS+".mygov_utente_id " +
-          " where "+ManageFlusso.ALIAS+".mygov_ente_id = :mygovEnteId " +
-          "   and "+TipoFlusso.ALIAS+".cod_tipo = :codTipo " +
-          "   and ("+ManageFlusso.ALIAS+".dt_creazione >= :dateFrom::DATE and "+ManageFlusso.ALIAS+".dt_creazione < :dateTo::DATE) " +
-          "   and (:codIdentificativoFlusso is null or "+ManageFlusso.ALIAS+".de_nome_file ilike '%' || :codIdentificativoFlusso || '%')" +
-          "   and "+AnagraficaStato.ALIAS+".de_tipo_stato = '"+Constants.DE_TIPO_STATO_MANAGE+"'" +
-          "   and "+AnagraficaStato.ALIAS+".cod_stato in (<listCodStatoManage>) " +
-          " order by " + ManageFlusso.ALIAS + ".dt_creazione desc")
+        SQL_SEARCH +
+        " order by " + ManageFlusso.ALIAS + ".dt_creazione desc " +
+        " limit <queryLimit>")
   @RegisterFieldMapper(ManageFlusso.class)
-  List<ManageFlusso> getByEnteCodIdentificativoFlussoCreateDt(Long mygovEnteId, String codTipo, String codIdentificativoFlusso, LocalDate dateFrom, LocalDate dateTo,
+  List<ManageFlusso> getByEnteCodIdentificativoFlussoCreateDt(Long mygovEnteId, String codFedUserId, String codTipo, String codIdentificativoFlusso, LocalDate dateFrom, LocalDate dateTo,
+                                                              @BindList(onEmpty=BindList.EmptyHandling.NULL_STRING) List<String> listCodStatoManage, @Define int queryLimit);
+
+  @SqlQuery(
+    "    select count(1) " +
+      SQL_SEARCH)
+  int getByEnteCodIdentificativoFlussoCreateDtCount(Long mygovEnteId, String codFedUserId, String codTipo, String codIdentificativoFlusso, LocalDate dateFrom, LocalDate dateTo,
                                                               @BindList(onEmpty=BindList.EmptyHandling.NULL_STRING) List<String> listCodStatoManage);
 
   @SqlQuery(
@@ -172,4 +183,19 @@ public interface ManageFlussoDao extends BaseDao {
       "select count(1)>0 from mygov_manage_flusso where cod_request_token = :codRequestToken"
   )
   boolean existingRequestToken(String codRequestToken);
+
+  @SqlQuery(
+          "    select "+ManageFlusso.ALIAS+".mygov_manage_flusso_id" +
+                  "  from mygov_manage_flusso " + ManageFlusso.ALIAS +
+                  "  join mygov_ente "+Ente.ALIAS+" on "+ManageFlusso.ALIAS+".mygov_ente_id = "+Ente.ALIAS+".mygov_ente_id " +
+                  "  join mygov_anagrafica_stato "+ AnagraficaStato.ALIAS+
+                  "    on "+AnagraficaStato.ALIAS+".mygov_anagrafica_stato_id = "+ManageFlusso.ALIAS+".mygov_anagrafica_stato_id " +
+                  "  join mygov_tipo_flusso "+ TipoFlusso.ALIAS+
+                  "    on "+TipoFlusso.ALIAS+".mygov_tipo_flusso_id = "+ManageFlusso.ALIAS+".mygov_tipo_flusso_id " +
+                  "  left join mygov_utente "+ Utente.ALIAS+
+                  "    on "+Utente.ALIAS+".mygov_utente_id = "+ManageFlusso.ALIAS+".mygov_utente_id " +
+                  " where "+TipoFlusso.ALIAS+".cod_tipo = :codTipo " +
+                  "   and "+Ente.ALIAS+".codice_fiscale_ente = :codiceFiscaleEnte "
+  )
+  Long getByTypeSecondaryEnte(String codTipo, String codiceFiscaleEnte);
 }

@@ -20,8 +20,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import {
-    HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
-    HttpResponse
+  HttpErrorResponse, HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest,
+  HttpResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -45,25 +45,30 @@ export class TokenInterceptor implements HttpInterceptor {
     if(headers?.has('Authorization')){
       const authHeader = headers.get('Authorization');
       if(authHeader.startsWith('Bearer '))
-        this.userService.setAccessToken(authHeader.substr(7));
+        this.userService.setAccessToken(authHeader.substring(7));
     }
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const baseApiUrl = this.conf.getProperty('baseApiUrl');
-    if(!request.url.startsWith(baseApiUrl+'public/') && !this.useAuthCookie){
-      const accessToken = this.userService.getAccessToken();
-      if(!accessToken){
-        this.toastr.error('Utente non autenticato.','Errore invocando \''+request.url.substr(baseApiUrl.length-1)+'\'.',{disableTimeOut: true});
-        throw new AlreadyManagedError(new HttpErrorResponse({
-          error:'Utente non autenticato',
-          status: 401,
-          url:request.url }));
+    if(!request.url.startsWith(baseApiUrl+'public/')){
+      const setHeadersValue : { [name: string]: string | string[] } = {
+        ReqUid: self.crypto['randomUUID']()
+      };
+      if(!this.useAuthCookie){
+        const accessToken = this.userService.getAccessToken();
+        if(!accessToken){
+          if(!request.url.startsWith(baseApiUrl+'doLogout'))
+            this.toastr.error('Utente non autenticato.','Errore invocando \''+request.url.substring(baseApiUrl.length-1)+'\'.',{disableTimeOut: true});
+          throw new AlreadyManagedError(new HttpErrorResponse({
+            error:'Utente non autenticato',
+            status: 401,
+            url:request.url }));
+        }
+        setHeadersValue.Authorization = `Bearer ${accessToken}`;
       }
       request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${accessToken}`
-        }
+        setHeaders: setHeadersValue
       });
     }
     return next.handle(request).pipe(

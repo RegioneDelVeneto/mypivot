@@ -19,7 +19,6 @@ package it.regioneveneto.mygov.payment.mypivot4.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import it.regioneveneto.mygov.payment.mypay4.exception.ValidatorException;
 import it.regioneveneto.mygov.payment.mypay4.security.Operatore;
@@ -40,6 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,6 +65,9 @@ public class AccertamentoController {
 
   @Autowired
   private ImportMassivoService importMassivoService;
+
+  @Autowired
+  Jackson2ObjectMapperBuilder mapperBuilder;
 
   /** For combo box **/
   @GetMapping("/uffici/{mygovEnteId}")
@@ -177,7 +180,7 @@ public class AccertamentoController {
   public int deleteAccertamentiPagamentiInseriti(@AuthenticationPrincipal UserWithAdditionalInfo user, @PathVariable Long mygovEnteId, @PathVariable Long accertamentoId,
                                                  @RequestParam String json){
     try {
-      List<AccertamentoFlussoExportTo> accertamenti = new ObjectMapper().readValue(json, new TypeReference<List<AccertamentoFlussoExportTo>>() { });
+      List<AccertamentoFlussoExportTo> accertamenti = mapperBuilder.build().readValue(json, new TypeReference<>() { });
       return accertamentoDettaglioService.deleteAccertamentiPagamentiInseriti(user.getUsername(), mygovEnteId, accertamentoId, accertamenti);
     } catch (JsonProcessingException e) {
       throw new ValidatorException(e.getMessage());
@@ -190,7 +193,7 @@ public class AccertamentoController {
                                               @RequestParam String codUfficio, @RequestParam String annoEsercizio, @RequestParam String codCapitolo, @RequestParam String codAccertamento,
                                               @RequestParam String json ) {
     try {
-      List<AccertamentoFlussoExportTo> accertamenti = new ObjectMapper().readValue(json, new TypeReference<List<AccertamentoFlussoExportTo>>() { });
+      List<AccertamentoFlussoExportTo> accertamenti = mapperBuilder.build().readValue(json, new TypeReference<>() { });
       return accertamentoDettaglioService.insertAccertamentiPagamenti(user.getUsername(), mygovEnteId, accertamentoId, accertamenti, codUfficio, annoEsercizio, codCapitolo, codAccertamento);
     } catch (JsonProcessingException e) {
       throw new ValidatorException(e.getMessage());

@@ -15,21 +15,22 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { WithActions } from './../../../../mypay4-fe-common/src/lib/table/with-actions';
 import { DateTime } from 'luxon';
-import { MapperType, MapperDef } from 'projects/mypay4-fe-common/src/public-api';
+import { MapperDef, MapperType } from 'projects/mypay4-fe-common/src/public-api';
+
+import { WithActions } from '../../../../mypay4-fe-common/src/lib/table/with-actions';
 
 export class AnagraficaUffCapAcc extends WithActions {
 
   public static readonly MAPPER_S2C_DEF = [
     new MapperDef(MapperType.Function,'deComboUfficio',(anag: AnagraficaUffCapAcc) => {
       let deUfficio = (!anag.deUfficio || anag.deUfficio.length <= 35) ?
-          anag.deUfficio : anag.deUfficio.substr(0, 35) + '...';
+          anag.deUfficio : anag.deUfficio.substring(0, 35) + '...';
       return `${anag.codUfficio} - ${deUfficio}`;
     }),
     new MapperDef(MapperType.Function,'deComboCapitolo',(anag: AnagraficaUffCapAcc) => {
       let deCapitolo = (!anag.deCapitolo || anag.deCapitolo.length <= 35) ?
-          anag.deCapitolo : anag.deCapitolo.substr(0, 35) + '...';
+          anag.deCapitolo : anag.deCapitolo.substring(0, 35) + '...';
       return `${anag.codCapitolo} - ${deCapitolo}`;
     }),
   ]

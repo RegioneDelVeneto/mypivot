@@ -29,7 +29,7 @@ import org.jdbi.v3.core.mapper.Nested;
 import java.sql.Timestamp;
 
 @Data
-@Builder
+@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "mygovManageFlussoId")

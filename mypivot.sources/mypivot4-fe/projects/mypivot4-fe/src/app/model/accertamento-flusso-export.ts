@@ -15,10 +15,18 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { WithActions } from './../../../../mypay4-fe-common/src/lib/table/with-actions';
-import { DateTime } from "luxon";
+import { DateTime } from 'luxon';
+import { MapperDef, MapperType, WithActions } from 'projects/mypay4-fe-common/src/public-api';
 
 export class AccertamentoFlussoExport extends WithActions {
+  public static readonly MAPPER_S2C_DEF = [
+    new MapperDef(MapperType.DateTime,'dtUltimoAggiornamento','local-date-time'),
+    new MapperDef(MapperType.DateTime,'dtEsitoSingoloPagamento','local-date-time')
+  ];
+  public static readonly MAPPER_C2S_DEF = [
+    new MapperDef(MapperType.DateTime,'dtUltimoAggiornamento','local-date-time'),
+    new MapperDef(MapperType.DateTime,'dtEsitoSingoloPagamento','local-date-time')
+  ];
 
   codTipoDovuto: string;
   deTipoDovuto: string;

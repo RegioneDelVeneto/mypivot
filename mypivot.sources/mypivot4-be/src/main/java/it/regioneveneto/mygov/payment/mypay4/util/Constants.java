@@ -25,7 +25,12 @@ import java.util.Arrays;
 public class Constants {
 
   public enum VERSIONE_TRACCIATO_EXPORT {
-    VERSIONE_1_0("1.0"), VERSIONE_1_1("1.1"), VERSIONE_1_2("1.2"), VERSIONE_1_3("1.3");
+    VERSIONE_1_0("1.0")
+    , VERSIONE_1_1("1.1")
+    , VERSIONE_1_2("1.2")
+    , VERSIONE_1_3("1.3")
+    , VERSIONE_1_4("1.4")
+    ;
     String value;
 
     public String getValue() {
@@ -48,6 +53,7 @@ public class Constants {
 
   public enum TIPO_FLUSSO {
     EXPORT_PAGATI("E"),
+    EXPORT_PAGATI_ENTI_SECONDARI("S"),
     RENDICONTAZIONE_STANDARD("R"),
     TESORERIA("T"),
     GIORNALE_DI_CASSA("C"),

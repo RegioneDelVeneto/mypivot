@@ -32,5 +32,6 @@ export class FlussoImport extends WithActions {
   log: string;
   filePathOriginale: string;
   filePathScarti: string;
+  showDownload: boolean;
   securityToken: string;
 }

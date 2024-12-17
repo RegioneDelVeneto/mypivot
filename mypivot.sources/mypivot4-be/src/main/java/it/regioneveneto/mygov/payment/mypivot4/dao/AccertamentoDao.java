@@ -104,7 +104,7 @@ public interface AccertamentoDao extends BaseDao {
       "   AND ("+Accertamento.ALIAS+".de_nome_accertamento ilike '%' || :deNomeAccertamento || '%' or coalesce(:deNomeAccertamento, '') = '') ";
 
   @SqlQuery(
-      "SELECT "+Accertamento.ALIAS+ALL_FIELDS+", "+EnteTipoDovuto.FIELDS+", "+AnagraficaStato.FIELDS+","+Utente.FIELDS +
+      "SELECT DISTINCT "+Accertamento.ALIAS+ALL_FIELDS+", "+EnteTipoDovuto.FIELDS+", "+AnagraficaStato.FIELDS+","+Utente.FIELDS +
           WHERE +
           " ORDER BY "+Accertamento.ALIAS+".dt_ultima_modifica DESC" +
           " LIMIT <queryLimit>"

@@ -215,9 +215,9 @@ public class AccertamentoService {
       );
     }
     List<AccertamentoDettaglio> dettagli = accertamentoDettaglioService.getByAccertamentoId(accertamentoId);
-    if (!CollectionUtils.isEmpty(dettagli)) {
-      log.warn("SET " + codStato + " :: ACCERTAMENTO :: GET :: Fields[accertamentoID: " + accertamentoId + ", codFedUserId: " + codFedUserId + "] :: L'accertamento non presenta pagamenti associati perciò non può essere chiuso.");
-      throw new ValidatorException("L'accertamento presenta pagamenti associati perciò non può cambiare lo stato.");
+    if (codStato.equals(Constants.COD_TIPO_STATO_ACCERTAMENTO_CHIUSO) && CollectionUtils.isEmpty(dettagli)) {
+      log.warn("SET " + codStato + " :: ACCERTAMENTO :: GET :: Fields[accertamentoID: " + accertamentoId + ", codFedUserId: " + codFedUserId + "] :: L'accertamento non presenta pagamenti associati e quindi non può essere chiuso.");
+      throw new ValidatorException("L'accertamento non presenta pagamenti associati e quindi non può essere chiuso.");
     }
     Utente utente = utenteService.getByCodFedUserId(codFedUserId).orElseThrow(
         () -> new ValidatorException(messageSource.getMessage("mypivot.messages.error.nessunUtenteTrovato", null, Locale.ITALY))

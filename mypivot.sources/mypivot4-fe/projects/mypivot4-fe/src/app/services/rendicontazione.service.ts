@@ -61,6 +61,7 @@ export class RendicontazioneService {
   }
 
   detail(ente: Ente, iuf: string, iur: string): Observable<Rendicontazione> {
+    iur = encodeURIComponent(iur);
     const targetUrl = `${this.baseApiUrl}rendicontazione/detail/${ente.mygovEnteId}/${iuf}/${iur}`;
     return this.apiInvokerService.get<Rendicontazione>(
       targetUrl, null, new Mappers({mapperS2C: Rendicontazione, mapperC2S: Rendicontazione})
@@ -68,6 +69,7 @@ export class RendicontazioneService {
   }
 
   filterDetail(ente: Ente, iuf: string, iur: string, searchParams: RicevutaSearch): Observable<Rendicontazione> {
+    iur = encodeURIComponent(iur);
     const targetUrl = `${this.baseApiUrl}rendicontazione/detail/${ente.mygovEnteId}/${iuf}/${iur}`;
     return this.apiInvokerService.post<Rendicontazione>(
       targetUrl, searchParams, null, new Mappers({mapperS2C: RendicontazioneDetail, mapperC2S: RendicontazioneDetail})

@@ -18,8 +18,8 @@
 package it.regioneveneto.mygov.payment.mypivot4.dao;
 
 import it.regioneveneto.mygov.payment.mypay4.dao.BaseDao;
-import it.regioneveneto.mygov.payment.mypivot4.model.Ente;
-import it.regioneveneto.mygov.payment.mypivot4.model.EnteTipoDovuto;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
+import it.regioneveneto.mygov.payment.mypivot4.model.*;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
@@ -62,9 +62,9 @@ public interface EnteTipoDovutoDao extends BaseDao {
   @RegisterFieldMapper(EnteTipoDovuto.class)
   @Caching(
       put = {
-          @CachePut(value = "enteTipoDovutoCache", key = "{'id',#result.mygovEnteTipoDovutoId}", condition="#result!=null"),
-          @CachePut(value = "enteTipoDovutoCache", key = "{'codTipo',#result.codTipo, #result.mygovEnteId.codIpaEnte}", condition="#result!=null"),
-          @CachePut(value = "enteTipoDovutoCache", key = "{'codTipoEnteId',#result.codTipo, #result.mygovEnteId.mygovEnteId}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'id',#result.mygovEnteTipoDovutoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codTipo',#result.codTipo, #result.mygovEnteId.codIpaEnte}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codTipoEnteId',#result.codTipo, #result.mygovEnteId.mygovEnteId}", condition="#result!=null")
       }
   )
   Optional<EnteTipoDovuto> getById(Long id);
@@ -82,9 +82,9 @@ public interface EnteTipoDovutoDao extends BaseDao {
   @RegisterFieldMapper(EnteTipoDovuto.class)
   @Caching(
       put = {
-          @CachePut(value = "enteTipoDovutoCache", key = "{'id',#result.mygovEnteTipoDovutoId}", condition="#result!=null"),
-          @CachePut(value = "enteTipoDovutoCache", key = "{'codTipo',#result.codTipo, #result.mygovEnteId.codIpaEnte}", condition="#result!=null"),
-          @CachePut(value = "enteTipoDovutoCache", key = "{'codTipoEnteId',#result.codTipo, #result.mygovEnteId.mygovEnteId}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'id',#result.mygovEnteTipoDovutoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codTipo',#result.codTipo, #result.mygovEnteId.codIpaEnte}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codTipoEnteId',#result.codTipo, #result.mygovEnteId.mygovEnteId}", condition="#result!=null")
       }
   )
   Optional<EnteTipoDovuto> getByCodTipo(String codTipo, String codIpaEnte);
@@ -100,9 +100,9 @@ public interface EnteTipoDovutoDao extends BaseDao {
   @RegisterFieldMapper(EnteTipoDovuto.class)
   @Caching(
       put = {
-          @CachePut(value = "enteTipoDovutoCache", key = "{'id',#result.mygovEnteTipoDovutoId}", condition="#result!=null"),
-          @CachePut(value = "enteTipoDovutoCache", key = "{'codTipo',#result.codTipo, #result.mygovEnteId.codIpaEnte}", condition="#result!=null"),
-          @CachePut(value = "enteTipoDovutoCache", key = "{'codTipoEnteId',#result.codTipo, #result.mygovEnteId.mygovEnteId}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'id',#result.mygovEnteTipoDovutoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codTipo',#result.codTipo, #result.mygovEnteId.codIpaEnte}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codTipoEnteId',#result.codTipo, #result.mygovEnteId.mygovEnteId}", condition="#result!=null")
       }
   )
   Optional<EnteTipoDovuto> getByCodTipoEnteId(String codTipo, Long idEnte);
@@ -112,12 +112,16 @@ public interface EnteTipoDovutoDao extends BaseDao {
           "  from mygov_ente_tipo_dovuto " + EnteTipoDovuto.ALIAS +
           "  join mygov_ente " + Ente.ALIAS +
           "    on "+EnteTipoDovuto.ALIAS+".mygov_ente_id = "+Ente.ALIAS+".mygov_ente_id " +
-          "  join mygov_operatore Operatore " +
-          "    on Operatore.cod_ipa_ente = "+Ente.ALIAS+".cod_ipa_ente" +
-          "  join mygov_utente Utente " +
-          "    on Utente.cod_fed_user_id  = Operatore.cod_fed_user_id " +
-          " where Utente.cod_fed_user_id = :operatoreUsername " +
+          "  join mygov_operatore " + Operatore.ALIAS +
+          "    on "+Operatore.ALIAS+".cod_ipa_ente = "+Ente.ALIAS+".cod_ipa_ente" +
+          "  join mygov_utente " + Utente.ALIAS +
+          "    on "+Utente.ALIAS+".cod_fed_user_id  = "+Operatore.ALIAS+".cod_fed_user_id " +
+          "  join mygov_operatore_ente_tipo_dovuto " + OperatoreEnteTipoDovuto.ALIAS +
+          "    on "+EnteTipoDovuto.ALIAS+".mygov_ente_tipo_dovuto_id  = "+OperatoreEnteTipoDovuto.ALIAS+".mygov_ente_tipo_dovuto_id " +
+          "   and "+Operatore.ALIAS+".mygov_operatore_id = "+OperatoreEnteTipoDovuto.ALIAS+".mygov_operatore_id " +
+          " where "+Utente.ALIAS+".cod_fed_user_id = :operatoreUsername " +
           "   and "+Ente.ALIAS+".mygov_ente_id = :mygovEnteId " +
+          "   and "+OperatoreEnteTipoDovuto.ALIAS+".flg_attivo = true " +
           " order by " + EnteTipoDovuto.ALIAS + ".de_tipo")
   @RegisterFieldMapper(EnteTipoDovuto.class)
   List<EnteTipoDovuto> getByMygovEnteIdAndOperatoreUsername(Long mygovEnteId, String operatoreUsername);

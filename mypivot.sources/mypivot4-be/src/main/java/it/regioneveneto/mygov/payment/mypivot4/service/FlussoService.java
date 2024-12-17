@@ -21,7 +21,9 @@ import it.regioneveneto.mygov.payment.mypay4.exception.BadRequestException;
 import it.regioneveneto.mygov.payment.mypay4.exception.MyPayException;
 import it.regioneveneto.mygov.payment.mypay4.exception.ValidatorException;
 import it.regioneveneto.mygov.payment.mypay4.service.MyBoxService;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypay4.util.Constants;
+import it.regioneveneto.mygov.payment.mypay4.util.MaxResultsHelper;
 import it.regioneveneto.mygov.payment.mypay4.util.Utilities;
 import it.regioneveneto.mygov.payment.mypivot4.dao.InfoMappingTesoreriaDao;
 import it.regioneveneto.mygov.payment.mypivot4.dao.ManageFlussoDao;
@@ -52,7 +54,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -80,7 +81,7 @@ public class FlussoService {
   @Autowired
   private MessageSource messageSource;
 
-  @Autowired
+  @Autowired(required = false)
   private QueueProducer queueProducer;
 
   @Autowired
@@ -88,6 +89,9 @@ public class FlussoService {
 
   @Autowired
   private InfoMappingTesoreriaDao infoMappingTesoreriaDao;
+
+  @Autowired
+  private MaxResultsHelper maxResultsHelper;
 
   @Value("${mypay.path.manage.log}")
   private String flussiLogRootDir;
@@ -110,17 +114,18 @@ public class FlussoService {
   @Value("${flussoposte.import-path}")
   private String flussoPosteImportPath;
 
-  @Cacheable(value="flussoCache", key="{'id',#id}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_FLUSSO, key="{'id',#id}", unless="#result==null")
   public ManageFlusso getById(Long id) {
     return manageFlussoDao.getById(id);
   }
 
-  @Cacheable(value="flussoCache")
+  @Cacheable(value=CacheService.CACHE_NAME_FLUSSO)
   public List<ManageFlusso> getByEnte(Long mygovEnteId) {
     return manageFlussoDao.getByEnte(mygovEnteId);
   }
 
-  public List<FlussoImportTo> getByEnteCodIdentificativoFlussoCreateDt(Long mygovEnteId, String codTipo, String codIdentificativoFlusso, LocalDate dateFrom, LocalDate dateTo) throws ValidatorException {
+  public List<FlussoImportTo> getByEnteCodIdentificativoFlussoCreateDt(
+    Long mygovEnteId, String username, String codTipo, String codIdentificativoFlusso, LocalDate dateFrom, LocalDate dateTo) throws ValidatorException {
     if (dateTo.isBefore(dateFrom)) {
       throw new ValidatorException(messageSource.getMessage("pa.messages.invalidDataIntervallo", null, Locale.ITALY));
     }
@@ -143,9 +148,12 @@ public class FlussoService {
         Constants.COD_TIPO_STATO_MANAGE_FILE_SCARICATO, Constants.COD_TIPO_STATO_MANAGE_FILE_IN_CARICAMENTO,
         Constants.COD_TIPO_STATO_MANAGE_FILE_CARICATO);
 
-    List<ManageFlusso> flussi = manageFlussoDao.getByEnteCodIdentificativoFlussoCreateDt(mygovEnteId, tipoFlusso.getCod(),
-        codIdentificativoFlusso, dateFrom, dateTo.plusDays(1), listCodStatoManage);
-    return flussi.stream().map(this::mapEntityToDto).collect(Collectors.toList());
+    return maxResultsHelper.manageMaxResults(
+      maxResults -> manageFlussoDao.getByEnteCodIdentificativoFlussoCreateDt(mygovEnteId, username, tipoFlusso.getCod(),
+        codIdentificativoFlusso, dateFrom, dateTo.plusDays(1), listCodStatoManage, maxResults),
+      this::mapEntityToDto,
+      () -> manageFlussoDao.getByEnteCodIdentificativoFlussoCreateDtCount(mygovEnteId, username, tipoFlusso.getCod(),
+        codIdentificativoFlusso, dateFrom, dateTo.plusDays(1), listCodStatoManage) );
   }
 
 
@@ -171,6 +179,7 @@ public class FlussoService {
           flussoTo.setFilePathOriginale(manageFlusso.getDePercorsoFile() + File.separator + manageFlusso.getDeNomeFile());
         }
       }
+      flussoTo.setShowDownload(StringUtils.isNotBlank(flussoTo.getFilePathOriginale()) || StringUtils.isNotBlank(flussoTo.getFilePathScarti()));
       File file = new File(flussiLogRootDir+File.separator+manageFlusso.getMygovEnteId().getCodIpaEnte(), manageFlusso.getDeNomeFile()+".log");
       flussoTo.setLog(file.exists()?manageFlusso.getDeNomeFile():null);
 

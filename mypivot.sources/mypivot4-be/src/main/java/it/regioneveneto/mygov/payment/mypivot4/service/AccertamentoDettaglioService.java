@@ -19,6 +19,7 @@ package it.regioneveneto.mygov.payment.mypivot4.service;
 
 import it.regioneveneto.mygov.payment.mypay4.exception.ValidatorException;
 import it.regioneveneto.mygov.payment.mypay4.util.Constants;
+import it.regioneveneto.mygov.payment.mypay4.util.Utilities;
 import it.regioneveneto.mygov.payment.mypivot4.dao.*;
 import it.regioneveneto.mygov.payment.mypivot4.dto.AccertamentoFlussoExportTo;
 import it.regioneveneto.mygov.payment.mypivot4.dto.BilancioTo;
@@ -275,7 +276,7 @@ public class AccertamentoDettaglioService {
     }
 
     to = to != null ? to.plusDays(1) : null;
-    List<FlussoExport> flussiExport = flussoExportDao.getDettalioCruscotto(enteId, codTipo, List.of(codIud), from, to, iuv, iur, attestante, cfPagatore, anagPagatore, cfVersante, anagVersante);
+    List<FlussoExport> flussiExport = flussoExportDao.getDettaglioCruscotto(enteId, codTipo, List.of(codIud), from, to, iuv, iur, attestante, cfPagatore, anagPagatore, cfVersante, anagVersante);
     return flussiExport.stream().map(statisticaService::mapToDto).collect(Collectors.toList());
   }
 
@@ -295,8 +296,8 @@ public class AccertamentoDettaglioService {
       .anagraficaPagatore(accertamento.getCodESoggPagAnagraficaPagatore())
       .codiceIdentificativoUnivocoPagatore(accertamento.getCodESoggPagIdUnivPagCodiceIdUnivoco())
       .tipoIdentificativoUnivocoPagatore(accertamento.getCodESoggPagIdUnivPagTipoIdUnivoco())
-      .dtUltimoAggiornamento(accertamento.getDtUltimaModifica())
-      .dtEsitoSingoloPagamento(accertamento.getDtEDatiPagDatiSingPagDataEsitoSingoloPagamento())
+      .dtUltimoAggiornamento(Utilities.toLocalDateTime(accertamento.getDtUltimaModifica()))
+      .dtEsitoSingoloPagamento(Utilities.toLocalDateTime(accertamento.getDtEDatiPagDatiSingPagDataEsitoSingoloPagamento()))
       .singoloImportoPagato(accertamento.getNumEDatiPagDatiSingPagSingoloImportoPagato())
       .causaleVersamento(accertamento.getDeEDatiPagDatiSingPagCausaleVersamento()).build();
   }
@@ -317,8 +318,8 @@ public class AccertamentoDettaglioService {
         .anagraficaPagatore(accertamento.getCodESoggPagAnagraficaPagatore())
         .codiceIdentificativoUnivocoPagatore(accertamento.getCodESoggPagIdUnivPagCodiceIdUnivoco())
         .tipoIdentificativoUnivocoPagatore(accertamento.getCodESoggPagIdUnivPagTipoIdUnivoco())
-        .dtUltimoAggiornamento(accertamento.getDtUltimaModifica())
-        .dtEsitoSingoloPagamento(accertamento.getDtEDatiPagDatiSingPagDataEsitoSingoloPagamento())
+        .dtUltimoAggiornamento(Utilities.toLocalDateTime(accertamento.getDtUltimaModifica()))
+        .dtEsitoSingoloPagamento(Utilities.toLocalDateTime(accertamento.getDtEDatiPagDatiSingPagDataEsitoSingoloPagamento()))
         .singoloImportoPagato(accertamento.getNumEDatiPagDatiSingPagSingoloImportoPagato())
         .causaleVersamento(accertamento.getDeEDatiPagDatiSingPagCausaleVersamento()).build();
   }

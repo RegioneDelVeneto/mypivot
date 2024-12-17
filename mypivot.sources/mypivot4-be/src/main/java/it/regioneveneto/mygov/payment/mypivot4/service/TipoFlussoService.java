@@ -17,6 +17,7 @@
  */
 package it.regioneveneto.mygov.payment.mypivot4.service;
 
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.dao.TipoFlussoDao;
 import it.regioneveneto.mygov.payment.mypivot4.model.TipoFlusso;
 import lombok.extern.slf4j.Slf4j;
@@ -33,12 +34,12 @@ public class TipoFlussoService {
   @Autowired
   private TipoFlussoDao tipoFlussoDao;
 
-  @Cacheable(value="tipoFlussoCache", key="{'codTipo+deTipo',#codTipo,#deTipo}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_TIPO_FLUSSO, key="{'codTipo+deTipo',#codTipo,#deTipo}", unless="#result==null")
   public Optional<TipoFlusso> getByCodTipo(String codTipo) {
     return tipoFlussoDao.getByCodTipo(codTipo);
   }
 
-  @Cacheable(value="tipoFlussoCache", key="{'id',#mygovTipoFlussoId}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_TIPO_FLUSSO, key="{'id',#mygovTipoFlussoId}", unless="#result==null")
   public TipoFlusso getById(Long mygovTipoFlussoId) {
     return tipoFlussoDao.getById(mygovTipoFlussoId);
   }

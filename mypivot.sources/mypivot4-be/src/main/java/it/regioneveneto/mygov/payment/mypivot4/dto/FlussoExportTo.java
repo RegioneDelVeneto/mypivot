@@ -37,8 +37,8 @@ public class FlussoExportTo extends BaseTo {
   private String operatore;
   private String codStato;
   private String stato;
-  private long dimensione;
-  private boolean showDownload;
+  private Long dimensione;
+  private Boolean showDownload;
   private LocalDateTime dataPrenotazione;
   private String path;
   private String classificazione;

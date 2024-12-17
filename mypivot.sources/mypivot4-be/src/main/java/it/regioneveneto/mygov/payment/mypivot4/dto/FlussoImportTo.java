@@ -43,5 +43,6 @@ public class FlussoImportTo extends BaseTo {
   private String log;
   private String filePathOriginale;
   private String filePathScarti;
+  private Boolean showDownload;
   private String securityToken;
 }

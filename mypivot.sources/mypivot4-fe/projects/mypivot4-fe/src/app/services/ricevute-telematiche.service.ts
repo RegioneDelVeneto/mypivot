@@ -47,8 +47,10 @@ export class RicevuteTelematicheService {
     );
   }
 
-  getMypayInfo(ente: Ente, iuv: string): Observable<FlussoRicevuta> {
-    const targetUrl = `${this.baseApiUrl}ricevute-telematiche/mypayinfo/${ente.mygovEnteId}/${iuv}`;
+  getMypayInfo(enteId: number, iuv: string, codFiscalePa1: string = null): Observable<FlussoRicevuta> {
+    let targetUrl = `${this.baseApiUrl}ricevute-telematiche/mypayinfo/${enteId}/${iuv}`;
+    if(codFiscalePa1)
+      targetUrl += `/${codFiscalePa1}`;
     return this.apiInvokerService.get<FlussoRicevuta>(
       targetUrl, null, new Mappers({mapper: FlussoRicevuta})
     );

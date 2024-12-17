@@ -18,6 +18,7 @@
 package it.regioneveneto.mygov.payment.mypivot4.dao;
 
 import it.regioneveneto.mygov.payment.mypay4.dao.BaseDao;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.model.TipoFlusso;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -34,8 +35,8 @@ public interface TipoFlussoDao extends BaseDao {
   @RegisterFieldMapper(TipoFlusso.class)
   @Caching(
       put = {
-          @CachePut(value = "tipoFlussoCache", key = "{'id',#result.mygovTipoFlussoId}", condition="#result!=null"),
-          @CachePut(value = "tipoFlussoCache", key = "{'codTipo+deTipo',#result.codTipo,#result.deTipo}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_TIPO_FLUSSO, key = "{'id',#result.mygovTipoFlussoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_TIPO_FLUSSO, key = "{'codTipo+deTipo',#result.codTipo,#result.deTipo}", condition="#result!=null")
       }
   )
   Optional<TipoFlusso> getByCodTipo(String codTipo);
@@ -47,8 +48,8 @@ public interface TipoFlussoDao extends BaseDao {
   @RegisterFieldMapper(TipoFlusso.class)
   @Caching(
       put = {
-          @CachePut(value = "tipoFlussoCache", key = "{'id',#result.mygovTipoFlussoId}", condition="#result!=null"),
-          @CachePut(value = "tipoFlussoCache", key = "{'codTipo+deTipo',#result.codTipo,#result.deTipo}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_TIPO_FLUSSO, key = "{'id',#result.mygovTipoFlussoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_TIPO_FLUSSO, key = "{'codTipo+deTipo',#result.codTipo,#result.deTipo}", condition="#result!=null")
       }
   )
   TipoFlusso getById(Long mygovTipoFlussoId);

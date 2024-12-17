@@ -64,8 +64,8 @@ public class MyPayService {
     this.restTemplate = restTemplateBuilder.build();
   }
 
-  public FlussoRicevutaTo getRtInfo(String codIpaEnte, String iuv){
-    String url = baseUrl + String.format("a2a/pagati/info/%s/%s", codIpaEnte, iuv);
+  public FlussoRicevutaTo getRtInfo(String codFiscaleEnte, String iuv){
+    String url = baseUrl + String.format("a2a/pagati/info/%s/%s", codFiscaleEnte, iuv);
     HttpHeaders headers = new HttpHeaders();
     Map<String, Object> claims = new HashMap<>();
     claims.put("type", "a2a");
@@ -78,10 +78,10 @@ public class MyPayService {
         .signWith(mypayPrivateKey).compact();
     headers.setBearerAuth(jwtToken);
     HttpEntity<String> entity = new HttpEntity<>(headers);
-    log.info("invoking mypay api to get rt info, ente:"+codIpaEnte+" - iuv:"+iuv);
+    log.info("invoking mypay api to get rt info, ente:"+codFiscaleEnte+" - iuv:"+iuv);
     ResponseEntity<Map> response = this.restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
     Map<String, String> info = response.getBody();
-    log.info("invoked mypay api to get rt info, ente:"+codIpaEnte+" - iuv:"+iuv+" - returned values: "+(info.size()==0 ? "<not found>" : "deStato="+info.get("deStato")));
+    log.info("invoked mypay api to get rt info, ente:"+codFiscaleEnte+" - iuv:"+iuv+" - returned values: "+(info.size()==0 ? "<not found>" : "deStato="+info.get("deStato")));
     FlussoRicevutaTo dto = FlussoRicevutaTo.builder()
         .codIud(info.get("iud"))
         .codRpSilinviarpIdUnivocoVersamento(info.get("iuv"))

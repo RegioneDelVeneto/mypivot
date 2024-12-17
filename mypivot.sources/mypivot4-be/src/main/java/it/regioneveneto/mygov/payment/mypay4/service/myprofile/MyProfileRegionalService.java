@@ -19,6 +19,7 @@ package it.regioneveneto.mygov.payment.mypay4.service.myprofile;
 
 import it.regioneveneto.mygov.payment.mypay4.dto.myprofile.MyProfileRoleTo;
 import it.regioneveneto.mygov.payment.mypay4.dto.myprofile.MyProfileTenantTo;
+import it.regioneveneto.mygov.payment.mypay4.security.Operatore;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -38,12 +39,16 @@ import java.util.stream.Collectors;
 @Primary
 @Slf4j
 public class MyProfileRegionalService implements MyProfileServiceI {
+//public class MyProfileRegionalService {
 
   @Value("${myprofile.baseUrl}")
   public String baseUrl;
 
   @Value("${myprofile.applCode}")
   public String applCode;
+
+  @Value("${mypivot.codIpaEntePredefinito}")
+  private String adminEnteCodIpa;
 
   private final RestTemplate restTemplate;
 
@@ -55,7 +60,9 @@ public class MyProfileRegionalService implements MyProfileServiceI {
   private Set<String> getUserRoles(String tenantCode, String userCode){
     String url = baseUrl + String.format("myp-roles/%s/%s/%s/", tenantCode, applCode, userCode);
     MyProfileRoleTo[] roles = this.restTemplate.getForObject(url, MyProfileRoleTo[].class);
-    Set<String> roleSet = Arrays.stream(roles).map(MyProfileRoleTo::getRoleCode).collect(Collectors.toUnmodifiableSet());
+    Set<String> roleSet = Arrays.stream(roles).map(MyProfileRoleTo::getRoleCode)
+      //.filter(role -> StringUtils.equals(role, "ROLE_ACC"))
+      .collect(Collectors.toUnmodifiableSet());
     log.debug("MyProfile - roles for user {} tenant {}: {}", userCode, tenantCode, Arrays.toString(roleSet.toArray()));
     return roleSet;
   }
@@ -68,8 +75,10 @@ public class MyProfileRegionalService implements MyProfileServiceI {
     return tenantSet;
   }
 
+  //@Cacheable(value= CacheService.CACHE_NAME_MY_PROFILE, key="{'userCode',#userCode}", unless="#result==null")
   @Cacheable(value="myProfileCache", key="{'userCode',#userCode}", unless="#result==null")
   public Map<String, Set<String>> getUserTenantsAndRoles(String userCode){
+    log.debug("invoking getUserTenantsAndRoles [{}]", userCode);
     return getUserTenants(userCode).stream()
         .map(tenant -> new AbstractMap.SimpleImmutableEntry<>(
             tenant.equals("RDV")?"R_VENETO":tenant,  //R_VENETO is mapped as RDV on MyProfile (why???)
@@ -79,7 +88,13 @@ public class MyProfileRegionalService implements MyProfileServiceI {
             AbstractMap.SimpleImmutableEntry::getValue));
   }
 
-  @CacheEvict(value="myProfileCache",key="{'userCode',#userCode}")
+  //@CacheEvict(value=CacheService.CACHE_NAME_MY_PROFILE,key="{'userCode',#userCode}")
+  @CacheEvict(value="myProfileCache", key="{'userCode',#userCode}")
   public void clearUserTenantsAndRoles(String userCode){}
+
+  public boolean isSystemAdministrator(Map<String, Set<String>> userTenantsAndRoles) {
+    log.debug("userTenantsAndRoles: {}",userTenantsAndRoles);
+    return userTenantsAndRoles.getOrDefault(adminEnteCodIpa, Set.of()).contains(Operatore.Role.ROLE_ADMIN.name());
+  }
 
 }

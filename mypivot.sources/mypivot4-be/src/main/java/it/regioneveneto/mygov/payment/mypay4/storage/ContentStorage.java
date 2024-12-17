@@ -19,6 +19,7 @@ package it.regioneveneto.mygov.payment.mypay4.storage;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.regioneveneto.mygov.payment.mypay4.exception.MyPayException;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,27 +34,25 @@ import java.util.UUID;
 @Slf4j
 public class ContentStorage {
 
-  private final static String CACHE_NAME = "uploadCache";
-
   @Autowired
   private ObjectMapper objectMapper;
 
-  @Value("${cache.cacheExpirations."+CACHE_NAME+":${cache.timeoutSeconds}}")
+  @Value("${cache.cacheExpirations."+ CacheService.CACHE_NAME_UPLOAD +":${cache.timeoutSeconds}}")
   private long cacheExpirations;
 
-  @Cacheable(value=CACHE_NAME, key="{'file',#storageToken.username,#storageToken.id}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_UPLOAD, key="{'file',#storageToken.username,#storageToken.id}", unless="#result==null")
   public byte[] getFileContent(StorageToken storageToken){
     return null;
   }
 
-  @CachePut(value=CACHE_NAME, key="{'file',#uploadToken.username,#uploadToken.id}")
+  @CachePut(value=CacheService.CACHE_NAME_UPLOAD, key="{'file',#uploadToken.username,#uploadToken.id}")
   public byte[] putFileContent(StorageToken storageToken, byte[] fileContent){
     storageToken.uploadTimestamp = System.currentTimeMillis();
     storageToken.expiryTimestamp = storageToken.uploadTimestamp + cacheExpirations * 1000;
     return fileContent;
   }
 
-  @Cacheable(value=CACHE_NAME, key="{'object',#storageToken.username,#storageToken.id}", unless="#result==null")
+  @Cacheable(value=CacheService.CACHE_NAME_UPLOAD, key="{'object',#storageToken.username,#storageToken.id}", unless="#result==null")
   public String getObjectAsString(StorageToken storageToken){
     return null;
   }
@@ -66,7 +65,7 @@ public class ContentStorage {
     }
   }
 
-  @CachePut(value=CACHE_NAME, key="{'object',#storageToken.username,#storageToken.id}")
+  @CachePut(value=CacheService.CACHE_NAME_UPLOAD, key="{'object',#storageToken.username,#storageToken.id}")
   public String putObject(StorageToken storageToken, Object object){
     String storedObject;
     try{
@@ -79,7 +78,7 @@ public class ContentStorage {
     return storedObject;
   }
 
-  @CacheEvict(value=CACHE_NAME, key="{'file',#storageToken.username,#storageToken.id}")
+  @CacheEvict(value=CacheService.CACHE_NAME_UPLOAD, key="{'file',#storageToken.username,#storageToken.id}")
   public void deleteStorage(StorageToken storageToken){
   }
 

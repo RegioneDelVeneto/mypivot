@@ -108,7 +108,12 @@ public class FlussoExport extends BaseEntity {
       ","+ALIAS+".de_importa_dovuto_fault_description as FlussoExport_deImportaDovutoFaultDescription"+
       ","+ALIAS+".num_importa_dovuto_fault_serial as FlussoExport_numImportaDovutoFaultSerial"+
       ","+ALIAS+".bilancio as FlussoExport_bilancio,"+ALIAS+".id_intermediario_pa as FlussoExport_idIntermediarioPa"+
-      ","+ALIAS+".id_stazione_intermediario_pa as FlussoExport_idStazioneIntermediarioPa";
+      ","+ALIAS+".id_stazione_intermediario_pa as FlussoExport_idStazioneIntermediarioPa"+
+      ","+ALIAS+".cod_tipo_dovuto_pa1 as FlussoExport_codTipoDovutoPa1"+
+      ","+ALIAS+".de_tipo_dovuto_pa1 as FlussoExport_deTipoDovutoPa1"+
+      ","+ALIAS+".cod_tassonomico_dovuto_pa1 as FlussoExport_codTassonomicoDovutoPa1"+
+      ","+ALIAS+".cod_fiscale_pa1 as FlussoExport_codFiscalePa1"+
+      ","+ALIAS+".de_nome_pa1 as FlussoExport_deNomePa1";
 
   private int version;
   private Date dtCreazione;
@@ -192,5 +197,9 @@ public class FlussoExport extends BaseEntity {
   private String bilancio;
   private String idIntermediarioPa;
   private String idStazioneIntermediarioPa;
-
+  private String codTipoDovutoPa1;
+  private String deTipoDovutoPa1;
+  private String codTassonomicoDovutoPa1;
+  private String codFiscalePa1;
+  private String deNomePa1;
 }

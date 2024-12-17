@@ -18,15 +18,14 @@
 package it.regioneveneto.mygov.payment.mypivot4.dao;
 
 import it.regioneveneto.mygov.payment.mypay4.dao.BaseDao;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.model.Ente;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Caching;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public interface EnteDao extends BaseDao {
 
@@ -54,9 +53,9 @@ public interface EnteDao extends BaseDao {
   @RegisterFieldMapper(Ente.class)
   @Caching(
       put = {
-          @CachePut(value = "enteCache", key = "{'id',#result.mygovEnteId}", condition="#result!=null"),
-          @CachePut(value = "enteCache", key = "{'codIpa',#result.codIpaEnte}", condition="#result!=null"),
-          @CachePut(value = "enteCache", key = "{'codFiscale',#result.codiceFiscaleEnte}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'id',#result.mygovEnteId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'codIpa',#result.codIpaEnte}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'codFiscale',#result.codiceFiscaleEnte}", condition="#result!=null")
       }
   )
   Ente getEnteById(Long id);
@@ -68,9 +67,9 @@ public interface EnteDao extends BaseDao {
   @RegisterFieldMapper(Ente.class)
   @Caching(
       put = {
-          @CachePut(value = "enteCache", key = "{'id',#result.mygovEnteId}", condition="#result!=null"),
-          @CachePut(value = "enteCache", key = "{'codIpa',#result.codIpaEnte}", condition="#result!=null"),
-          @CachePut(value = "enteCache", key = "{'codFiscale',#result.codiceFiscaleEnte}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'id',#result.mygovEnteId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'codIpa',#result.codIpaEnte}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'codFiscale',#result.codiceFiscaleEnte}", condition="#result!=null")
       }
   )
   Ente getEnteByCodIpa(String codIpa);
@@ -82,9 +81,9 @@ public interface EnteDao extends BaseDao {
   @RegisterFieldMapper(Ente.class)
   @Caching(
       put = {
-          @CachePut(value = "enteCache", key = "{'id',#result.mygovEnteId}", condition="#result!=null"),
-          @CachePut(value = "enteCache", key = "{'codIpa',#result.codIpaEnte}", condition="#result!=null"),
-          @CachePut(value = "enteCache", key = "{'codFiscale',#result.codiceFiscaleEnte}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'id',#result.mygovEnteId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'codIpa',#result.codIpaEnte}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ENTE, key = "{'codFiscale',#result.codiceFiscaleEnte}", condition="#result!=null")
       }
   )
   Ente getEnteByCodFiscale(String codFiscale);

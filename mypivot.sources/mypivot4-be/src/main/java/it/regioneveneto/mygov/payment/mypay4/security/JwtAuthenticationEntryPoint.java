@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -39,6 +40,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
   public final static String TOKEN_ERROR_CODE_INVALID = "TOKEN_INVALID";
   public final static String TOKEN_ERROR_CODE_MISSING = "TOKEN_MISSING";
   public final static String TOKEN_LOGGED_OUT = "_TOKEN_LOGGED_OUT";
+
+  public final static List<String> NOT_REMOVE_AUTH = List.of(TOKEN_ERROR_CODE_MISSING, TOKEN_ERROR_CODE_USED);
 
   @Override
   public void commence(HttpServletRequest request, HttpServletResponse response,

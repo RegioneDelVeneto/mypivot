@@ -68,4 +68,5 @@ export class FlussoRicevuta extends WithActions {
   tipoIdUnivocoPagatore: string;
   tipoIdUnivocoVersante: string;
   deStato: string;
+  codFiscalePa1: string;
 }

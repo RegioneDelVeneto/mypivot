@@ -15,17 +15,21 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import com.google.common.base.MoreObjects
+
 plugins {
   java
   id("org.springframework.boot") version "2.6.6"
-  id("io.freefair.lombok") version "6.3.0"
+  id("io.freefair.lombok") version "8.4"
   // https://github.com/ben-manes/gradle-versions-plugin
   // plugin that provides a task to determine which dependencies have updates
-  id("com.github.ben-manes.versions") version "0.41.0"
+  id("com.github.ben-manes.versions") version "0.44.0"
   //code generation for soap webservices classes (via jaxb)
-  id("com.intershop.gradle.jaxb") version "5.1.0"
+  id("com.intershop.gradle.jaxb") version "5.2.1"
   //version file
-  id("com.palantir.git-version") version "0.12.3"
+  id("com.palantir.git-version") version "0.15.0"
+  //semantic versioning
+  id("com.glovoapp.semantic-versioning") version "1.1.10"
 }
 
 val xmlAdapterJarName = "${project.name}-XmlAdapter.jar"
@@ -39,7 +43,7 @@ task("xmlAdapterJar", type = Jar::class) {
 }
 
 //lombok configuration
-lombok.version.set("1.18.22")
+//lombok.version.set("1.18.22")
 
 //check if we are using a "local developer" profile
 val isLocalDevProfile = System.getenv().containsKey("spring.profiles.active")
@@ -60,6 +64,16 @@ tasks {
     dependsOn( "jaxbSchemaGenMypivot")
   }
   bootJar {
+    val appendix = archiveAppendix.orNull
+    val version = archiveVersion.orNull
+    // remove version from archive JAR filename in order to keep it constant and ease CI/CD pipeline
+    val jarFilename = archiveBaseName.get() +
+            (if (appendix.isNullOrBlank()) "" else "-$appendix") +
+//       (if (version.isNullOrBlank()) "" else "-$version") +
+            "."+archiveExtension.get()
+    println("jar filename: $jarFilename")
+    println("jar version: $version")
+    archiveFileName.set(jarFilename)
     launchScript()
   }
   bootRun {
@@ -75,7 +89,6 @@ tasks {
 apply(plugin = "io.spring.dependency-management")
 
 group = "it.regioneveneto.mypivot4"
-version = "1.0-SNAPSHOT"
 
 repositories {
   mavenCentral()
@@ -107,6 +120,7 @@ dependencies {
   //spring boot version: see plugin section above
   //lombok: see plugin section above
   val commonsLang3Version = "3.12.0"
+  val commonsTextVersion = "1.9"
   val gsonVersion="2.8.9"
   val httpClientVersion = "4.5.13"
   val imgScalrVersion = "4.2"
@@ -162,6 +176,7 @@ dependencies {
 
   //apache commons-lang3
   implementation("org.apache.commons:commons-lang3:$commonsLang3Version")
+  implementation("org.apache.commons:commons-text:$commonsTextVersion")
 
   //apache xmlbeans
   implementation("org.apache.xmlbeans:xmlbeans:$xmlbeansVersion")
@@ -206,6 +221,7 @@ dependencies {
   jaxb("javax.activation:activation:$activationVersion")
   // see remarks on source file TrimStringXmlAdapter.java
   jaxbext(files("libs/$xmlAdapterJarName"))
+  jaxbext("org.slf4j:slf4j-simple:1.7.9") // see https://github.com/IntershopCommunicationsAG/jaxb-gradle-plugin/issues/37
 
   //Springdoc OpenAPI UI (Swagger)
   implementation("org.springdoc:springdoc-openapi-ui:$springdocVersion")
@@ -234,7 +250,7 @@ dependencies {
         additional = mapOf<String, Any>(
             "gitHash" to details.gitHash,
             "gitHashFull" to details.gitHashFull,
-            "branchName" to details.branchName,
+            "branchName" to MoreObjects.firstNonNull(details.branchName, ""),
             "lastTag" to details.lastTag,
             "commitDistance" to details.commitDistance,
             "isCleanTag" to details.isCleanTag

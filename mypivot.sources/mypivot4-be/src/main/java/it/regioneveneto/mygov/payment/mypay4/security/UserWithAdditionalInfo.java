@@ -59,6 +59,7 @@ public class UserWithAdditionalInfo implements UserDetails {
   private final String comuneNascita;
   private final String dataNascita;
 
+  private final boolean sysAdmin;
   //authorized list of "ente" (key) and roles for each "ente" (value)
   private final Map<String, Set<String>> entiRoles;
 

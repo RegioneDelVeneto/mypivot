@@ -18,6 +18,7 @@
 package it.regioneveneto.mygov.payment.mypivot4.dao;
 
 import it.regioneveneto.mygov.payment.mypay4.dao.BaseDao;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.model.AnagraficaStato;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
@@ -35,8 +36,8 @@ public interface AnagraficaStatoDao extends BaseDao {
   @RegisterFieldMapper(AnagraficaStato.class)
   @Caching(
       put = {
-          @CachePut(value = "anagraficaStatoCache", key = "{'id',#result.mygovAnagraficaStatoId}", condition="#result!=null"),
-          @CachePut(value = "anagraficaStatoCache", key = "{'codStato+deTipoStato',#result.codStato,#result.deTipoStato}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ANAGRAFICA_STATO, key = "{'id',#result.mygovAnagraficaStatoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ANAGRAFICA_STATO, key = "{'codStato+deTipoStato',#result.codStato,#result.deTipoStato}", condition="#result!=null")
       }
   )
   AnagraficaStato getByCodStatoAndTipoStato(String codStato, String deTipoStato);
@@ -48,8 +49,8 @@ public interface AnagraficaStatoDao extends BaseDao {
   @RegisterFieldMapper(AnagraficaStato.class)
   @Caching(
       put = {
-          @CachePut(value = "anagraficaStatoCache", key = "{'id',#result.mygovAnagraficaStatoId}", condition="#result!=null"),
-          @CachePut(value = "anagraficaStatoCache", key = "{'codStato+deTipoStato',#result.codStato,#result.deTipoStato}", condition="#result!=null")
+          @CachePut(value = CacheService.CACHE_NAME_ANAGRAFICA_STATO, key = "{'id',#result.mygovAnagraficaStatoId}", condition="#result!=null"),
+          @CachePut(value = CacheService.CACHE_NAME_ANAGRAFICA_STATO, key = "{'codStato+deTipoStato',#result.codStato,#result.deTipoStato}", condition="#result!=null")
       }
   )
   AnagraficaStato getById(Long mygovAnagraficaStatoId);

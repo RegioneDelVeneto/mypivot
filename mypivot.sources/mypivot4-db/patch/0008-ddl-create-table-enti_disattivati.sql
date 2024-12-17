@@ -1,0 +1,23 @@
+create table enti_disattivati(mygov_ente_id numeric);
+
+insert into enti_disattivati values (338);
+insert into enti_disattivati values (99);
+insert into enti_disattivati values (186);
+insert into enti_disattivati values (119);
+insert into enti_disattivati values (271);
+insert into enti_disattivati values (133);
+insert into enti_disattivati values (22);
+insert into enti_disattivati values (399);
+insert into enti_disattivati values (54);
+insert into enti_disattivati values (17);
+insert into enti_disattivati values (218);
+insert into enti_disattivati values (228);
+insert into enti_disattivati values (358);
+insert into enti_disattivati values (20);
+insert into enti_disattivati values (191);
+insert into enti_disattivati values (103);
+insert into enti_disattivati values (30);
+insert into enti_disattivati values (41);
+insert into enti_disattivati values (418);
+insert into enti_disattivati values (197);
+insert into enti_disattivati values (436);

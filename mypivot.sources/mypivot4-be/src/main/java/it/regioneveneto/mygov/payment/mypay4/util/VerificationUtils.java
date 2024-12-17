@@ -205,7 +205,7 @@ public class VerificationUtils {
     return null;
   }
 
-  public static FaultBean checkFlussoTesoreria(String codIpa, String codiceBolletta, String annoBolletta, FlussoTesoreria flusso) {
+  public static FaultBean checkFlussoTesoreria(String codIpa, String annoBolletta, String codiceBolletta, FlussoTesoreria flusso) {
     if (flusso == null) {
       log.error("pivotSILChiediAccertamento: La bolletta per codIpaEnte [ " + codIpa + " ], annoBolletta [ "
           + annoBolletta + " ] e numeroBolletta [ " + codiceBolletta + " ] non è stata trovata");

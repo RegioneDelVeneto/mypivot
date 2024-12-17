@@ -58,6 +58,7 @@ public abstract class MyPay4AbstractSecurityConfig extends WebSecurityConfigurer
   public final static String PATH_PUBLIC = "/public";
   public final static String PATH_APP_ADMIN = "/appadmin";
   public final static String PATH_WS = "/ws";
+  public final static String PATH_A2A = "/a2a";
 
   @Value("${cors.enabled:false}")
   private String corsEnabled;

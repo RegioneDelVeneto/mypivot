@@ -118,4 +118,8 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   toogleMainMenu() {
     this.mainMenuOpen = !this.mainMenuOpen;
   }
+
+  scrollToMainContent(){
+    this.mainContainerDiv.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+  }
 }

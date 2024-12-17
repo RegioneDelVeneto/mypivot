@@ -20,22 +20,11 @@ package it.regioneveneto.mygov.payment.mypivot4.service;
 import it.regioneveneto.mygov.payment.mypay4.exception.NotFoundException;
 import it.regioneveneto.mygov.payment.mypay4.exception.ValidatorException;
 import it.regioneveneto.mygov.payment.mypay4.util.Utilities;
-import it.regioneveneto.mygov.payment.mypivot4.dao.AnagraficaUffCapAccDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.FlussoExportDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoUffTdCapAccDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoUffTdCapDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoUffTdDao;
+import it.regioneveneto.mygov.payment.mypivot4.dao.*;
 import it.regioneveneto.mygov.payment.mypivot4.dto.FlussoRicevutaTo;
 import it.regioneveneto.mygov.payment.mypivot4.dto.VmStatisticaCapitoloTo;
 import it.regioneveneto.mygov.payment.mypivot4.dto.VmStatisticaTo;
-import it.regioneveneto.mygov.payment.mypivot4.model.AnagraficaUffCapAcc;
-import it.regioneveneto.mygov.payment.mypivot4.model.Ente;
-import it.regioneveneto.mygov.payment.mypivot4.model.FlussoExport;
-import it.regioneveneto.mygov.payment.mypivot4.model.VmStatisticaEnteAnnoMeseGiorno;
-import it.regioneveneto.mygov.payment.mypivot4.model.VmStatisticaEnteAnnoMeseGiornoUffTd;
-import it.regioneveneto.mygov.payment.mypivot4.model.VmStatisticaEnteAnnoMeseGiornoUffTdCap;
-import it.regioneveneto.mygov.payment.mypivot4.model.VmStatisticaEnteAnnoMeseGiornoUffTdCapAcc;
+import it.regioneveneto.mygov.payment.mypivot4.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +35,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -58,7 +46,7 @@ import java.util.stream.Collectors;
 public class StatisticaService {
 
   private enum AnnoMeseGiorno {
-    ANNO, MESE, GIORNO;
+    ANNO, MESE, GIORNO
   }
 
   @Autowired
@@ -98,7 +86,7 @@ public class StatisticaService {
       log.warn("RICERCA :: STATISTICA :: RIPARTITI per UFFICI :: Utente[codFedUserId: " + codFedUserId + "] :: NON risulta OPERATORE per nessun tipo dovuto.");
       throw new ValidatorException(messageSource.getMessage("mypivot.messages.error.nessunTipoDovutoAssegnato", null, Locale.ITALY));
     }
-    return anagraficaUffCapAccDao.findDistinctUfficiByFilter(enteId, null, Arrays.asList(codTipo));
+    return anagraficaUffCapAccDao.findDistinctUfficiByFilter(enteId, null, List.of(codTipo));
   }
 
   public List<AnagraficaUffCapAcc> getAnagraficaByEnte(Long enteId, String codFedUserId) {
@@ -311,9 +299,10 @@ public class StatisticaService {
       throw new ValidatorException(messageSource.getMessage("mypivot.messages.error.nessunTipoDovutoAssegnato", null, Locale.ITALY));
     }
 
-    List<String> codIud = flussoExportDao.get_dettaglio_pagamenti_cruscotto(null,null, null, codUfficio, codTipo, codCapitolo, enteId, null);
+    //List<String> codIud = flussoExportDao.get_dettaglio_pagamenti_cruscotto(null,null, null, codUfficio, codTipo, codCapitolo, enteId, null);
     to = to != null ? to.plusDays(1) : null;
-    List<FlussoExport> flussiExport = flussoExportDao.getDettalioCruscotto(enteId, codTipo, codIud, from, to, iuv, iur, attestante, cfPagatore, anagPagatore, cfVersante, anagVersante);
+    List<FlussoExport> flussiExport = flussoExportDao.getDettaglioCruscotto(enteId, codTipo, from, to, iuv, iur, attestante, cfPagatore, anagPagatore, cfVersante, anagVersante,
+      null, null, null, codUfficio, codCapitolo, null);
     return flussiExport.stream().map(this::mapToDto).collect(Collectors.toList());
   }
 

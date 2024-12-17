@@ -51,7 +51,7 @@ public class ThumbnailService {
     return new ThumbnailCacheKeyGenerator();
   }
 
-  @Cacheable(value="thumbnailCache", keyGenerator = "thumbnailCacheKeyGenerator", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_THUMBNAIL, keyGenerator = "thumbnailCacheKeyGenerator", unless="#result==null")
   public Optional<StringWithHashTo> generateThumbnail(String imgData){
     if(StringUtils.isBlank(imgData))
       return Optional.empty();
@@ -72,7 +72,7 @@ public class ThumbnailService {
     }
   }
 
-  @Cacheable(value="thumbnailHashCache", keyGenerator = "thumbnailCacheKeyGenerator", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_THUMBNAIL_HASH, keyGenerator = "thumbnailCacheKeyGenerator", unless="#result==null")
   public Optional<String> getThumbnailHash(String imgData){
     if(StringUtils.isBlank(imgData))
       return Optional.empty();
@@ -80,7 +80,7 @@ public class ThumbnailService {
     return stringWithHashTo.map(x -> x.getHash());
   }
 
-  @CachePut(value = "thumbnailHashCache", key = "{'imgData'}")
+  @CachePut(value = CacheService.CACHE_NAME_THUMBNAIL_HASH, key = "{'imgData'}")
   public String putHashCache(String imgData, String hash){
     return hash;
   }

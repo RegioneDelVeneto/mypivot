@@ -21,11 +21,11 @@ import it.regioneveneto.mygov.payment.mypay4.config.JmsConfig;
 import it.regioneveneto.mygov.payment.mypay4.logging.LogExecution;
 import it.regioneveneto.mygov.payment.mypay4.util.Constants;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
@@ -38,24 +38,28 @@ import java.util.concurrent.atomic.AtomicReference;
 import static it.regioneveneto.mygov.payment.mypay4.util.Constants.TIPO_FLUSSO.*;
 
 @Component
-@EnableJms
 @ConditionalOnBean(JmsConfig.class)
 @Slf4j
 public class QueueProducer implements InitializingBean {
   @Autowired
   JmsTemplate jmsTemplate;
 
-  @Value("${queue.export-pagati}")
+  @Value("${queue.export-pagati:}")
   private String exportPagatiQueue;
 
-  @Value("${queue.rendicontazione-standard}")
+  private boolean exportPagatiQueueEnabled = true;
+
+  @Value("${queue.rendicontazione-standard:}")
   private String rendicontazioneStandardQueue;
+  private boolean rendicontazioneStandardQueueEnabled = true;
 
-  @Value("${queue.tesoreria}")
+  @Value("${queue.tesoreria:}")
   private String tesoreriaQueue;
+  private boolean tesoreriaQueueEnabled = true;
 
-  @Value("${queue.export-dovuti}")
+  @Value("${queue.export-dovuti:}")
   private String exportDovutiQueue;
+  private boolean exportDovutiQueueEnabled = true;
 
 
   @Value("${spring.artemis.host:null}")
@@ -68,19 +72,25 @@ public class QueueProducer implements InitializingBean {
 
   @Override
   public void afterPropertiesSet() {
-    log.info("ActiveMQ - Artemis - host: "+artemisHost+" - port: "+artemisPort+" - user: "+artemisUser);
+    log.info("ActiveMQ - Artemis - host: {} - port: {} - user: {}", artemisHost, artemisPort, artemisUser);
+    exportPagatiQueueEnabled = StringUtils.isNotBlank(exportPagatiQueue);
+    rendicontazioneStandardQueueEnabled = StringUtils.isNotBlank(rendicontazioneStandardQueue);
+    tesoreriaQueueEnabled = StringUtils.isNotBlank(tesoreriaQueue);
+    exportDovutiQueueEnabled = StringUtils.isNotBlank(exportDovutiQueue);
+    log.info("ActiveMQ - exportPagatiQueueEnabled: {} - rendicontazioneStandardQueueEnabled: {} - tesoreriaQueueEnabled: {} - exportDovutiQueueEnabled: {}"
+      , exportPagatiQueueEnabled, rendicontazioneStandardQueueEnabled, tesoreriaQueueEnabled, exportDovutiQueueEnabled);
   }
 
   @LogExecution(params = LogExecution.ParamMode.ON)
   public String enqueueFlussoUpload(Constants.TIPO_FLUSSO TIPO, String msg) {
     if (TIPO.equals(EXPORT_PAGATI))
-      return this.enqueueImpl(exportPagatiQueue, msg);
+      return exportPagatiQueueEnabled ? this.enqueueImpl(exportPagatiQueue, msg) : null;
     else if (TIPO.equals(RENDICONTAZIONE_STANDARD))
-      return this.enqueueImpl(rendicontazioneStandardQueue, msg);
+      return rendicontazioneStandardQueueEnabled ? this.enqueueImpl(rendicontazioneStandardQueue, msg) : null;
     else if (Arrays.asList(TESORERIA, GIORNALE_DI_CASSA, GIORNALE_DI_CASSA_OPI, ESTRATTO_CONTO_POSTE).contains(TIPO))
-      return this.enqueueImpl(tesoreriaQueue, msg);
+      return tesoreriaQueueEnabled ? this.enqueueImpl(tesoreriaQueue, msg) : null;
     else if(TIPO.equals(DOVUTI))
-      return this.enqueueImpl(exportDovutiQueue, msg);
+      return exportDovutiQueueEnabled ? this.enqueueImpl(exportDovutiQueue, msg) : null;
     return null;
   }
 

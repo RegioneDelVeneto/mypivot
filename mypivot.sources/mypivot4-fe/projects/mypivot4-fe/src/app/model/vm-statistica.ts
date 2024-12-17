@@ -15,15 +15,16 @@
  *     You should have received a copy of the GNU Affero General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { WithActions } from './../../../../mypay4-fe-common/src/lib/table/with-actions';
 import { MapperDef, MapperType } from 'projects/mypay4-fe-common/src/public-api';
+
+import { WithActions } from '../../../../mypay4-fe-common/src/lib/table/with-actions';
 
 export class VmStatistica extends WithActions {
 
   public static readonly MAPPER_S2C_DEF = [
     new MapperDef(MapperType.Function,'codDesc',(stat: VmStatistica) => {
       let desc = (!stat.desc || stat.desc.length <= 60) ?
-          stat.desc : stat.desc.substr(0, 60) + '...';
+          stat.desc : stat.desc.substring(0, 60) + '...';
       return `[${stat.codice}] ${desc}`;
     }),
   ]

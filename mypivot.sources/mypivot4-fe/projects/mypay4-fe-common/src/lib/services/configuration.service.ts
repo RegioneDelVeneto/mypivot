@@ -19,6 +19,7 @@ import { HttpBackend, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '../environments/environment';
+import { versionInfo } from '../environments/version';
 import { User } from '../model/user';
 
 @Injectable({
@@ -44,7 +45,6 @@ export class ConfigurationService {
           console.log('externalized configuration: ',this.externalizedConfiguration );
           return null;
         }
-        return;
       }, error => {
         if(error?.status==404)
           console.log('missing externalized configuration');
@@ -61,20 +61,29 @@ export class ConfigurationService {
         if(data && typeof data === 'object')
           this.backendConfig = data;
 
-          const useAuthCookie = this.getBackendProperty<boolean>('useAuthCookie', false);
-          if(useAuthCookie){
-            return new HttpClient(this.httpBackend)
-            .post<User>(this.getProperty('baseApiUrl')+'checkLoginCookie', null)
-            .toPromise().then(user => {
-              if(user && typeof user === 'object')
-                this.userFromCookie = user;
-              return;
-            }, error => {
-              console.log('error checkLoginCookie, ignoring it!', error);
-            });
-          }
+        const versionBE = this.backendConfig?.['gitHash']?.substring(0,8);
+        const versionFE = versionInfo.gitHash?.substring(0,8);
+        const urlSearchParams = new URLSearchParams(document.location.search);
+        const versionUrl = urlSearchParams.get("mypivotVersion");
+        let skipReload = versionUrl==versionBE || versionBE==versionFE || versionFE==='?';
+        console.log('versionFE['+versionFE+'] versionBE['+versionBE+'] versionUrl['+versionUrl+']');
+        if(!skipReload){
+          urlSearchParams.append('mypivotVersion', versionBE);
+          console.log('try reload FE becuse possibly outdated, new searchString['+urlSearchParams.toString()+']');
+          document.location.search = urlSearchParams.toString();
+        }
 
-        return;
+        const useAuthCookie = this.getBackendProperty<boolean>('useAuthCookie', false);
+        if(useAuthCookie){
+          return new HttpClient(this.httpBackend)
+          .post<User>(this.getProperty('baseApiUrl')+'checkLoginCookie', null)
+          .toPromise().then(user => {
+            if(user && typeof user === 'object')
+              this.userFromCookie = user;
+          }, error => {
+            console.log('error checkLoginCookie, ignoring it!', error);
+          });
+        }
       }, error => {
         console.log('error backend config', error);
       });
@@ -92,7 +101,7 @@ export class ConfigurationService {
     if(this.externalizedConfiguration.hasOwnProperty(key))
       return this.externalizedConfiguration[key];
 
-      if(appEnvironment?.hasOwnProperty(key))
+    if(appEnvironment?.hasOwnProperty(key))
       return appEnvironment[key];
 
     if(environment.hasOwnProperty(key))

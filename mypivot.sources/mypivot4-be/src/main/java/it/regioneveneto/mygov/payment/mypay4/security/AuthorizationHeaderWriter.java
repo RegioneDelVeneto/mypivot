@@ -20,7 +20,6 @@ package it.regioneveneto.mygov.payment.mypay4.security;
 import io.jsonwebtoken.Claims;
 import it.regioneveneto.mygov.payment.mypay4.storage.JwtTokenUsageStorage;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -39,10 +38,6 @@ public class AuthorizationHeaderWriter implements HeaderWriter {
 	@Value("${jwt.rolling-token.enabled:true}")
 	private boolean rollingTokenEnabled;
 
-	@Value("${HOSTNAME:unknown}")
-	private String hostname;
-	private String serverId;
-
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
@@ -51,18 +46,13 @@ public class AuthorizationHeaderWriter implements HeaderWriter {
 
 	@Override
 	public void writeHeaders(HttpServletRequest request, HttpServletResponse response) {
-		if(serverId==null) {
-			serverId = StringUtils.substring(hostname, StringUtils.lastOrdinalIndexOf(hostname, "-", 2) + 1);
-		}
-		//add header for hostname serving the request (aka kubernetes pod name in case of kubernetes deployment) for debug purposes
-		response.setHeader("ServerId", serverId);
 
 		if(response.containsHeader(JwtRequestFilter.AUTHORIZATION_HEADER))
 			return;
 
 		boolean removeCookie = request.getAttribute(JwtAuthenticationEntryPoint.TOKEN_ERROR_CODE_ATTRIB)!=null &&
-        !request.getAttribute(JwtAuthenticationEntryPoint.TOKEN_ERROR_CODE_ATTRIB).equals(JwtAuthenticationEntryPoint.TOKEN_ERROR_CODE_MISSING) &&
-        jwtTokenUtil.isTokenInCookie();
+				!JwtAuthenticationEntryPoint.NOT_REMOVE_AUTH.contains((String)request.getAttribute(JwtAuthenticationEntryPoint.TOKEN_ERROR_CODE_ATTRIB)) &&
+				jwtTokenUtil.isTokenInCookie();
 
 		if(rollingTokenEnabled && !removeCookie) {
 			Claims claims = (Claims) request.getAttribute(JwtRequestFilter.CLAIMS_ATTRIBUTE);

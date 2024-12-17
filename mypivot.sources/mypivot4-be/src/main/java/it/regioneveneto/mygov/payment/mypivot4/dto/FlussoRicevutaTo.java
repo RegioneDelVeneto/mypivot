@@ -25,7 +25,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Builder
@@ -50,6 +49,7 @@ public class FlussoRicevutaTo extends BaseTo {
   private String codESoggVersIdUnivVersTipoIdUnivoco; //F('Persona Fisica') or G('Persona Giuridica')
   private String deTipoDovuto;
 
+  private String codFiscalePa1;
   private String deStato; //info from mypay
   private int indiceDatiSingoloPagamento;
 }

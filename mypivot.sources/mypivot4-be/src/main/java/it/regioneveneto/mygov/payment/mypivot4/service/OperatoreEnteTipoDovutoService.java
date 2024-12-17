@@ -17,6 +17,7 @@
  */
 package it.regioneveneto.mygov.payment.mypivot4.service;
 
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.dao.OperatoreEnteTipoDovutoDao;
 import it.regioneveneto.mygov.payment.mypivot4.model.Operatore;
 import it.regioneveneto.mygov.payment.mypivot4.model.OperatoreEnteTipoDovuto;
@@ -41,7 +42,7 @@ public class OperatoreEnteTipoDovutoService {
     return operatoreEnteTipoDovutoDao.getByCodIpaCodTipoCodFed(codIpaEnte, codTipo, codFedUserId);
   }
 
-  @Cacheable(value="operatoreEnteTipoDovutoCache", key = "{'codIpaEnte+codFedUserId',#codIpaEnte,#codFedUserId}", unless="#result==null")
+  @Cacheable(value= CacheService.CACHE_NAME_ENTE_TIPO_DOVUTO, key = "{'codIpaEnte+codFedUserId',#codIpaEnte,#codFedUserId}", unless="#result==null")
   public List<String> getTipoByCodIpaCodFedUser(String codIpaEnte, String codFedUserId) {
     return operatoreEnteTipoDovutoDao.getTipoByCodIpaCodFedUser(codIpaEnte, codFedUserId);
   }

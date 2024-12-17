@@ -31,10 +31,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -47,17 +49,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+
+import static it.regioneveneto.mygov.payment.mypay4.config.MyPay4AbstractSecurityConfig.PATH_A2A;
 
 @Component
 @Slf4j
 @ConditionalOnWebApplication
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-  public final static String AUTHORIZATION_HEADER = "Authorization";
-  final static String CLAIMS_ATTRIBUTE = "__CLAIMS_"+ UUID.randomUUID();
+  public static final String AUTHORIZATION_HEADER = "Authorization";
+  public static final String REQUEST_UID_HEADER = "ReqUid";
+  static final String CLAIMS_ATTRIBUTE = "__CLAIMS_"+ UUID.randomUUID();
 
   @Value("${static.serve.enabled:false}")
   private String staticContentEnabled;
@@ -70,6 +73,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
   private boolean usageCheckEnabled;
   @Value("${jwt.usage-check.ignorelongcall.milliseconds:0}")
   private long usageCheckIgnoreLongCallMilliseconds;
+
+  @Value("${server.servlet.context-path:}")
+  private String serverServletContextPath;
 
   @Autowired
   private JwtTokenUtil jwtTokenUtil;
@@ -102,12 +108,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
   }
 
   @Override
-  protected boolean shouldNotFilter(HttpServletRequest request) {
+  protected boolean shouldNotFilter(@NonNull HttpServletRequest request) {
     return Arrays.stream(antPathRequestMatchers).anyMatch(antPathRequestMatcher -> antPathRequestMatcher.matches(request));
   }
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+  protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain chain)
       throws ServletException, IOException {
 
     String jwtToken = null;
@@ -116,8 +122,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
     boolean tokenCheckOk = false;
+    boolean isA2ACall = isApplication2ApplicationCall(request);
+    Optional<String> requestUid = Optional.ofNullable(request.getHeader(REQUEST_UID_HEADER));
 
-    if(!jwtTokenUtil.isTokenInCookie()) {
+    if(isA2ACall || !jwtTokenUtil.isTokenInCookie()) {
       // JWT Token is in the form "Bearer token". Remove Bearer word and get only the Token
       final String requestTokenHeader = request.getHeader(AUTHORIZATION_HEADER);
       if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer "))
@@ -129,8 +137,17 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     if (jwtToken != null) {
       try {
+        Jws<Claims> jws;
+        String a2aSystem;
         //parse JWT token
-        Jws<Claims> jws = jwtTokenUtil.parseToken(jwtToken);
+        if(isA2ACall){
+          Pair<String, Jws<Claims>> jwsAndSystem = jwtTokenUtil.parseA2AAuthorizationToken(jwtToken);
+          a2aSystem = jwsAndSystem.getLeft();
+          jws = jwsAndSystem.getRight();
+          jws.getBody().setSubject(a2aSystem);
+        } else {
+          jws = jwtTokenUtil.parseToken(jwtToken);
+        }
         claims = jws.getBody();
         jti = claims.getId();
         //subject cannot be empty
@@ -141,15 +158,22 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         //add logged user info into log
         MDC.put("user",subject);
         //check if token was not already used before
-        if (usageCheckEnabled && wasTokenAlreadyUsed(jti)) {
+        if (usageCheckEnabled && wasTokenAlreadyUsed(jti, requestUid)) {
           throw new AlreadyUsedJwtException(jws.getHeader(), claims, "Token was already used");
-        } else if (!jwtTokenUtil.isAuthToken(jws)){
+        } else if (!isA2ACall && !jwtTokenUtil.isAuthToken(jws)){
           throw new InvalidJwtException(jws.getHeader(), claims, "Invalid token type");
-        } else if(isEmailValidationNeeded(claims)){
+        } else if(!isA2ACall && isEmailValidationNeeded(claims)){
           throw new InvalidJwtException(jws.getHeader(), claims, "Invalid token type (email validation needed)");
         }
         //retrieve user info from token
-        UserWithAdditionalInfo user = UserWithAdditionalInfo.builder()
+        UserWithAdditionalInfo user;
+        if(isA2ACall)
+          user = UserWithAdditionalInfo.builder()
+            .username("A2A-"+subject)
+            .build();
+        else {
+          Map<String, Set<String>> userTenantsAndRoles = myProfileService.getUserTenantsAndRoles(subject);
+          user = UserWithAdditionalInfo.builder()
               .username(subject)
               .codiceFiscale(claims.get(JwtTokenUtil.JWT_CLAIM_CODICE_FISCALE, String.class))
               .familyName(claims.get(JwtTokenUtil.JWT_CLAIM_COGNOME, String.class))
@@ -159,8 +183,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 .map(x -> x.charAt(0)).filter(Utente.EMAIL_SOURCE_TYPES::isValid)
                 .orElseThrow(() -> new MyPayException("invalid emailSourceType")))
             //retrieve enti/roles from profile service (may be cached for performance reasons)
-            .entiRoles(myProfileService.getUserTenantsAndRoles(subject))
+            .entiRoles(userTenantsAndRoles)
+            .sysAdmin(myProfileService.isSystemAdministrator(userTenantsAndRoles))
             .build();
+        }
         //set the current user (with details) from JWT Token into Spring Security configuration
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
             user, null, user.getAuthorities());
@@ -190,10 +216,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         //do not set the token as "used" when operation took more than X seconds,
         // to decrease the risk that user ignored the operation front-end side and tried to navigate
         if(usageCheckIgnoreLongCallMilliseconds > 0 && stopWatch.getTime() > usageCheckIgnoreLongCallMilliseconds){
-          log.debug("token tot set as used because response time longer than threshold [{}/{}]ms", stopWatch.getTime(), usageCheckIgnoreLongCallMilliseconds);
+          log.debug("token not set as used because response time longer than threshold [{}/{}]ms", stopWatch.getTime(), usageCheckIgnoreLongCallMilliseconds);
         } else {
           log.debug("operation completed, elapsed time ms[{}]", stopWatch.getTime());
           jwtTokenUsageService.markTokenUsed(jti);
+          if(requestUid.isPresent())
+            jwtTokenUsageService.markTokenUsedReqUid(jti, requestUid.get());
         }
       }
     } catch(Exception e){
@@ -215,16 +243,54 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     //}
   }
 
-  private boolean wasTokenAlreadyUsed(String jti) {
+  private boolean wasTokenAlreadyUsed(String jti, Optional<String> requestUid) {
     Long lastUsed = jwtTokenUsageService.getTokenUsageTime(jti);
     if (lastUsed == null) {
-      log.debug("wasTokenAlreadyUsed: " + jti + " : null");
+      log.debug("wasTokenAlreadyUsed [{}]: null", jti);
       return false;
     } else {
-      boolean used = System.currentTimeMillis() - lastUsed > gracePeriod;
-      log.debug("wasTokenAlreadyUsed: " + jti + " :" + used);
+      long now = System.currentTimeMillis();
+      boolean used = now - lastUsed > gracePeriod;
+      log.debug("wasTokenAlreadyUsed (lastUsed) [{}]: {}", jti, used ? (now+"-"+lastUsed) : "null" );
+
+      if(used) {
+        Long rolledAt = jwtTokenUsageService.wasTokenRolled(jti);
+        log.debug("wasTokenAlreadyRolled [{}]: {}", jti, rolledAt);
+        used = rolledAt==null || now - rolledAt > gracePeriod;
+        if(!used)
+          log.debug("wasTokenAlreadyUsed (alreadyRolled) [{}]: false", jti);
+      }
+
+      if(used && requestUid.isPresent()) {
+        String originalRequestUid = jwtTokenUsageService.getTokenUsageReqUid(jti);
+        used = !StringUtils.equals(originalRequestUid, requestUid.get());
+        if(!used)
+          log.debug("wasTokenAlreadyUsed (requestUid) [{}]: false", jti);
+      }
+
       return used;
     }
+  }
+
+  private String a2aPath = null;
+  private boolean isApplication2ApplicationCall(HttpServletRequest request) {
+    if(this.a2aPath == null){
+      this.a2aPath = "...";
+      try {
+        String contextPath = StringUtils.stripToEmpty(serverServletContextPath);
+        if (contextPath.endsWith("/"))
+          contextPath = contextPath.substring(0, contextPath.length() - 1);
+        String a2aPath = contextPath + PATH_A2A + "/";
+        log.info("ContextPath: {} - A2A path: {}", contextPath, a2aPath);
+        this.a2aPath = a2aPath;
+      } catch(Exception e){
+        log.error("error initializing A2A path", e);
+        this.a2aPath = null;
+      }
+    }
+    boolean isA2a = request.getRequestURI().startsWith(this.a2aPath);
+    log.trace("isA2a [{}]: {}",request.getRequestURI(),isA2a);
+    return isA2a;
   }
 
   private boolean isEmailValidationNeeded(Claims claims){

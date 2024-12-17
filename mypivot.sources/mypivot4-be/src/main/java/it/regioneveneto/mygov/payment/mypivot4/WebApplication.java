@@ -20,7 +20,6 @@ package it.regioneveneto.mygov.payment.mypivot4;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -29,12 +28,9 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.EnumerablePropertySource;
-import org.springframework.core.env.PropertySource;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import java.util.Arrays;
 
 @SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration.class})
 @ComponentScan(basePackages = "it.regioneveneto.mygov.payment")
@@ -42,7 +38,7 @@ import java.util.Arrays;
 @EnableTransactionManagement
 @Slf4j
 @ConditionalOnProperty(name=AbstractApplication.NAME_KEY, havingValue=WebApplication.NAME)
-public class WebApplication extends AbstractApplication{
+public class WebApplication extends AbstractApplication {
 
   public WebApplication(){
     log.debug("constructor WebApplication");
@@ -52,8 +48,23 @@ public class WebApplication extends AbstractApplication{
   public static void main(String[] args) {
     log.debug("starting main class WebApplication");
     System.setProperty(NAME_KEY, NAME);
+    // allows to use %2F in path segments
+    System.setProperty("org.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH", "true");
     SpringApplication.run(WebApplication.class, args);
     log.info("started WebApplication");
+  }
+
+  @Bean
+  public HttpFirewall httpFirewall() {
+    log.info("setting custom settings on StrictHttpFirewall");
+    StrictHttpFirewall firewall = new StrictHttpFirewall();
+    //firewall.setAllowedHttpMethods(Arrays.asList("GET", "POST"));
+    //firewall.setAllowSemicolon(true);
+    firewall.setAllowUrlEncodedSlash(true);
+    //firewall.setAllowBackSlash(true);
+    //firewall.setAllowUrlEncodedPercent(true);
+    //firewall.setAllowUrlEncodedPeriod(true);
+    return firewall;
   }
 
   //HTTP port

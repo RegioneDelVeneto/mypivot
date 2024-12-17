@@ -27,6 +27,7 @@ import it.regioneveneto.mygov.payment.mypivot4.model.Utente;
 import org.jdbi.v3.sqlobject.config.RegisterFieldMapper;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.customizer.BindList;
+import org.jdbi.v3.sqlobject.customizer.Define;
 import org.jdbi.v3.sqlobject.statement.GetGeneratedKeys;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
@@ -134,36 +135,48 @@ public interface PrenotazioneFlussoRiconciliazioneDao extends BaseDao {
   @GetGeneratedKeys("mygov_prenotazione_flusso_riconciliazione_id")
   long insert(@BindBean("d") PrenotazioneFlussoRiconciliazione d);
 
+  String SQL_QUERY =
+      "  from mygov_prenotazione_flusso_riconciliazione " + PrenotazioneFlussoRiconciliazione.ALIAS +
+      "  join mygov_ente " + Ente.ALIAS +
+      "    on "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_ente_id = "+Ente.ALIAS+".mygov_ente_id " +
+      "  join mygov_anagrafica_stato " + AnagraficaStato.ALIAS +
+      "    on "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_anagrafica_stato_id = "+AnagraficaStato.ALIAS+".mygov_anagrafica_stato_id " +
+      "  join mygov_utente " + Utente.ALIAS +
+      "    on "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_utente_id = "+Utente.ALIAS+".mygov_utente_id " +
+      " where "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_ente_id = :mygovEnteId " +
+      "   and (:codFedUserId is null or "+Utente.ALIAS+".cod_fed_user_id = :codFedUserId) " +
+      "   and (:nomeFile is null or "+PrenotazioneFlussoRiconciliazione.ALIAS+".de_nome_file_generato ilike '%' || :nomeFile || '%')" +
+      "   and (("+AnagraficaStato.ALIAS+".de_tipo_stato = '"+ Constants.DE_TIPO_STATO_PRENOTA_FLUSSO_RICONCILIAZIONE+"'" +
+      "          and "+AnagraficaStato.ALIAS+".cod_stato in (<listCodStatoRiconciliazione>)) " +
+      "       or ("+AnagraficaStato.ALIAS+".de_tipo_stato = '"+ Constants.DE_TIPO_STATO_ALL+"'" +
+      "          and "+AnagraficaStato.ALIAS+".cod_stato = '"+Constants.COD_TIPO_STATO_IN_CARICO+"')) " +
+      "   and ("+PrenotazioneFlussoRiconciliazione.ALIAS+".dt_creazione >= :dateFrom and "+PrenotazioneFlussoRiconciliazione.ALIAS+".dt_creazione < :dateTo)";
+
   @SqlQuery(
-      "    select " +
-          "  "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_prenotazione_flusso_riconciliazione_id " +
-          ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".de_nome_file_generato " +
-          ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".num_dimensione_file_generato " +
-          ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".dt_creazione " +
-          ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".cod_codice_classificazione " +
-          ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".versione_tracciato " +
-          ", coalesce("+Utente.ALIAS+".de_firstname, '') as de_firstname " +
-          ", coalesce("+Utente.ALIAS+".de_lastname, '') as de_lastname " +
-          ", "+AnagraficaStato.ALIAS+".cod_stato " +
-          ", "+AnagraficaStato.ALIAS+".de_stato " +
-          ", "+AnagraficaStato.ALIAS+".de_tipo_stato " +
-          "  from mygov_prenotazione_flusso_riconciliazione " + PrenotazioneFlussoRiconciliazione.ALIAS +
-          "  join mygov_ente " + Ente.ALIAS +
-          "    on "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_ente_id = "+Ente.ALIAS+".mygov_ente_id " +
-          "  join mygov_anagrafica_stato " + AnagraficaStato.ALIAS +
-          "    on "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_anagrafica_stato_id = "+AnagraficaStato.ALIAS+".mygov_anagrafica_stato_id " +
-          "  join mygov_utente " + Utente.ALIAS +
-          "    on "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_utente_id = "+Utente.ALIAS+".mygov_utente_id " +
-          " where "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_ente_id = :mygovEnteId " +
-          "   and "+Utente.ALIAS+".cod_fed_user_id = :codFedUserId " +
-          "   and (:nomeFile is null or "+PrenotazioneFlussoRiconciliazione.ALIAS+".de_nome_file_generato ilike '%' || :nomeFile || '%')" +
-          "   and (("+AnagraficaStato.ALIAS+".de_tipo_stato = '"+ Constants.DE_TIPO_STATO_PRENOTA_FLUSSO_RICONCILIAZIONE+"'" +
-          "          and "+AnagraficaStato.ALIAS+".cod_stato in (<listCodStatoRiconciliazione>)) " +
-          "       or ("+AnagraficaStato.ALIAS+".de_tipo_stato = '"+ Constants.DE_TIPO_STATO_ALL+"'" +
-          "          and "+AnagraficaStato.ALIAS+".cod_stato = '"+Constants.COD_TIPO_STATO_IN_CARICO+"')) " +
-          "   and ("+PrenotazioneFlussoRiconciliazione.ALIAS+".dt_creazione >= :dateFrom and "+PrenotazioneFlussoRiconciliazione.ALIAS+".dt_creazione < :dateTo)"
+    "  select "+PrenotazioneFlussoRiconciliazione.ALIAS+".mygov_prenotazione_flusso_riconciliazione_id " +
+      ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".de_nome_file_generato " +
+      ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".num_dimensione_file_generato " +
+      ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".dt_creazione " +
+      ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".cod_codice_classificazione " +
+      ", "+PrenotazioneFlussoRiconciliazione.ALIAS+".versione_tracciato " +
+      ", coalesce("+Utente.ALIAS+".de_firstname, '') as de_firstname " +
+      ", coalesce("+Utente.ALIAS+".de_lastname, '') as de_lastname " +
+      ", "+AnagraficaStato.ALIAS+".cod_stato " +
+      ", "+AnagraficaStato.ALIAS+".de_stato " +
+      ", "+AnagraficaStato.ALIAS+".de_tipo_stato " +
+        SQL_QUERY +
+        " order by " + PrenotazioneFlussoRiconciliazione.ALIAS + ".dt_creazione desc " +
+        " limit <queryLimit>"
   )
   List<FlussoExportTo> getByNomeFileDtCreazione(Long mygovEnteId, String codFedUserId, String nomeFile,
+                                                @BindList(onEmpty=BindList.EmptyHandling.NULL_STRING) List<String> listCodStatoRiconciliazione,
+                                                LocalDate dateFrom, LocalDate dateTo, @Define int queryLimit);
+
+  @SqlQuery(
+    "    select count(1)" +
+      SQL_QUERY
+  )
+  int getByNomeFileDtCreazioneCount(Long mygovEnteId, String codFedUserId, String nomeFile,
                                                 @BindList(onEmpty=BindList.EmptyHandling.NULL_STRING) List<String> listCodStatoRiconciliazione,
                                                 LocalDate dateFrom, LocalDate dateTo);
 

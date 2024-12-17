@@ -17,34 +17,14 @@
  */
 package it.regioneveneto.mygov.payment.mypay4.config;
 
+import it.regioneveneto.mygov.payment.mypay4.dao.common.DbToolsDao;
 import it.regioneveneto.mygov.payment.mypay4.logging.JdbiSqlLogger;
-import it.regioneveneto.mygov.payment.mypivot4.dao.AccertamentoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.AccertamentoDettaglioDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.AnagraficaStatoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.AnagraficaUffCapAccDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.EnteDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.EnteTipoDovutoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.ExportRendicontazioneCompletaDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.FlussoExportDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.FlussoRendicontazioneDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.FlussoTesoreriaDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.InfoMappingTesoreriaDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.ManageFlussoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.OperatoreDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.OperatoreEnteTipoDovutoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.PrenotazioneFlussoRiconciliazioneDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.RiconciliazioneDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.SegnalazioneDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.TipoFlussoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.UtenteDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoUffTdCapAccDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoUffTdCapDao;
-import it.regioneveneto.mygov.payment.mypivot4.dao.VmStatisticaEnteAnnoMeseGiornoUffTdDao;
+import it.regioneveneto.mygov.payment.mypivot4.dao.*;
 import lombok.extern.slf4j.Slf4j;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.core.spi.JdbiPlugin;
+import org.jdbi.v3.core.statement.SqlStatements;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -66,6 +46,12 @@ public class JdbiConfiguration {
   @Value("${sql-logging.enabled:false}")
   private String sqlLogginEnabled;
 
+  @Value("${sql-logging.slow.milliseconds:0}")
+  private int sqlLogginSlowQueryTresholdMs;
+
+  @Value("${mypay4.statements.timeout.seconds:-1}")
+  private int globalStatementTimeout;
+
   @Autowired
   JdbiSqlLogger jdbiSqlLogger;
 
@@ -76,19 +62,28 @@ public class JdbiConfiguration {
   }
 
   private Jdbi _createJdbi (DataSource ds, List<JdbiPlugin> jdbiPlugins, List<RowMapper<?>> rowMappers) {
-    TransactionAwareDataSourceProxy proxy = new TransactionAwareDataSourceProxy(ds);
-    Jdbi jdbi = Jdbi.create(proxy);
-    if(!"false".equalsIgnoreCase(sqlLogginEnabled)) {
-      jdbiSqlLogger.setBehaviour(sqlLogginEnabled);
-      jdbi.setSqlLogger(jdbiSqlLogger);
-    }
-    // Register all available plugins
     String dsString;
     try{
       dsString = ds.getConnection().getMetaData().getURL();
     } catch (Exception e){
       dsString = ds.toString();
     }
+    final String dsStringFinal = dsString;
+    TransactionAwareDataSourceProxy proxy = new TransactionAwareDataSourceProxy(ds);
+    Jdbi jdbi = Jdbi.create(proxy);
+    if(globalStatementTimeout >= 0)
+      jdbi = jdbi.configure(SqlStatements.class, stmt -> {
+        log.info("set default query timeout for ds {} to {} seconds", dsStringFinal, globalStatementTimeout);
+        stmt.setQueryTimeout(globalStatementTimeout);
+      });
+    else
+      log.info("not setting default query timeout for ds {} (value {})", dsStringFinal, globalStatementTimeout);
+    if(!"false".equalsIgnoreCase(sqlLogginEnabled)) {
+      jdbiSqlLogger.setBehaviour(sqlLogginEnabled);
+      jdbiSqlLogger.setSlowQueryTresholdMs(sqlLogginSlowQueryTresholdMs);
+      jdbi.setSqlLogger(jdbiSqlLogger);
+    }
+    // Register all available plugins
     log.debug("Datasource {} - Installing jdbi plugins... ({} found): {}"
         , dsString, jdbiPlugins.size()
         , jdbiPlugins.stream().map(x -> x.getClass().getName()).collect(Collectors.joining(", ")) );
@@ -228,5 +223,10 @@ public class JdbiConfiguration {
   @Bean
   public SegnalazioneDao segnalazioneDao(Jdbi jdbi){
     return jdbi.onDemand(SegnalazioneDao.class);
+  }
+
+  @Bean
+  public DbToolsDao paDbToolsDao(Jdbi jdbi) {
+    return jdbi.onDemand(DbToolsDao.class);
   }
 }

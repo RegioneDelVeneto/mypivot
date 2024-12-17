@@ -20,6 +20,7 @@ package it.regioneveneto.mygov.payment.mypivot4.service;
 import io.jsonwebtoken.Claims;
 import it.regioneveneto.mygov.payment.mypay4.security.JwtTokenUtil;
 import it.regioneveneto.mygov.payment.mypay4.security.UserWithAdditionalInfo;
+import it.regioneveneto.mygov.payment.mypay4.service.common.CacheService;
 import it.regioneveneto.mygov.payment.mypivot4.dao.UtenteDao;
 import it.regioneveneto.mygov.payment.mypivot4.dto.OperatoreTo;
 import it.regioneveneto.mygov.payment.mypivot4.dto.UtenteTo;
@@ -46,20 +47,20 @@ public class UtenteService {
   @Autowired
   private UtenteDao utenteDao;
 
-  @Cacheable(value = "utenteCache", key = "{'codFedUserId',#codFedUserId}", unless = "#result==null")
+  @Cacheable(value = CacheService.CACHE_NAME_UTENTE, key = "{'codFedUserId',#codFedUserId}", unless = "#result==null")
   public Optional<Utente> getByCodFedUserId(String codFedUserId) {
     return utenteDao.getByCodFedUserId(codFedUserId);
   }
 
-  @CacheEvict(value="utenteCache",key="{'codFedUserId',#codFedUserId}")
+  @CacheEvict(value=CacheService.CACHE_NAME_UTENTE,key="{'codFedUserId',#codFedUserId}")
   public void clearCacheByCodFedUserId(String codFedUserId){}
 
-  @Cacheable(value = "utenteCache", key = "{'codIpaEnte',#codIpaEnte}", unless = "#result==null")
+  @Cacheable(value = CacheService.CACHE_NAME_UTENTE, key = "{'codIpaEnte',#codIpaEnte}", unless = "#result==null")
   public List<Utente> getByCodIpaEnte(String codIpaEnte) {
     return utenteDao.getByCodIpaEnte(codIpaEnte);
   }
 
-  @Cacheable(value = "utenteCacheWs", key = "{'codIpaEnte',#codIpaEnte}", unless = "#result==null")
+  @Cacheable(value = CacheService.CACHE_NAME_UTENTE, key = "{'WScodIpaEnte',#codIpaEnte}", unless = "#result==null")
   public Utente getUtenteWSByCodIpaEnte(final String codIpaEnte) {
     return utenteDao.getByCodFedUserIdIgnoreCase(codIpaEnte + "-WS_USER");
   }

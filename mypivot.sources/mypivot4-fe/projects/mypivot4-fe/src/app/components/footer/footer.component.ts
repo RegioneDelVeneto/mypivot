@@ -18,7 +18,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { CookieService, manageError, UserService } from 'projects/mypay4-fe-common/src/public-api';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
     faFacebookSquare, faInstagramSquare, faTwitterSquare, faYoutubeSquare
 } from '@fortawesome/free-brands-svg-icons';
@@ -61,5 +61,10 @@ export class FooterComponent implements OnInit {
 
   resetCookieConsent(){
     this.cookieService.resetCookieConsentBar();
+  }
+
+  @Output() scrollToMainContent = new EventEmitter();
+  scrollToTop(){
+    this.scrollToMainContent.emit();
   }
 }

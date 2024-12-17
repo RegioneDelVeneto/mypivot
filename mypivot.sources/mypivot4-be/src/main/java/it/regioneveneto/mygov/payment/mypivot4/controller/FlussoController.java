@@ -27,9 +27,11 @@ import it.regioneveneto.mygov.payment.mypivot4.dto.FlussoImportTo;
 import it.regioneveneto.mygov.payment.mypivot4.dto.FlussoTo;
 import it.regioneveneto.mygov.payment.mypivot4.model.ManageFlusso;
 import it.regioneveneto.mygov.payment.mypivot4.queue.QueueProducer;
+import it.regioneveneto.mygov.payment.mypivot4.service.EnteService;
 import it.regioneveneto.mygov.payment.mypivot4.service.FlussoService;
 import it.regioneveneto.mygov.payment.mypivot4.service.PrenotazioneFlussoRiconciliazioneService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -37,6 +39,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Tag(name = "Flussi", description = "Gestione dei flussi di pagamento e di rendicontazione")
@@ -50,16 +53,19 @@ public class FlussoController {
   public final static String FILE_TYPE_FLUSSI_EXPORT = "FLUSSI_EXPORT";
 
   @Autowired
-  FlussoService flussoService;
+  private FlussoService flussoService;
 
   @Autowired
-  PrenotazioneFlussoRiconciliazioneService prenotazioneFlussoRiconciliazioneService;
+  private PrenotazioneFlussoRiconciliazioneService prenotazioneFlussoRiconciliazioneService;
 
   @Autowired
-  MyBoxService myBoxService;
+  private MyBoxService myBoxService;
 
   @Autowired
-  QueueProducer queueProducer;
+  private QueueProducer queueProducer;
+
+  @Autowired
+  private EnteService enteService;
 
   @GetMapping("byEnteId/{mygovEnteId}")
   @Operatore(value = "mygovEnteId", roles = Role.ROLE_VISUAL)
@@ -84,10 +90,22 @@ public class FlussoController {
                                            @RequestParam(required = false) String nomeFlusso,
                                            @RequestParam LocalDate from,
                                            @RequestParam LocalDate to){
-    List<FlussoImportTo> flussi = flussoService.getByEnteCodIdentificativoFlussoCreateDt(mygovEnteId, codTipo, nomeFlusso, from, to);
+
+    // check if user is app-admin..
+    boolean isAdmin = user.isSysAdmin() ||
+      // .. or ente-admin
+      user.getEntiRoles().getOrDefault(enteService.getEnteById(mygovEnteId).getCodIpaEnte(), Set.of())
+        .contains(Operatore.Role.ROLE_ADMIN.name());
+
+    //if app/ente admin, then remove constraint to only find your own import request
+    List<FlussoImportTo> flussi = flussoService.getByEnteCodIdentificativoFlussoCreateDt(
+      mygovEnteId, isAdmin ? null : user.getUsername(), codTipo, nomeFlusso, from, to);
     //generate security token (to allow download)
     flussi.stream().forEach(flussoImportTo -> {
-      flussoImportTo.setSecurityToken(myBoxService.generateSecurityToken(FILE_TYPE_FLUSSI_IMPORT, flussoImportTo.getFilePathOriginale(), user, mygovEnteId));
+      // only user who requested the import or is admin app/ente can download it
+      if(BooleanUtils.isTrue(flussoImportTo.getShowDownload()))
+        flussoImportTo.setSecurityToken(myBoxService.generateSecurityToken(
+          FILE_TYPE_FLUSSI_IMPORT, flussoImportTo.getFilePathOriginale(), user, mygovEnteId));
     });
 
     return flussi;
@@ -97,11 +115,20 @@ public class FlussoController {
   @Operatore(value = "mygovEnteId", roles = Role.ROLE_VISUAL)
   public List<FlussoExportTo> flussiExport(@AuthenticationPrincipal UserWithAdditionalInfo user, @PathVariable Long mygovEnteId,
                                            @RequestParam(required = false) String nomeFlusso, @RequestParam LocalDate from, @RequestParam LocalDate to){
-    List<FlussoExportTo> flussi = prenotazioneFlussoRiconciliazioneService.flussiExport(mygovEnteId, user.getCodiceFiscale(), nomeFlusso, from, to);
+
+    // check if user is app-admin..
+    boolean isAdmin = user.isSysAdmin() ||
+      // .. or ente-admin
+      user.getEntiRoles().getOrDefault(enteService.getEnteById(mygovEnteId).getCodIpaEnte(), Set.of())
+        .contains(Operatore.Role.ROLE_ADMIN.name());
+
+    List<FlussoExportTo> flussi = prenotazioneFlussoRiconciliazioneService.flussiExport(
+      mygovEnteId, isAdmin ? null : user.getUsername(), nomeFlusso, from, to);
 
     //generate security token (to allow download)
     flussi.stream().forEach(flussoExportTo -> {
-      flussoExportTo.setSecurityToken(myBoxService.generateSecurityToken(FILE_TYPE_FLUSSI_EXPORT, flussoExportTo.getPath(), user, mygovEnteId));
+      if(BooleanUtils.isTrue(flussoExportTo.getShowDownload()))
+        flussoExportTo.setSecurityToken(myBoxService.generateSecurityToken(FILE_TYPE_FLUSSI_EXPORT, flussoExportTo.getPath(), user, mygovEnteId));
     });
 
     return flussi;
